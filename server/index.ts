@@ -1,30 +1,37 @@
-import { createServer } from 'http'
-import { parse } from 'url'
-import next from 'next'
+import * as dotenv from 'dotenv';
 
-const port = parseInt(process.env.PORT || '3000', 10)
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
+dotenv.config();
+
+import express, { Request, Response } from 'express';
+import logger from 'morgan';
+import next from 'next';
+import db from './models';
+import routes from './routes';
+
+const port = Number(process.env.PORT) || 3000;
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  createServer((req, res) => {
-    const parsedUrl = parse(req.url!, true)
-    const { pathname, query } = parsedUrl
+  const server = express();
 
-    if (pathname === '/a') {
-      app.render(req, res, '/a', query)
-    } else if (pathname === '/b') {
-      app.render(req, res, '/b', query)
-    } else {
-      handle(req, res, parsedUrl)
-    }
-  }).listen(port)
+  server.use(logger('dev'));
+  server.use(express.json());
+  server.use(express.urlencoded({ extended: false }));
+  server.use(routes);
 
-  // tslint:disable-next-line:no-console
-  console.log(
-    `> Server listening at http://localhost:${port} as ${
-      dev ? 'development' : process.env.NODE_ENV
-    }`
-  )
-})
+  server.all('*', (req: Request, res: Response) => {
+    return handle(req, res);
+  });
+
+  db.sequelize
+    .authenticate()
+    .then(() => {
+      server.listen(port, err => {
+        if (err) throw err;
+        console.log(`> Ready on http://localhost:${port}`);
+      });
+    })
+    .catch((err: any) => console.error('Unable to connect to the database:', err));
+});
