@@ -9,16 +9,16 @@ module.exports = {
         include: {
           model: TwitterAccount,
           as: 'twitterAccount',
-          include: { model: Team, as: 'team' },
+          include: { model: Team, as: 'team' }
         },
-        order: [['publishedDate', 'DESC']],
+        order: [['publishedDate', 'DESC']]
       });
 
       return res.status(200).send(payload);
     } catch (error) {
       return res.status(500).send({
-        message: error.message || 'There was an error fetching tweets.',
+        message: error.message || 'There was an error fetching tweets.'
       });
     }
-  },
+  }
 };

@@ -13,7 +13,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
+app.prepare().then(async () => {
   const server = express();
 
   server.use(logger('dev'));
@@ -25,13 +25,18 @@ app.prepare().then(() => {
     return handle(req, res);
   });
 
-  db.sequelize
-    .authenticate()
-    .then(() => {
-      server.listen(port, err => {
-        if (err) throw err;
-        console.log(`> Ready on http://localhost:${port}`);
-      });
-    })
-    .catch((err: any) => console.error('Unable to connect to the database:', err));
+  try {
+    await db.sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+
+    try {
+      await server.listen(port);
+      console.log(`Ready on http://localhost:${port}`);
+    } catch (err) {
+      throw err;
+    }
+  } catch (err) {
+    console.error('Unable to connect to the database:', err);
+    throw err;
+  }
 });

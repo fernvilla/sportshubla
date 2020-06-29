@@ -6,18 +6,18 @@ module.exports = {
       'Teams',
       [
         {
-          name: 'Los Angeles Lakers',
+          fullName: 'Los Angeles Lakers',
           shortName: 'Lakers',
-          siteUrl: 'https://www.lakers.com',
+          websiteUrl: 'https://www.lakers.com',
           slug: 'los-angeles-lakers',
           leagueId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         },
         {
-          name: 'Los Angeles Dodgers',
+          fullName: 'Los Angeles Dodgers',
           shortName: 'Dodgers',
-          siteUrl: 'https://www.dodgers.com',
+          websiteUrl: 'https://www.dodgers.com',
           slug: 'los-angeles-dodgers',
           leagueId: 2,
           createdAt: new Date().toUTCString(),

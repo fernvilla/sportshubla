@@ -1,23 +1,39 @@
 'use strict';
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  const TwitterAccount = sequelize.define(
-    'TwitterAccount',
-    {
-      teamId: DataTypes.INTEGER,
-      account: DataTypes.STRING,
-    },
-    {},
-  );
-  TwitterAccount.associate = function (models) {
-    TwitterAccount.belongsTo(models.Team, {
-      foreignKey: 'teamId',
-      as: 'team',
-    });
+  class TwitterAccount extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+      TwitterAccount.belongsTo(models.TwitterAccountType, {
+        foreignKey: 'twitterAccountTypeId',
+        as: 'twitterAccountType'
+      });
 
-    TwitterAccount.hasMany(models.Tweet, {
-      foreignKey: 'twitterAccountId',
-      as: 'tweets',
-    });
-  };
+      TwitterAccount.belongsTo(models.Team, {
+        foreignKey: 'teamId',
+        as: 'team'
+      });
+
+      TwitterAccount.hasMany(models.Tweet, {
+        foreignKey: 'twitterAccountId',
+        as: 'tweets'
+      });
+    }
+  }
+  TwitterAccount.init(
+    {
+      account: DataTypes.STRING,
+      teamId: DataTypes.INTEGER
+    },
+    {
+      sequelize,
+      modelName: 'TwitterAccount'
+    }
+  );
   return TwitterAccount;
 };

@@ -1,18 +1,20 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(
       'TwitterAccounts',
       [
         {
           teamId: 1,
+          twitterAccountTypeId: 1,
           account: 'lakers',
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         },
         {
           teamId: 2,
+          twitterAccountTypeId: 1,
           account: 'dodgers',
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
@@ -22,7 +24,7 @@ module.exports = {
     );
   },
 
-  down: (queryInterface, Sequelize) => {
+  down: async (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('TwitterAccounts', null, {});
   }
 };
