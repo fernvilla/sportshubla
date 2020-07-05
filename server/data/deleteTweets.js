@@ -9,7 +9,7 @@ const { Op } = require('sequelize');
     await Tweet.destroy({
       where: {
         publishedDate: {
-          [Op.gte]: db.sequelize.literal("NOW() - INTERVAL '7d'")
+          [Op.gte]: db.sequelize.literal("NOW() - INTERVAL '1d'")
         }
       }
     });

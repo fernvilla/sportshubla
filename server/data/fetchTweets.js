@@ -52,7 +52,7 @@ const client = new Twitter({
 
     db.sequelize.close();
   } catch (error) {
-    console.log({ error });
+    console.log(error.errors);
     db.sequelize.close();
   }
 })().catch(err => console.error(err));
