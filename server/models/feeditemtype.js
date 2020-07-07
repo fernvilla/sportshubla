@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class League extends Model {
+  class FeedItemType extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,21 +9,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      League.hasMany(models.Conference, { foreignKey: 'leagueId', as: 'conferences' });
-      League.hasMany(models.Team, { foreignKey: 'leagueId', as: 'teams' });
+      FeedItemType.hasMany(models.FeedItem, { foreignKey: 'feedItemTypeId', as: 'feedItems' });
     }
   }
-  League.init(
+  FeedItemType.init(
     {
-      fullName: DataTypes.STRING,
-      shortName: DataTypes.STRING,
-      slug: DataTypes.STRING,
-      websiteUrl: DataTypes.STRING
+      type: DataTypes.STRING
     },
     {
       sequelize,
-      modelName: 'League'
+      modelName: 'FeedItemType'
     }
   );
-  return League;
+  return FeedItemType;
 };

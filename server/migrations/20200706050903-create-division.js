@@ -1,38 +1,27 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Tweets', {
+    await queryInterface.createTable('Divisions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      text: {
-        type: Sequelize.TEXT
-      },
-      tweetId: {
+      fullName: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      publishedDate: {
-        type: Sequelize.DATE
-      },
-      screenName: {
+      shortName: {
         type: Sequelize.STRING
       },
-      name: {
+      slug: {
         type: Sequelize.STRING
       },
-      profileImageUrl: {
+      websiteUrl: {
         type: Sequelize.STRING
       },
-      profileBannerUrl: {
-        type: Sequelize.STRING
-      },
-      mediaUrl: {
-        type: Sequelize.STRING
-      },
-      twitterAccountId: {
+      conferenceId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -46,6 +35,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Tweets');
+    await queryInterface.dropTable('Divisions');
   }
 };

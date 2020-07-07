@@ -1,16 +1,28 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('TwitterAccountTypes', {
+    await queryInterface.createTable('Conferences', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      type: {
+      fullName: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      shortName: {
+        type: Sequelize.STRING
+      },
+      slug: {
+        type: Sequelize.STRING
+      },
+      websiteUrl: {
+        type: Sequelize.STRING
+      },
+      leagueId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -23,6 +35,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('TwitterAccountTypes');
+    await queryInterface.dropTable('Conferences');
   }
 };

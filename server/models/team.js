@@ -10,15 +10,22 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Team.belongsTo(models.League, { foreignKey: 'leagueId', as: 'league' });
+      Team.belongsTo(models.Conference, { foreignKey: 'conferenceId', as: 'conference' });
+      Team.belongsTo(models.Division, { foreignKey: 'divisionId', as: 'division' });
+
+      Team.hasMany(models.FeedItem, { foreignKey: 'teamId', as: 'feedItems' });
+      Team.hasMany(models.TwitterAccount, { foreignKey: 'teamId', as: 'twitterAccounts' });
     }
   }
   Team.init(
     {
       fullName: DataTypes.STRING,
       shortName: DataTypes.STRING,
-      websiteUrl: DataTypes.STRING,
       slug: DataTypes.STRING,
-      leagueId: DataTypes.INTEGER
+      websiteUrl: DataTypes.STRING,
+      leagueId: DataTypes.INTEGER,
+      conferenceId: DataTypes.INTEGER,
+      divisionId: DataTypes.INTEGER
     },
     {
       sequelize,

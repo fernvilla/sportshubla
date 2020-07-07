@@ -3,7 +3,7 @@ const League = require('./../models').League;
 module.exports = {
   findAll: async (req, res) => {
     try {
-      const payload = await League.findAll();
+      const payload = await League.findAll({});
 
       return res.status(200).send(payload);
     } catch (error) {

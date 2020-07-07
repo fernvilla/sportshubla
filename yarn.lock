@@ -6514,10 +6514,10 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
-sequelize-cli@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/sequelize-cli/-/sequelize-cli-6.1.0.tgz#aa03e48988f1943734286277e4b5af7ce6ce3445"
-  integrity sha512-Bb49bdnd3K+YycGh+nYtTj6Zp4+6/cxlf8UJi8toQ28ff2b7mnqzjFPvNCuHB3frdimT8X1PeTU9Z/JUtRnEaA==
+sequelize-cli@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/sequelize-cli/-/sequelize-cli-6.2.0.tgz#fd02bfeae23b8226872f9947f3f8212cc49a4771"
+  integrity sha512-6WQ2x91hg30dUn66mXHnzvHATZ4pyI1GHSNbS/TNN/vRR4BLRSLijadeMgC8zqmKDsL0VqzVVopJWfJakuP++Q==
   dependencies:
     cli-color "^1.4.0"
     fs-extra "^7.0.1"
@@ -6532,10 +6532,10 @@ sequelize-pool@^6.0.0:
   resolved "https://registry.yarnpkg.com/sequelize-pool/-/sequelize-pool-6.0.0.tgz#2b2f6570fb633ecb38a338c4fc266c0e42ce2af7"
   integrity sha512-D/VfOX2Z+6JTWqM73lhcqMXp1X4CeqRNVMlndvbOMtyjFAZ2kYzH7rGFGFrLO1r+RZQdc/h+3zQL4nd3cclNLg==
 
-sequelize@^6.2.3:
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.2.3.tgz#27744a198b59d9e5de70e859215e0d66bcb2ef86"
-  integrity sha512-coYFfKVpN8E6Vet5wuj3Rj5GZH217QTM5ewQ54R3EalStDFk194nS/ZNFXOh2gz+Zc98+D0aIQcp6YB8hpZe7Q==
+sequelize@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.3.0.tgz#4b1353174a4702ab0be1d991f9d872021e1a6bff"
+  integrity sha512-aVZUvT0w1ebewlApFuaUJE/fJ7aTfIpMnwNM/Zgr29QnY0fT1t0EjXxl48Fwmfq3BHJogLMhfMTJRXJQaiaFVQ==
   dependencies:
     debug "^4.1.1"
     dottie "^2.0.0"
@@ -7255,10 +7255,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.9.5:
-  version "3.9.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.5.tgz#586f0dba300cde8be52dd1ac4f7e1009c1b13f36"
-  integrity sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==
+typescript@^3.9.6:
+  version "3.9.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.6.tgz#8f3e0198a34c3ae17091b35571d3afd31999365a"
+  integrity sha512-Pspx3oKAPJtjNwE92YS05HQoY7z2SFyOpHo9MqJor3BXAGNaPUs83CuVp9VISFkSjyRfiTpmKuAYGJB7S7hOxw==
 
 umzug@^2.3.0:
   version "2.3.0"

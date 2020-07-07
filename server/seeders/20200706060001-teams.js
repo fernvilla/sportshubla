@@ -11,15 +11,8 @@ module.exports = {
           websiteUrl: 'https://www.lakers.com',
           slug: 'los-angeles-lakers',
           leagueId: 1,
-          createdAt: new Date().toUTCString(),
-          updatedAt: new Date().toUTCString()
-        },
-        {
-          fullName: 'Los Angeles Dodgers',
-          shortName: 'Dodgers',
-          websiteUrl: 'https://www.dodgers.com',
-          slug: 'los-angeles-dodgers',
-          leagueId: 2,
+          conferenceId: 1,
+          divisionId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         }

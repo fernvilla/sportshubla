@@ -3,10 +3,12 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(
-      'TwitterAccountTypes',
+      'TwitterAccounts',
       [
         {
-          type: 'team',
+          teamId: 1,
+          twitterAccountTypeId: 1,
+          accountName: 'lakers',
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         }
@@ -16,6 +18,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('TwitterAccountTypes', null, {});
+    return queryInterface.bulkDelete('TwitterAccounts', null, {});
   }
 };
