@@ -60,7 +60,7 @@ const user = new Twitter({
 
         return results;
       } catch (err) {
-        console.log('fetchAndMapTweets err', err);
+        console.error('fetchAndMapTweets err', err);
         throw new Error(err);
       }
     };
@@ -72,7 +72,7 @@ const user = new Twitter({
 
     db.sequelize.close();
   } catch (error) {
-    console.log('main fetch error(s)', error);
+    console.error('main fetch error(s)', error);
     db.sequelize.close();
   }
 })().catch(err => console.error(err));

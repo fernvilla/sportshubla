@@ -10,7 +10,14 @@ module.exports = {
           { model: FeedItemType, as: 'feedItemType' },
           { model: Tweet, as: 'tweet' }
         ],
-        order: [['createdAt', 'DESC']]
+        order: [
+          [
+            { model: Tweet, as: 'tweet' },
+            // {model: Article, as: 'article'},
+            'publishedDate',
+            'DESC'
+          ]
+        ]
       });
 
       return res.status(200).send(payload);

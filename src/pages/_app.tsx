@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import SiteHeader from '../components/layout/SiteHeader';
-import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core';
+import { ThemeProvider, CSSReset, ColorModeProvider, Box } from '@chakra-ui/core';
 import theme from './../theme';
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -21,8 +21,11 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={theme}>
         <ColorModeProvider>
           <CSSReset />
-          <SiteHeader teams={teams} />
-          <Component {...pageProps} />
+
+          <Box bg="gray.100">
+            <SiteHeader teams={teams} />
+            <Component {...pageProps} />
+          </Box>
         </ColorModeProvider>
       </ThemeProvider>
 

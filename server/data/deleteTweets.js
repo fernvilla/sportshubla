@@ -26,7 +26,7 @@ const { Op } = require('sequelize');
 
     db.sequelize.close();
   } catch (error) {
-    console.log({ error });
+    console.error({ error });
     db.sequelize.close();
   }
 })().catch(err => console.error(err));

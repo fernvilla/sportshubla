@@ -16,7 +16,15 @@ export const FeedItemTweet: FC<Props> = ({ tweet }) => {
   });
 
   return (
-    <Box maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden" boxShadow="md" margin="auto">
+    <Box
+      maxW="sm"
+      borderWidth="1px"
+      rounded="lg"
+      overflow="hidden"
+      boxShadow="md"
+      margin="auto"
+      bg="white"
+    >
       <Image src={tweet.profileBannerUrl} alt="profile banner" ignoreFallback objectFit="cover" />
 
       <Flex justifyContent="space-between" alignItems="center" px={5} py={3}>
