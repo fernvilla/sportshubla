@@ -9,7 +9,8 @@ module.exports = {
         include: [
           { model: FeedItemType, as: 'feedItemType' },
           { model: Tweet, as: 'tweet' }
-        ]
+        ],
+        order: [['createdAt', 'DESC']]
       });
 
       return res.status(200).send(payload);

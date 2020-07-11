@@ -14,7 +14,7 @@ const SiteHeader: React.FunctionComponent<Props> = () => {
         src="/static/images/logo/logo-transparent.png"
         alt="logo"
         title="logo"
-        height={10}
+        height="30px"
         ignoreFallback
       />
     </Box>

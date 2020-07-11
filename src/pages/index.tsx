@@ -1,21 +1,21 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import { GetServerSideProps } from 'next';
-import { Team } from '../interfaces/team';
-import { Tweet } from '../interfaces/tweet';
 import FeedGrid from '../components/feed/FeedGrid';
+import { FeedItem } from 'src/interfaces/feedItem';
+import { League } from 'src/interfaces/league';
 // import { MostViewed } from '../components/feed/MostViewed';
 
 type Props = {
-  tweets?: Tweet[];
-  teams?: Team[];
+  feedItems?: FeedItem[];
+  leagues?: League[];
 };
 
-const HomePage: React.FC<Props> = ({ tweets }) => {
+const HomePage: React.FC<Props> = ({ feedItems }) => {
   return (
     <div>
       <div>
-        <FeedGrid data={tweets} />
+        <FeedGrid data={feedItems} />
       </div>
 
       {/* <div>
@@ -26,16 +26,16 @@ const HomePage: React.FC<Props> = ({ tweets }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const [tweets, teams] = await Promise.all([
-    fetch(`http://localhost:3000/api/tweets`),
-    fetch(`http://localhost:3000/api/teams`)
+  const [feedItems, leagues] = await Promise.all([
+    fetch(`http://localhost:3000/api/feedItems`),
+    fetch(`http://localhost:3000/api/leagues`)
   ]);
-  const tweetData = await tweets.json();
-  const teamData = await teams.json();
+  const feedData = await feedItems.json();
+  const teamData = await leagues.json();
 
   return {
     props: {
-      tweets: tweetData,
+      feedItems: feedData,
       teams: teamData
     }
   };
