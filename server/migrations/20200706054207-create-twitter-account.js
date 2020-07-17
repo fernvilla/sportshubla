@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       accountName: {
+        unique: true,
         type: Sequelize.STRING
       },
       twitterAccountTypeId: {

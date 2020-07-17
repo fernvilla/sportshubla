@@ -9,6 +9,9 @@ const feedItemTypes = require('./../controllers/feedItemTypes');
 const feedItems = require('./../controllers/feedItems');
 const conferences = require('./../controllers/conferences');
 const divisions = require('./../controllers/divisions');
+const newsSources = require('./../controllers/newsSources');
+const rssFeeds = require('./../controllers/rssFeeds');
+const articles = require('./../controllers/articles');
 
 // Team Routes
 router.get('/api/teams', teams.findAll);
@@ -33,5 +36,14 @@ router.get('/api/feeditems', feedItems.findAll);
 
 // Feed Item Type Routes
 router.get('/api/feeditemtypes', feedItemTypes.findAll);
+
+// News Source Routes
+router.get('/api/newssources', newsSources.findAll);
+
+// Rss Feeds Routes
+router.get('/api/rssfeeds', rssFeeds.findAll);
+
+// Articles Routes
+router.get('/api/articles', articles.findAll);
 
 module.exports = router;

@@ -10,6 +10,7 @@ module.exports = {
       },
       fullName: {
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING
       },
       shortName: {
@@ -18,6 +19,7 @@ module.exports = {
       },
       slug: {
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING
       },
       websiteUrl: {

@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       FeedItem.belongsTo(models.Team, { foreignKey: 'teamId', as: 'team' });
 
       FeedItem.hasOne(models.Tweet, { foreignKey: 'feedItemId', as: 'tweet' });
+      FeedItem.hasOne(models.Article, { foreignKey: 'feedItemId', as: 'article' });
     }
   }
   FeedItem.init(

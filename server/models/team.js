@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Team.hasMany(models.FeedItem, { foreignKey: 'teamId', as: 'feedItems' });
       Team.hasMany(models.TwitterAccount, { foreignKey: 'teamId', as: 'twitterAccounts' });
+      Team.hasMany(models.NewsSource, { foreignKey: 'teamId', as: 'newsSources' });
     }
   }
   Team.init(

@@ -14,65 +14,67 @@ const user = new Twitter({
 });
 
 (async () => {
-  await db.sequelize.authenticate();
-
   try {
+    await db.sequelize.authenticate();
+
     const response = await user.getBearerToken();
     const app = new Twitter({ bearer_token: response.access_token });
-    const accounts = await TwitterAccount.findAll({
-      include: { model: Team, as: 'team' }
-    });
+    const accounts = await TwitterAccount.findAll({ include: { model: Team, as: 'team' } });
 
-    const fetchAndMapTweets = async ({ accountName, id, team }) => {
-      const data = await app.get('statuses/user_timeline', {
-        screen_name: accountName,
-        include_rts: true,
-        exclude_replies: true,
-        count: 15
-      });
-
+    const fetchAndMapTweets = async ({ accountName, id, team }, feedItemType) => {
       try {
-        const feedItemType = await FeedItemType.findOne({ where: { type: 'tweet' } });
+        const data = await app.get('statuses/user_timeline', {
+          screen_name: accountName,
+          include_rts: true,
+          exclude_replies: true,
+          count: 15
+        });
 
-        const createTweet = async t => {
-          const feedItem = await FeedItem.create({
-            feedItemTypeId: feedItemType.id,
-            teamId: team.id
-          });
-
-          const tweet = {
+        const createTweet = async tweet => {
+          const newTweet = {
             twitterAccountId: id,
-            text: t.text,
-            tweetId: t.id_str,
-            publishedDate: t.created_at,
-            screenName: t.user.screen_name,
-            name: t.user.name,
-            profileImageUrl: t.user.profile_image_url,
-            mediaUrl: t.extended_entities ? t.extended_entities.media[0].media_url : null,
-            profileBannerUrl: t.user.profile_banner_url || null,
-            feedItemId: feedItem.id
+            text: tweet.text,
+            tweetId: tweet.id_str,
+            publishedDate: tweet.created_at,
+            screenName: tweet.user.screen_name,
+            name: tweet.user.name,
+            clicks: 0,
+            profileImageUrl: tweet.user.profile_image_url,
+            mediaUrl: tweet.extended_entities ? tweet.extended_entities.media[0].media_url : null,
+            profileBannerUrl: tweet.user.profile_banner_url || null
           };
 
-          return tweet;
+          const [dbTweet, created] = await Tweet.findCreateFind({
+            where: { tweetId: newTweet.tweetId },
+            defaults: newTweet
+          });
+
+          if (created) {
+            const feedItem = await FeedItem.create({
+              feedItemTypeId: feedItemType.id,
+              teamId: team.id
+            });
+
+            dbTweet.feedItemId = feedItem.id;
+
+            await dbTweet.save();
+          }
         };
 
-        const results = await Promise.all(data.map(createTweet));
-
-        return results;
+        await Promise.all(data.map(createTweet));
       } catch (err) {
         console.error('fetchAndMapTweets err', err);
         throw new Error(err);
       }
     };
 
-    const data = await Promise.all(accounts.map(fetchAndMapTweets));
-    const tweets = data.reduce((acc, curr) => acc.concat(curr), []);
+    const feedItemType = await FeedItemType.findOne({ where: { type: 'tweet' } });
 
-    await Tweet.bulkCreate(tweets, { ignoreDuplicates: true });
+    await Promise.all(accounts.map(account => fetchAndMapTweets(account, feedItemType)));
 
     db.sequelize.close();
   } catch (error) {
-    console.error('main fetch error(s)', error);
+    console.error('main fetch tweets error(s)', error);
     db.sequelize.close();
   }
-})().catch(err => console.error(err));
+})();

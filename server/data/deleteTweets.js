@@ -4,29 +4,34 @@ const db = require('./../models');
 const { Op } = require('sequelize');
 
 (async () => {
-  await db.sequelize.authenticate();
-
   try {
+    await db.sequelize.authenticate();
+
     const tweets = await Tweet.findAll({
-      where: {
-        publishedDate: {
-          [Op.gte]: db.sequelize.literal("NOW() - INTERVAL '7d'")
-        }
-      }
+      // where: {
+      //   publishedDate: {
+      //     [Op.gte]: db.sequelize.literal("NOW() - INTERVAL '7d'")
+      //   }
+      // }
     });
 
     const deleteFeedItemAndTweet = async tweet => {
-      const feedItem = await FeedItem.findOne({ where: { id: tweet.feedItemId } });
+      try {
+        const feedItem = await FeedItem.findOne({ where: { id: tweet.feedItemId } });
 
-      await feedItem.destroy();
-      await tweet.destroy();
+        if (feedItem) await feedItem.destroy();
+        if (tweet) await tweet.destroy();
+      } catch (err) {
+        console.error(`deleteFeedItemAndTweet error: ${err}`);
+      }
     };
 
     await Promise.all(tweets.map(tweet => deleteFeedItemAndTweet(tweet)));
 
     db.sequelize.close();
   } catch (error) {
-    console.error({ error });
+    console.error(`deleteTweets error: ${err}`);
+
     db.sequelize.close();
   }
-})().catch(err => console.error(err));
+})();

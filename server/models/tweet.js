@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
       profileBannerUrl: DataTypes.STRING,
       mediaUrl: DataTypes.STRING,
       twitterAccountId: DataTypes.INTEGER,
-      feedItemId: DataTypes.INTEGER
+      feedItemId: DataTypes.INTEGER,
+      clicks: DataTypes.INTEGER
     },
     {
       sequelize,
