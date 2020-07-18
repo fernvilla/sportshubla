@@ -8,11 +8,11 @@ const { Op } = require('sequelize');
     await db.sequelize.authenticate();
 
     const tweets = await Tweet.findAll({
-      // where: {
-      //   publishedDate: {
-      //     [Op.gte]: db.sequelize.literal("NOW() - INTERVAL '7d'")
-      //   }
-      // }
+      where: {
+        publishedDate: {
+          [Op.gte]: db.sequelize.literal("NOW() - INTERVAL '7d'")
+        }
+      }
     });
 
     const deleteFeedItemAndTweet = async tweet => {
