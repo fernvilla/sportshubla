@@ -20,6 +20,8 @@ const parser = new Parser();
 
     const fetchAndMapArticles = async (rssFeed, feedItemType) => {
       try {
+        if (!rssFeed.isActive) return;
+
         const res = await fetch(rssFeed.url);
 
         if (res.status !== 200) {
@@ -35,7 +37,6 @@ const parser = new Parser();
             publishedDate: article.pubDate,
             url: article.link,
             image: article.enclosure ? article.enclosure.url : null,
-            clicks: 0,
             author: article.author,
             summary: article.content,
             newsSourceId: rssFeed.newsSource.id

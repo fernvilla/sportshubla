@@ -14,10 +14,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       isActive: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       lastStatusCode: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 200
       },
       newsSourceId: {
         allowNull: false,

@@ -22,7 +22,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       clicks: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       author: {
         type: Sequelize.STRING

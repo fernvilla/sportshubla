@@ -38,7 +38,6 @@ const user = new Twitter({
             publishedDate: tweet.created_at,
             screenName: tweet.user.screen_name,
             name: tweet.user.name,
-            clicks: 0,
             profileImageUrl: tweet.user.profile_image_url,
             mediaUrl: tweet.extended_entities ? tweet.extended_entities.media[0].media_url : null,
             profileBannerUrl: tweet.user.profile_banner_url || null
