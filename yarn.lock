@@ -1371,10 +1371,10 @@
     "@types/qs" "*"
     "@types/range-parser" "*"
 
-"@types/express@^4.17.6":
-  version "4.17.6"
-  resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.6.tgz#6bce49e49570507b86ea1b07b806f04697fac45e"
-  integrity sha512-n/mr9tZI83kd4azlPG5y997C/M4DNABK9yErhFM6hKdym4kkmd9j0vtsJyjFIwfRBxtrxZtAfGZCNRIBMFLK5w==
+"@types/express@^4.17.7":
+  version "4.17.7"
+  resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.7.tgz#42045be6475636d9801369cd4418ef65cdb0dd59"
+  integrity sha512-dCOT5lcmV/uC2J9k0rPafATeeyz+99xTt54ReX11/LObZgfzJqZNcW27zGhYyX+9iSEGXGt5qLPwRSvBZcLvtQ==
   dependencies:
     "@types/body-parser" "*"
     "@types/express-serve-static-core" "*"
@@ -1403,10 +1403,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.13.tgz#ee1128e881b874c371374c1f72201893616417c9"
   integrity sha512-rouEWBImiRaSJsVA+ITTFM6ZxibuAlTuNOCyxVbwreu6k6+ujs7DfnU9o+PShFhET78pMBl3eH+AGSI5eOTkPA==
 
-"@types/node@^14.0.14":
-  version "14.0.14"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.14.tgz#24a0b5959f16ac141aeb0c5b3cd7a15b7c64cbce"
-  integrity sha512-syUgf67ZQpaJj01/tRTknkMNoBBLWJOBODF0Zm4NrXmiSuxjymFrxnTu1QVYRubhVkRcZLYZG8STTwJRdVm/WQ==
+"@types/node@^14.0.23":
+  version "14.0.23"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.23.tgz#676fa0883450ed9da0bb24156213636290892806"
+  integrity sha512-Z4U8yDAl5TFkmYsZdFPdjeMa57NOvnaf1tljHzhouaPEp7LCj2JKkejpI1ODviIAQuW4CcQmxkQ77rnLsOOoKw==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -1448,10 +1448,18 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/react@^16.8.10", "@types/react@^16.9.41":
+"@types/react@^16.8.10":
   version "16.9.41"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.41.tgz#925137ee4d2ff406a0ecf29e8e9237390844002e"
   integrity sha512-6cFei7F7L4wwuM+IND/Q2cV1koQUvJ8iSV+Gwn0c3kvABZ691g7sp3hfEQHOUBJtccl1gPi+EyNjMIl9nGA0ug==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/react@^16.9.43":
+  version "16.9.43"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.43.tgz#c287f23f6189666ee3bebc2eb8d0f84bcb6cdb6b"
+  integrity sha512-PxshAFcnJqIWYpJbLPriClH53Z2WlJcVZE+NP2etUtWQs2s7yIMj3/LDKZT/5CHJ/F62iyjVCDu2H3jHEXIxSg==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -2351,6 +2359,21 @@ chokidar@2.1.8, chokidar@^2.1.8:
   optionalDependencies:
     fsevents "^1.2.7"
 
+"chokidar@>=2.0.0 <4.0.0":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.1.tgz#e905bdecf10eaa0a0b1db0c664481cc4cbc22ba1"
+  integrity sha512-TQTJyr2stihpC4Sya9hs2Xh+O2wf+igjL36Y75xx2WdHuiICcn/XJza46Jwt0eT5hVpQOzo3FpY3cj3RVYLX0g==
+  dependencies:
+    anymatch "~3.1.1"
+    braces "~3.0.2"
+    glob-parent "~5.1.0"
+    is-binary-path "~2.1.0"
+    is-glob "~4.0.1"
+    normalize-path "~3.0.0"
+    readdirp "~3.4.0"
+  optionalDependencies:
+    fsevents "~2.1.2"
+
 chokidar@^3.2.2, chokidar@^3.3.0, chokidar@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.0.tgz#b30611423ce376357c765b9b8f904b9fba3c0be8"
@@ -2938,10 +2961,10 @@ data-uri-to-buffer@3.0.0:
   dependencies:
     buffer-from "^1.1.1"
 
-date-fns@^2.14.0:
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.14.0.tgz#359a87a265bb34ef2e38f93ecf63ac453f9bc7ba"
-  integrity sha512-1zD+68jhFgDIM0rF05rcwYO8cExdNqxjq4xP1QKM60Q45mnO6zaMWB4tOzrIr4M4GSLntsKeE4c9Bdl2jhL/yw==
+date-fns@^2.15.0:
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.15.0.tgz#424de6b3778e4e69d3ff27046ec136af58ae5d5f"
+  integrity sha512-ZCPzAMJZn3rNUvvQIMlXhDr4A+Ar07eLeGsGREoWU19a3Pqf5oYa+ccd+B3F6XVtQY6HANMFdOQ8A+ipFnvJdQ==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
@@ -5407,10 +5430,10 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pg-connection-string@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.2.3.tgz#48e1158ec37eaa82e98dbcb7307103ec303fe0e7"
-  integrity sha512-I/KCSQGmOrZx6sMHXkOs2MjddrYcqpza3Dtsy0AjIgBr/bZiPJRK9WhABXN1Uy1UDazRbi9gZEzO2sAhL5EqiQ==
+pg-connection-string@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.3.0.tgz#c13fcb84c298d0bfa9ba12b40dd6c23d946f55d6"
+  integrity sha512-ukMTJXLI7/hZIwTW7hGMZJ0Lj0S2XQBCJ4Shv4y1zgQ/vqVea+FLhzywvPj0ujSuofu+yA4MYHGZPTsgjBgJ+w==
 
 pg-int8@1.0.1:
   version "1.0.1"
@@ -5422,10 +5445,10 @@ pg-pool@^3.2.1:
   resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-3.2.1.tgz#5f4afc0f58063659aeefa952d36af49fa28b30e0"
   integrity sha512-BQDPWUeKenVrMMDN9opfns/kZo4lxmSWhIqo+cSAF7+lfi9ZclQbr9vfnlNaPr8wYF3UYjm5X0yPAhbcgqNOdA==
 
-pg-protocol@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.2.4.tgz#3139cac0e51347f1e21e03954b1bb9fe2c20962e"
-  integrity sha512-/8L/G+vW/VhWjTGXpGh8XVkXOFx1ZDY+Yuz//Ab8CfjInzFkreI+fDG3WjCeSra7fIZwAFxzbGptNbm8xSXenw==
+pg-protocol@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.2.5.tgz#28a1492cde11646ff2d2d06bdee42a3ba05f126c"
+  integrity sha512-1uYCckkuTfzz/FCefvavRywkowa6M5FohNMF5OjKrqo9PSR8gYc8poVmwwYQaBxhmQdBjhtP514eXy9/Us2xKg==
 
 pg-types@^2.1.0:
   version "2.2.0"
@@ -5438,16 +5461,16 @@ pg-types@^2.1.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@^8.2.1:
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/pg/-/pg-8.2.1.tgz#f5a81f5e2025182fbe701514d3e1a43e68a616ac"
-  integrity sha512-DKzffhpkWRr9jx7vKxA+ur79KG+SKw+PdjMb1IRhMiKI9zqYUGczwFprqy+5Veh/DCcFs1Y6V8lRLN5I1DlleQ==
+pg@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/pg/-/pg-8.3.0.tgz#941383300d38eef51ecb88a0188cec441ab64d81"
+  integrity sha512-jQPKWHWxbI09s/Z9aUvoTbvGgoj98AU7FDCcQ7kdejupn/TcNpx56v2gaOTzXkzOajmOEJEdi9eTh9cA2RVAjQ==
   dependencies:
     buffer-writer "2.0.0"
     packet-reader "1.0.0"
-    pg-connection-string "^2.2.3"
+    pg-connection-string "^2.3.0"
     pg-pool "^3.2.1"
-    pg-protocol "^1.2.4"
+    pg-protocol "^1.2.5"
     pg-types "^2.1.0"
     pgpass "1.x"
     semver "4.3.2"
@@ -6437,6 +6460,13 @@ sass-loader@8.0.2:
     schema-utils "^2.6.1"
     semver "^6.3.0"
 
+sass@^1.26.10:
+  version "1.26.10"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.26.10.tgz#851d126021cdc93decbf201d1eca2a20ee434760"
+  integrity sha512-bzN0uvmzfsTvjz0qwccN1sPm2HxxpNI/Xa+7PlUEMS+nQvbyuEK7Y0qFqxlPHhiNHb1Ze8WQJtU31olMObkAMw==
+  dependencies:
+    chokidar ">=2.0.0 <4.0.0"
+
 sax@>=0.6.0, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -6545,10 +6575,10 @@ sequelize-pool@^6.0.0:
   resolved "https://registry.yarnpkg.com/sequelize-pool/-/sequelize-pool-6.0.0.tgz#2b2f6570fb633ecb38a338c4fc266c0e42ce2af7"
   integrity sha512-D/VfOX2Z+6JTWqM73lhcqMXp1X4CeqRNVMlndvbOMtyjFAZ2kYzH7rGFGFrLO1r+RZQdc/h+3zQL4nd3cclNLg==
 
-sequelize@^6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.3.0.tgz#4b1353174a4702ab0be1d991f9d872021e1a6bff"
-  integrity sha512-aVZUvT0w1ebewlApFuaUJE/fJ7aTfIpMnwNM/Zgr29QnY0fT1t0EjXxl48Fwmfq3BHJogLMhfMTJRXJQaiaFVQ==
+sequelize@^6.3.3:
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.3.3.tgz#930ab26f9e928d9bf2fe1fe477b428a092fef063"
+  integrity sha512-WO/b1ehjSFKlBCHzwZoaPhoW3WyXXy9x74yPrOP8NpE67wzbv0dIucDO4a+THLVyl3lnv3nFMZdJRdkUgb/ZAw==
   dependencies:
     debug "^4.1.1"
     dottie "^2.0.0"
@@ -7268,10 +7298,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.9.6:
-  version "3.9.6"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.6.tgz#8f3e0198a34c3ae17091b35571d3afd31999365a"
-  integrity sha512-Pspx3oKAPJtjNwE92YS05HQoY7z2SFyOpHo9MqJor3BXAGNaPUs83CuVp9VISFkSjyRfiTpmKuAYGJB7S7hOxw==
+typescript@^3.9.7:
+  version "3.9.7"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
+  integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
 
 umzug@^2.3.0:
   version "2.3.0"
