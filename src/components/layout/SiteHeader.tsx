@@ -1,13 +1,13 @@
-import React from 'react';
-import { Team } from '../../interfaces/team';
+import React, { FC } from 'react';
+// import { Team } from '../../interfaces/team';
 import { Box, Image } from '@chakra-ui/core';
 // import Link from 'next/link';
 
 type Props = {
-  teams: Team[];
+  // teams: Team[];
 };
 
-const SiteHeader: React.FunctionComponent<Props> = () => {
+const SiteHeader: FC<Props> = () => {
   return (
     <Box w="100%" p={2} bg="gray.800">
       <Image

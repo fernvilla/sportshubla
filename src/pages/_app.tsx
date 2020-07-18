@@ -1,17 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import SiteHeader from '../components/layout/SiteHeader';
 import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core';
+import SiteLayout from 'src/components/layout/SiteLayout';
 import theme from './../theme';
 import '../styles.scss';
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const { title, teams } = pageProps;
+  const { title } = pageProps;
   const pageTitle = `Sports Nucleus ${title ? `| ${title}` : ''}`;
 
   return (
-    <Fragment>
+    <>
       <Head>
         <title>{pageTitle}</title>
         <meta charSet="utf-8" />
@@ -22,13 +22,15 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={theme}>
         <ColorModeProvider>
           <CSSReset />
-          <SiteHeader teams={teams} />
-          <Component {...pageProps} />
+
+          <SiteLayout>
+            <Component {...pageProps} />
+          </SiteLayout>
         </ColorModeProvider>
       </ThemeProvider>
 
       <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
-    </Fragment>
+    </>
   );
 };
 
