@@ -4,12 +4,10 @@ import { formatDistanceToNow } from 'date-fns';
 import { FaTwitter, FaRetweet, FaRegComment, FaRegHeart } from 'react-icons/fa';
 import { Box, Image, Flex, Link } from '@chakra-ui/core';
 
-type Props = {
-  tweet: Tweet;
-};
+type Props = { tweet: Tweet };
 
 export const FeedItemTweet: FC<Props> = ({ tweet }) => {
-  console.log(tweet);
+  console.log('tweet', tweet);
   const formattedDate = formatDistanceToNow(new Date(tweet.publishedDate), {
     addSuffix: true,
     includeSeconds: true
@@ -17,33 +15,55 @@ export const FeedItemTweet: FC<Props> = ({ tweet }) => {
 
   return (
     <Box
-      maxW="sm"
       borderWidth="1px"
       rounded="lg"
       overflow="hidden"
       boxShadow="md"
-      margin="auto"
+      mb={5}
+      mx="auto"
       bg="white"
     >
-      <Image src={tweet.profileBannerUrl} alt="profile banner" ignoreFallback objectFit="cover" />
+      {tweet.mediaUrl && (
+        <Image
+          src={tweet.mediaUrl}
+          alt="tweet media"
+          ignoreFallback
+          objectFit="cover"
+          width="100%"
+        />
+      )}
 
-      <Flex justifyContent="space-between" alignItems="center" px={5} py={3}>
+      <Box px={5} py={3}>
         <Link href={`https://www.twitter.com/${tweet.screenName}`} isExternal>
-          <Flex alignItems="center">
-            <Box color="blue.300" mr={1}>
-              <FaTwitter />
+          <Flex align="flex-start" justify="space-between">
+            <Box>
+              <Flex align="center">
+                <Image
+                  src={tweet.profileImageUrl}
+                  rounded="full"
+                  alt="profile logo"
+                  ignoreFallback
+                  objectFit="cover"
+                  height={5}
+                  mr={2}
+                />
+
+                <Box fontSize="sm">{tweet.name}</Box>
+              </Flex>
             </Box>
 
-            <Box fontSize="sm">{tweet.name}</Box>
+            <Box color="blue.300">
+              <FaTwitter />
+            </Box>
           </Flex>
         </Link>
 
         <Box color="gray.500" fontSize="xs" fontStyle="italic">
           {formattedDate}
         </Box>
-      </Flex>
+      </Box>
 
-      <Box px={5} py={3} h="150px">
+      <Box px={5} pb={3}>
         <Link
           href={`https://www.twitter.com/${tweet.screenName}/status/${tweet.tweetId}`}
           isExternal
@@ -52,7 +72,7 @@ export const FeedItemTweet: FC<Props> = ({ tweet }) => {
         </Link>
       </Box>
 
-      <Flex justifyContent="space-evenly" borderTop="1px" borderColor="gray.200">
+      <Flex justify="space-evenly" borderTop="1px" borderColor="gray.200">
         <Box p={2}>
           <Link
             href={`https://twitter.com/intent/tweet?in_reply_to=${tweet.tweetId}`}

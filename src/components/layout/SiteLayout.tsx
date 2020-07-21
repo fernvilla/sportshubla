@@ -5,7 +5,7 @@ const SiteLayout: FC = ({ children }) => {
   return (
     <>
       <SiteHeader />
-      <main>{children}</main>
+      {children}
     </>
   );
 };

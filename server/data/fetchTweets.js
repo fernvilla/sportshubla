@@ -7,6 +7,8 @@ const FeedItemType = require('./../models').FeedItemType;
 const Team = require('./../models').Team;
 const Twitter = require('twitter-lite');
 const db = require('./../models');
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
 
 const user = new Twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -33,9 +35,9 @@ const user = new Twitter({
         const createTweet = async tweet => {
           const newTweet = {
             twitterAccountId: id,
-            text: tweet.text,
+            text: entities.decode(tweet.text),
             tweetId: tweet.id_str,
-            publishedDate: tweet.created_at,
+            publishedDate: tweet.created_at || new Date(),
             screenName: tweet.user.screen_name,
             name: tweet.user.name,
             profileImageUrl: tweet.user.profile_image_url,
@@ -51,7 +53,8 @@ const user = new Twitter({
           if (created) {
             const feedItem = await FeedItem.create({
               feedItemTypeId: feedItemType.id,
-              teamId: team.id
+              teamId: team.id,
+              publishedDate: dbTweet.publishedDate
             });
 
             dbTweet.feedItemId = feedItem.id;

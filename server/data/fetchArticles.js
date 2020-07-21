@@ -7,8 +7,12 @@ const Team = require('./../models').Team;
 const Article = require('./../models').Article;
 const Parser = require('rss-parser');
 const fetch = require('isomorphic-unfetch');
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
 
 const parser = new Parser();
+
+const getPathFromUrl = url => url.split(/[?#]/)[0];
 
 (async () => {
   try {
@@ -33,12 +37,12 @@ const parser = new Parser();
 
         const createArticle = async article => {
           const newArticle = {
-            title: article.title,
-            publishedDate: article.pubDate,
+            title: entities.decode(article.title),
+            publishedDate: article.pubDate || new Date(),
             url: article.link,
-            image: article.enclosure ? article.enclosure.url : null,
+            image: article.enclosure ? getPathFromUrl(article.enclosure.url) : null,
             author: article.author,
-            summary: article.content,
+            summary: entities.decode(article.content),
             newsSourceId: rssFeed.newsSource.id
           };
 
@@ -50,7 +54,8 @@ const parser = new Parser();
           if (created) {
             const feedItem = await FeedItem.create({
               feedItemTypeId: feedItemType.id,
-              teamId: rssFeed.newsSource.team.id
+              teamId: rssFeed.newsSource.team.id,
+              publishedDate: dbArticle.publishedDate
             });
 
             dbArticle.feedItemId = feedItem.id;

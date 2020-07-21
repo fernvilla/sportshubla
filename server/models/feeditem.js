@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   FeedItem.init(
     {
       feedItemTypeId: DataTypes.INTEGER,
-      teamId: DataTypes.INTEGER
+      teamId: DataTypes.INTEGER,
+      publishedDate: DataTypes.DATE
     },
     {
       sequelize,

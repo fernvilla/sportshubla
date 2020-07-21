@@ -1,3 +1,15 @@
 body {
   background-color: #f0f3f4;
 }
+
+// masonry grid
+.masonry-grid {
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+
+.masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}

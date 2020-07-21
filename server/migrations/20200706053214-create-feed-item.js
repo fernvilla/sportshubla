@@ -15,6 +15,10 @@ module.exports = {
       teamId: {
         type: Sequelize.INTEGER
       },
+      publishedDate: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
