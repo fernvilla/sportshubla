@@ -1,16 +1,16 @@
 const Tweet = require('./../models').Tweet;
 const TwitterAccount = require('./../models').TwitterAccount;
 const Team = require('./../models').Team;
+const FeedItem = require('./../models').FeedItem;
 
 module.exports = {
   findAll: async (req, res) => {
     try {
       const payload = await Tweet.findAll({
-        include: {
-          model: TwitterAccount,
-          as: 'twitterAccount',
-          include: { model: Team, as: 'team' }
-        },
+        include: [
+          { model: TwitterAccount, as: 'twitterAccount', include: { model: Team, as: 'team' } },
+          { model: FeedItem, as: 'feedItem', include: { model: Team, as: 'team' } }
+        ],
         order: [['publishedDate', 'DESC']]
       });
 
