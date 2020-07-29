@@ -1,14 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Box, Flex, Spinner } from '@chakra-ui/core';
 import { Tweet as TweetType } from 'src/interfaces/tweet';
 import Tweet from './Tweet';
+import { calcualteTotalPages } from 'src/utils';
+import ReactPaginate from 'react-paginate';
 
-type Props = { tweets?: TweetType[]; isFetching: Boolean };
+type Props = { tweets?: TweetType[]; isFetching: Boolean; tweetsPerPage?: number };
 
-const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false }) => {
-  // const calcualteTotalPages = (dataLength: number, rowsPerPage: number) => {
-  //   return Math.ceil(dataLength / rowsPerPage);
-  // };
+const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false, tweetsPerPage = 15 }) => {
+  const [page, setPage] = useState(0);
+  const [visibleTweets, setVisibleTweets] = useState(tweets);
+  const totalPages = calcualteTotalPages(tweets.length, 10);
+
+  useEffect(() => {
+    const pagedTweets = tweets.slice(page * tweetsPerPage, (page + 1) * tweetsPerPage);
+
+    setVisibleTweets(pagedTweets);
+  }, [page, tweets]);
 
   return (
     <Box>
@@ -23,9 +31,22 @@ const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false }) => {
         </Flex>
       ) : (
         <>
-          {tweets.map(tweet => (
-            <Tweet key={tweet.id} tweet={tweet} />
-          ))}
+          <Box maxH="75vh" overflow="auto">
+            {visibleTweets.map((tweet: TweetType) => (
+              <Tweet key={tweet.id} tweet={tweet} />
+            ))}
+          </Box>
+
+          <Flex justifyContent="flex-end">
+            <ReactPaginate
+              containerClassName="pagination"
+              pageCount={totalPages}
+              pageRangeDisplayed={1}
+              marginPagesDisplayed={1}
+              forcePage={page}
+              onPageChange={({ selected }) => setPage(selected)}
+            />
+          </Flex>
         </>
       )}
     </Box>

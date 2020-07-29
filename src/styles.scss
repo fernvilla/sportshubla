@@ -1,0 +1,39 @@
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+  font-size: 0.9em;
+
+  & > li {
+    display: inline;
+
+    & > a {
+      position: relative;
+      float: left;
+      padding: 5px 10px;
+      line-height: 1.42857143;
+      text-decoration: none;
+      color: #337ab7;
+      background-color: #fff;
+      border-radius: 5px;
+      margin-left: -1px;
+      outline: none;
+    }
+
+    &.disabled > a {
+      color: #6c757d;
+      pointer-events: none;
+      cursor: auto;
+      background-color: #fff;
+      border-color: #dee2e6;
+    }
+
+    &.selected > a {
+      z-index: 3;
+      color: #fff;
+      background-color: #1e4e8c;
+      border-color: #1e4e8c;
+    }
+  }
+}

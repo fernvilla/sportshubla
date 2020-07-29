@@ -23,7 +23,7 @@ const Article: FC<Props> = ({ article }) => {
                 alt={article.title}
                 ignoreFallback
                 objectFit="cover"
-                width={150}
+                width={100}
               />
             </Link>
           </Box>
