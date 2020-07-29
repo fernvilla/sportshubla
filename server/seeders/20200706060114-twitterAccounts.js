@@ -11,6 +11,13 @@ module.exports = {
           accountName: 'lakers',
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
+        },
+        {
+          teamId: 2,
+          twitterAccountTypeId: 1,
+          accountName: 'dodgers',
+          createdAt: new Date().toUTCString(),
+          updatedAt: new Date().toUTCString()
         }
       ],
       {}

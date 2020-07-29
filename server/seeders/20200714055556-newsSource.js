@@ -12,6 +12,14 @@ module.exports = {
           teamId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
+        },
+        {
+          websiteUrl: 'https://www.dodgers.com',
+          slug: 'dodgers-official-site',
+          name: 'Dodgerds Official Site',
+          teamId: 2,
+          createdAt: new Date().toUTCString(),
+          updatedAt: new Date().toUTCString()
         }
       ],
       {}

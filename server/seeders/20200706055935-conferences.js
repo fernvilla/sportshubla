@@ -11,6 +11,13 @@ module.exports = {
           leagueId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
+        },
+        {
+          fullName: 'National League',
+          slug: 'national-league',
+          leagueId: 2,
+          createdAt: new Date().toUTCString(),
+          updatedAt: new Date().toUTCString()
         }
       ],
       {}

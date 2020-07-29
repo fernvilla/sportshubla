@@ -15,6 +15,17 @@ module.exports = {
           divisionId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
+        },
+        {
+          fullName: 'Los Angeles Dodgers',
+          shortName: 'Dodgers',
+          websiteUrl: 'https://www.dodgers.com',
+          slug: 'los-angeles-dodgers',
+          leagueId: 2,
+          conferenceId: 2,
+          divisionId: 2,
+          createdAt: new Date().toUTCString(),
+          updatedAt: new Date().toUTCString()
         }
       ],
       {}

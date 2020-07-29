@@ -11,6 +11,13 @@ module.exports = {
           conferenceId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
+        },
+        {
+          fullName: 'NL West',
+          slug: 'nl-west',
+          conferenceId: 1,
+          createdAt: new Date().toUTCString(),
+          updatedAt: new Date().toUTCString()
         }
       ],
       {}
