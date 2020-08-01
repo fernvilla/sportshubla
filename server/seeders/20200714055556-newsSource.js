@@ -16,7 +16,7 @@ module.exports = {
         {
           websiteUrl: 'https://www.dodgers.com',
           slug: 'dodgers-official-site',
-          name: 'Dodgerds Official Site',
+          name: 'Dodgers Official Site',
           teamId: 2,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()

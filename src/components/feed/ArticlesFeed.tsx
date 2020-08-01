@@ -34,16 +34,18 @@ const ArticlesFeed: FC<Props> = ({ articles = [], isFetching = false, articlesPe
             <Article key={article.id} article={article} />
           ))}
 
-          <Flex justifyContent="flex-end">
-            <ReactPaginate
-              containerClassName="pagination"
-              pageCount={totalPages}
-              pageRangeDisplayed={1}
-              marginPagesDisplayed={1}
-              forcePage={page}
-              onPageChange={({ selected }) => setPage(selected)}
-            />
-          </Flex>
+          {!!articles.length && (
+            <Flex justifyContent="flex-end">
+              <ReactPaginate
+                containerClassName="pagination"
+                pageCount={totalPages}
+                pageRangeDisplayed={1}
+                marginPagesDisplayed={1}
+                forcePage={page}
+                onPageChange={({ selected }) => setPage(selected)}
+              />
+            </Flex>
+          )}
         </>
       )}
     </>

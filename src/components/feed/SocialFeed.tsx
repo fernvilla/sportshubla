@@ -37,16 +37,18 @@ const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false, tweetsPerPage 
             ))}
           </Box>
 
-          <Flex justifyContent="flex-end">
-            <ReactPaginate
-              containerClassName="pagination"
-              pageCount={totalPages}
-              pageRangeDisplayed={1}
-              marginPagesDisplayed={1}
-              forcePage={page}
-              onPageChange={({ selected }) => setPage(selected)}
-            />
-          </Flex>
+          {!!tweets.length && (
+            <Flex justifyContent="flex-end">
+              <ReactPaginate
+                containerClassName="pagination"
+                pageCount={totalPages}
+                pageRangeDisplayed={1}
+                marginPagesDisplayed={1}
+                forcePage={page}
+                onPageChange={({ selected }) => setPage(selected)}
+              />
+            </Flex>
+          )}
         </>
       )}
     </Box>

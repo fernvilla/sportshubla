@@ -12,7 +12,7 @@ const Article: FC<Props> = ({ article }) => {
   });
 
   return (
-    <Box borderBottomWidth="1px" py={5}>
+    <Box borderBottomWidth="1px" py={4}>
       <Flex wrap="wrap">
         {article.image && (
           <Box pt={1} pr={4}>
@@ -44,9 +44,11 @@ const Article: FC<Props> = ({ article }) => {
             </Box>
           </Flex>
 
-          <Box fontSize="sm" mt={2}>
-            {article.summary}
-          </Box>
+          {article.summary && (
+            <Box fontSize="sm" mt={2} color="gray.700">
+              {article.summary}
+            </Box>
+          )}
         </Box>
       </Flex>
     </Box>
