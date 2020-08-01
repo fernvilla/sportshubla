@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { Box, Flex, Spinner } from '@chakra-ui/core';
 import { Tweet as TweetType } from 'src/interfaces/tweet';
 import Tweet from './Tweet';
-import { calcualteTotalPages } from 'src/utils';
+import { calcualteTotalPages } from 'src/utils/feed';
 import ReactPaginate from 'react-paginate';
 
 type Props = { tweets?: TweetType[]; isFetching: Boolean; tweetsPerPage?: number };

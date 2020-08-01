@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+const verifyToken = passport.authenticate('jwt', { session: false });
 
 const tweets = require('./../controllers/tweets');
 const teams = require('./../controllers/teams');
@@ -12,6 +14,7 @@ const divisions = require('./../controllers/divisions');
 const newsSources = require('./../controllers/newsSources');
 const rssFeeds = require('./../controllers/rssFeeds');
 const articles = require('./../controllers/articles');
+const users = require('./../controllers/users');
 
 // Team Routes
 router.get('/api/teams', teams.findAll);
@@ -45,5 +48,9 @@ router.get('/api/rssfeeds', rssFeeds.findAll);
 
 // Articles Routes
 router.get('/api/articles', articles.findAll);
+
+// User Routes
+router.get('/api/users', users.findAll);
+router.post('/api/users/login', users.login);
 
 module.exports = router;

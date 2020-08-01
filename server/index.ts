@@ -5,6 +5,11 @@ dotenv.config();
 import express, { Request, Response } from 'express';
 import logger from 'morgan';
 import next from 'next';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import passport from 'passport';
+
 import db from './models';
 import routes from './routes';
 
@@ -16,14 +21,27 @@ const handle = app.getRequestHandler();
 app.prepare().then(async () => {
   const server = express();
 
+  server.use(compression());
   server.use(logger('dev'));
   server.use(express.json());
   server.use(express.urlencoded({ extended: false }));
+
+  // Secure apps by setting various HTTP headers
+  server.use(helmet());
+
+  // Enable CORS
+  server.use(cors());
+
+  // Passport middleware
+  server.use(passport.initialize());
+
+  // Passport config
+  require('./config/passport')(passport);
+
+  // API endpoint routes
   server.use(routes);
 
-  server.all('*', (req: Request, res: Response) => {
-    return handle(req, res);
-  });
+  server.all('*', (req: Request, res: Response) => handle(req, res));
 
   try {
     await db.sequelize.authenticate();

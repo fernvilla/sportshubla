@@ -3,7 +3,7 @@ import { Box, Flex, Spinner } from '@chakra-ui/core';
 import { Article as ArticleType } from 'src/interfaces/article';
 import ReactPaginate from 'react-paginate';
 import Article from './Article';
-import { calcualteTotalPages } from 'src/utils';
+import { calcualteTotalPages } from 'src/utils/feed';
 
 type Props = { articles?: ArticleType[]; isFetching: boolean; articlesPerPage?: number };
 
