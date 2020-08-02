@@ -1,5 +1,19 @@
 {
-  "watch": ["server"],
-  "exec": "ts-node --project tsconfig.server.json server/index.ts",
-  "ext": "js ts"
+  "restartable": "rs",
+  "ignore": [".git", "node_modules/**/node_modules"],
+  "verbose": true,
+  "watch": [
+    "app.js",
+    "config/**/*.js",
+    "bin/www",
+    "db/**/*.js",
+    "routes/**/*.js",
+    "controllers/**/*.js"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "execMap": {
+    "js": "node --harmony"
+  }
 }
