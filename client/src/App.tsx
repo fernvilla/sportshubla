@@ -1,19 +1,17 @@
-import React, { useState, FC, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import React, { FC } from 'react';
 import jwt_decode from 'jwt-decode';
 import store from 'store';
 import setAuthToken from './utils/auth';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import reduxStore from './store';
-import { Box, Grid } from '@chakra-ui/core';
-import ArticlesFeed from './components/feed/ArticlesFeed';
-import SocialFeed from './components/feed/SocialFeed';
-
-import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SiteLayout from './components/layout/SiteLayout';
 import { Token } from './interfaces/token';
-
-toast.configure();
+import Home from './pages/Home';
+import NotFound from './components/notFound/NotFound';
+import Login from './pages/Login';
+import PrivateRoute from './components/PrivateRoute';
+import Admin from './components/admin/Admin';
 
 const jwtToken = store.get('jwtToken');
 
@@ -21,7 +19,6 @@ if (jwtToken) {
   setAuthToken(jwtToken);
 
   const decoded = jwt_decode<Token>(jwtToken);
-  console.log(decoded);
 
   reduxStore.dispatch(setCurrentUser(decoded));
 
@@ -34,60 +31,17 @@ if (jwtToken) {
 }
 
 const App: FC = () => {
-  const [articles, setArticles] = useState([]);
-  const [tweets, setTweets] = useState([]);
-  const [fetchingArticles, setFetchingArticles] = useState(false);
-  const [fetchingTweets, setFetchingTweets] = useState(false);
-
-  useEffect(() => {
-    fetchArticles();
-    fetchTweets();
-  }, []);
-
-  const fetchArticles = async () => {
-    try {
-      setFetchingArticles(true);
-
-      const res = await fetch('/api/articles'); //TODO: limit to last 24 hrs?
-      const data = await res.json();
-
-      setArticles(data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setFetchingArticles(false);
-    }
-  };
-
-  const fetchTweets = async () => {
-    try {
-      setFetchingTweets(true);
-
-      const res = await fetch('/api/tweets'); //TODO: limit to last 24 hrs?
-      const data = await res.json();
-
-      setTweets(data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setFetchingTweets(false);
-    }
-  };
-
   return (
-    <SiteLayout>
-      <Box maxWidth={1600} margin="auto">
-        <Grid p={10} templateColumns="4fr 2fr">
-          <Box as="main" px={10} borderRightWidth="1px">
-            <ArticlesFeed articles={articles} isFetching={fetchingArticles} />
-          </Box>
-
-          <Box px={10}>
-            <SocialFeed tweets={tweets} isFetching={fetchingTweets} />
-          </Box>
-        </Grid>
-      </Box>
-    </SiteLayout>
+    <Router>
+      <SiteLayout>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={Login} />
+          <PrivateRoute path="/admin" exact component={Admin} adminRequired />
+          <Route component={NotFound} />
+        </Switch>
+      </SiteLayout>
+    </Router>
   );
 };
 

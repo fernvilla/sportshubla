@@ -50,7 +50,7 @@ router.get('/api/rssfeeds', rssFeeds.findAll);
 router.get('/api/articles', articles.findAll);
 
 // User Routes
-router.get('/api/users', users.findAll);
+// router.get('/api/users', verifyToken, users.findAll);
 router.post('/api/users/login', users.login);
 
 module.exports = router;
