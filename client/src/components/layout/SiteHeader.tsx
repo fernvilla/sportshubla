@@ -34,16 +34,26 @@ const SiteHeader: FC<Props> = ({ logoutUser, auth }) => {
             src="/images/logo/logo-transparent.png"
             alt="logo"
             title="logo"
-            height="30px"
+            height="35px"
             ignoreFallback
           />
         </Link>
 
         {auth.isAuthenticated && (
           <Box px={5}>
-            <Link to="#" onClick={() => logoutUser()}>
-              Logout
-            </Link>
+            <Flex align="center">
+              {auth.user.isAdmin && (
+                <Box pl={5}>
+                  <Link to="/admin">Admin</Link>
+                </Box>
+              )}
+
+              <Box pl={5}>
+                <Link to="#" onClick={() => logoutUser()}>
+                  Logout
+                </Link>
+              </Box>
+            </Flex>
           </Box>
         )}
       </Flex>

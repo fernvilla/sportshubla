@@ -8,10 +8,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SiteLayout from './components/layout/SiteLayout';
 import { Token } from './interfaces/token';
 import Home from './pages/Home';
-import NotFound from './components/notFound/NotFound';
+import NotFound from './components/NotFound';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
-import Admin from './components/admin/Admin';
+import Admin from './pages/Admin';
 
 const jwtToken = store.get('jwtToken');
 
