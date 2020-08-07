@@ -20,10 +20,10 @@ const Home: FC = () => {
     try {
       setFetchingArticles(true);
 
-      const res = await fetch('/api/articles'); //TODO: limit to last 24 hrs?
-      const data = await res.json();
+      const res = await fetch('/api/articles/lastday');
+      const { payload } = await res.json();
 
-      setArticles(data);
+      setArticles(payload);
     } catch (err) {
       console.error(err);
     } finally {
@@ -35,10 +35,10 @@ const Home: FC = () => {
     try {
       setFetchingTweets(true);
 
-      const res = await fetch('/api/tweets'); //TODO: limit to last 24 hrs?
-      const data = await res.json();
+      const res = await fetch('/api/tweets/lastday');
+      const { payload } = await res.json();
 
-      setTweets(data);
+      setTweets(payload);
     } catch (err) {
       console.error(err);
     } finally {

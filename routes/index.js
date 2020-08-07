@@ -33,6 +33,7 @@ router.get('/api/twitteraccounts', twitterAccounts.findAll);
 
 // Tweet Routes
 router.get('/api/tweets', tweets.findAll);
+router.get('/api/tweets/lastday', tweets.findByLastDay);
 
 // Feed Item Routes
 router.get('/api/feeditems', feedItems.findAll);
@@ -48,6 +49,7 @@ router.get('/api/rssfeeds', rssFeeds.findAll);
 
 // Articles Routes
 router.get('/api/articles', articles.findAll);
+router.get('/api/articles/lastday', articles.findByLastDay);
 
 // User Routes
 // router.get('/api/users', verifyToken, users.findAll);

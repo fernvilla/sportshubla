@@ -20,7 +20,7 @@ const ArticlesFeed: FC<Props> = ({ articles = [], isFetching = false, articlesPe
   return (
     <Box bg="white" p={6} boxShadow="sm">
       <Box as="h1" textTransform="uppercase" mb={2} fontSize="16px">
-        Latest News
+        Headlines
         <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
       </Box>
 
