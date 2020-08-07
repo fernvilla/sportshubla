@@ -1,3 +1,7 @@
+body {
+  font-size: 14px;
+}
+
 .pagination {
   display: inline-block;
   padding-left: 0;
@@ -38,8 +42,8 @@
   }
 }
 
-a {
-  &:visited {
-    color: #9e9e9e;
-  }
-}
+// a {
+//   &:visited {
+//     color: #9e9e9e;
+//   }
+// }

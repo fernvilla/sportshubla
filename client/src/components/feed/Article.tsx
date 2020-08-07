@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Box, Flex, Link, Image } from '@chakra-ui/core';
+import { Box, Flex, Link, Image, Text } from '@chakra-ui/core';
 import { Article as ArticleType } from './../../interfaces/article';
 import { formatDistanceToNow } from 'date-fns';
 
@@ -30,8 +30,10 @@ const Article: FC<Props> = ({ article }) => {
         )}
 
         <Box flex={1}>
-          <Link href={article.url} isExternal color="blue.700">
-            {article.title}
+          <Link href={article.url} isExternal>
+            <Text color="blue.700" fontWeight="medium">
+              {article.title}
+            </Text>
           </Link>
 
           <Flex>
@@ -45,7 +47,7 @@ const Article: FC<Props> = ({ article }) => {
           </Flex>
 
           {article.summary && (
-            <Box fontSize="sm" mt={2} color="gray.700">
+            <Box mt={2} color="gray.700">
               {article.summary}
             </Box>
           )}

@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Article } from '../interfaces/article';
 import { Tweet } from '../interfaces/tweet';
-import { Box, Grid } from '@chakra-ui/core';
+import { Box, Flex } from '@chakra-ui/core';
 import ArticlesFeed from '../components/feed/ArticlesFeed';
 import SocialFeed from '../components/feed/SocialFeed';
 
@@ -47,16 +47,16 @@ const Home: FC = () => {
   };
 
   return (
-    <Box maxWidth={1600} margin="auto">
-      <Grid p={10} templateColumns="4fr 2fr">
-        <Box as="main" px={10} borderRightWidth="1px">
+    <Box as="main">
+      <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
+        <Box px={5} flex="3" minWidth={450}>
           <ArticlesFeed articles={articles} isFetching={fetchingArticles} />
         </Box>
 
-        <Box px={10}>
+        <Box px={5} flex="2" minWidth={350}>
           <SocialFeed tweets={tweets} isFetching={fetchingTweets} />
         </Box>
-      </Grid>
+      </Flex>
     </Box>
   );
 };

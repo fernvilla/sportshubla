@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import store from 'store';
 import setAuthToken from './utils/auth';
@@ -12,6 +12,10 @@ import NotFound from './components/NotFound';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Admin from './pages/Admin';
+import axios from 'axios';
+import { League } from './interfaces/league';
+
+import './app.scss';
 
 const jwtToken = store.get('jwtToken');
 
@@ -31,9 +35,26 @@ if (jwtToken) {
 }
 
 const App: FC = () => {
+  const [leagues, setLeagues] = useState<League[]>([]);
+
+  useEffect(() => {
+    fetchLeagues();
+  }, []);
+
+  const fetchLeagues = async () => {
+    try {
+      const { data } = await axios.get('/api/leagues');
+
+      setLeagues(data.payload);
+    } catch (err) {
+      console.error(err);
+    } finally {
+    }
+  };
+
   return (
     <Router>
-      <SiteLayout>
+      <SiteLayout leagues={leagues}>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />

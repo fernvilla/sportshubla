@@ -52,7 +52,7 @@ const Login: FC<Props> = props => {
   };
 
   return (
-    <Box maxWidth={500} mx="auto" my={5}>
+    <Box maxWidth={500} mx="auto" my={10} bg="white" p={10} boxShadow="sm">
       <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={submitHandler}
@@ -88,7 +88,7 @@ const Login: FC<Props> = props => {
             </Field>
 
             <Button mt={4} variantColor="teal" isLoading={props.isSubmitting} type="submit">
-              Submit
+              Login
             </Button>
           </form>
         )}

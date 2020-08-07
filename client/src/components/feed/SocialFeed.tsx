@@ -7,22 +7,22 @@ import ReactPaginate from 'react-paginate';
 
 type Props = { tweets?: TweetType[]; isFetching: Boolean; tweetsPerPage?: number };
 
-const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false, tweetsPerPage = 15 }) => {
+const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false, tweetsPerPage = 10 }) => {
   const [page, setPage] = useState(0);
   const [visibleTweets, setVisibleTweets] = useState(tweets);
-  const totalPages = calcualteTotalPages(tweets.length, 10);
+  const totalPages = calcualteTotalPages(tweets.length, tweetsPerPage);
 
   useEffect(() => {
     const pagedTweets = tweets.slice(page * tweetsPerPage, (page + 1) * tweetsPerPage);
 
     setVisibleTweets(pagedTweets);
-  }, [page, tweets]);
+  }, [page, tweets, tweetsPerPage]);
 
   return (
-    <Box>
-      <Box fontWeight="medium" textTransform="uppercase" mb={2}>
+    <Box bg="white" p={6} boxShadow="sm">
+      <Box as="h1" textTransform="uppercase" mb={2} fontSize="16px">
         Social Feed
-        <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.500"></Box>
+        <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
       </Box>
 
       {isFetching ? (
@@ -31,23 +31,25 @@ const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false, tweetsPerPage 
         </Flex>
       ) : (
         <>
-          <Box maxH="75vh" overflow="auto">
+          <Box overflow="auto">
             {visibleTweets.map((tweet: TweetType) => (
               <Tweet key={tweet.id} tweet={tweet} />
             ))}
           </Box>
 
           {!!tweets.length && (
-            <Flex justifyContent="flex-end">
-              <ReactPaginate
-                containerClassName="pagination"
-                pageCount={totalPages}
-                pageRangeDisplayed={1}
-                marginPagesDisplayed={1}
-                forcePage={page}
-                onPageChange={({ selected }) => setPage(selected)}
-              />
-            </Flex>
+            <Box marginBottom={-6}>
+              <Flex justifyContent="flex-end">
+                <ReactPaginate
+                  containerClassName="pagination"
+                  pageCount={totalPages}
+                  pageRangeDisplayed={1}
+                  marginPagesDisplayed={1}
+                  forcePage={page}
+                  onPageChange={({ selected }) => setPage(selected)}
+                />
+              </Flex>
+            </Box>
           )}
         </>
       )}

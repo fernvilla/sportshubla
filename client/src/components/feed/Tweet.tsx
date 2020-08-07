@@ -36,7 +36,7 @@ const Tweet: FC<Props> = ({ tweet }) => {
             isExternal
             color="blue.700"
           >
-            <Text m={0} fontSize="sm" lineHeight="shorter">
+            <Text m={0} lineHeight="shorter" fontWeight="semibold">
               {tweet.text}
             </Text>
           </Link>
