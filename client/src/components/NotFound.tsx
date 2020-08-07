@@ -3,8 +3,10 @@ import { Text, Box } from '@chakra-ui/core';
 
 const NotFound: FC = () => {
   return (
-    <Box maxWidth={1600} mx="auto" my={5}>
-      <Text textAlign="center">404. Page Not Found</Text>
+    <Box m={5} p={10} bg="white" boxShadow="sm">
+      <Text textAlign="center" fontWeight="bold" fontSize="3xl">
+        Ooops...404. Page Not Found
+      </Text>
     </Box>
   );
 };

@@ -12,7 +12,7 @@ const SiteLayout: FC<Props> = props => {
   const { children, leagues } = props;
 
   return (
-    <Box w="100%" minH="100vh" bg="gray.200">
+    <Box w="100%" minH="100%" bg="gray.200">
       <Flex>
         <Box flex="0 0 225px" minH="100vh">
           <SideNav leagues={leagues} />
@@ -21,7 +21,7 @@ const SiteLayout: FC<Props> = props => {
         <Box flex="auto">
           <SiteHeader />
 
-          <Box>{children}</Box>
+          {children}
         </Box>
       </Flex>
     </Box>

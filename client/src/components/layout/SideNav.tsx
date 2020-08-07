@@ -63,7 +63,7 @@ const SideNav: FC<Props> = props => {
         </Box>
       </Flex>
 
-      <Box as="ul">
+      <Box as="ul" my={3}>
         {leagues.map(league => {
           const icon = leagueIconMap.get(league.shortName);
           const leagueIsSelected = openKeys.includes(league.shortName);
