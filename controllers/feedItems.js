@@ -34,9 +34,10 @@ module.exports = {
         order: [['publishedDate', 'DESC']]
       });
 
-      return res.status(200).send(payload);
+      return res.status(200).send({ payload });
     } catch (error) {
       return res.status(500).send({
+        payload: [],
         message: error.message || 'There was an error fetching feed items.'
       });
     }
