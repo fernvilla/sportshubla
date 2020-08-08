@@ -1,9 +1,10 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Box, Flex, Spinner, Heading } from '@chakra-ui/core';
 import { Article as ArticleType } from './../../interfaces/article';
 import ReactPaginate from 'react-paginate';
 import Article from './Article';
 import { calcualteTotalPages } from './../../utils/feed';
+import { scrollTo } from '../../utils/window';
 
 type Props = {
   articles: ArticleType[];
@@ -12,12 +13,12 @@ type Props = {
   displayTeamLink?: boolean;
 };
 
-const ArticlesFeed: FC<Props> = ({
+const ArticlesFeed = ({
   articles = [],
   isFetching = false,
   articlesPerPage = 20,
   displayTeamLink = false
-}) => {
+}: Props) => {
   const [page, setPage] = useState(0);
   const [visibleArtices, setVisibleArticles] = useState(articles);
   const totalPages = calcualteTotalPages(articles.length, articlesPerPage);
@@ -26,6 +27,10 @@ const ArticlesFeed: FC<Props> = ({
     const pagedArticles = articles.slice(page * articlesPerPage, (page + 1) * articlesPerPage);
     setVisibleArticles(pagedArticles);
   }, [page, articles, articlesPerPage]);
+
+  const onPageChange = ({ selected }: { selected: number }) => {
+    scrollTo(0, () => setPage(selected));
+  };
 
   return (
     <Box bg="white" p={6} mb={5} boxShadow="sm">
@@ -53,7 +58,7 @@ const ArticlesFeed: FC<Props> = ({
                   pageRangeDisplayed={1}
                   marginPagesDisplayed={1}
                   forcePage={page}
-                  onPageChange={({ selected }) => setPage(selected)}
+                  onPageChange={onPageChange}
                 />
               </Flex>
             </Box>

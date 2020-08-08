@@ -1,9 +1,10 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Flex, Spinner, Heading } from '@chakra-ui/core';
 import { Tweet as TweetType } from './../../interfaces/tweet';
 import Tweet from './Tweet';
 import { calcualteTotalPages } from './../../utils/feed';
 import ReactPaginate from 'react-paginate';
+import { scrollTo } from '../../utils/window';
 
 type Props = {
   tweets?: TweetType[];
@@ -12,12 +13,12 @@ type Props = {
   displayTeamLink?: boolean;
 };
 
-const SocialFeed: FC<Props> = ({
+const SocialFeed = ({
   tweets = [],
   isFetching = false,
   tweetsPerPage = 10,
   displayTeamLink = false
-}) => {
+}: Props) => {
   const [page, setPage] = useState(0);
   const [visibleTweets, setVisibleTweets] = useState(tweets);
   const totalPages = calcualteTotalPages(tweets.length, tweetsPerPage);
@@ -27,6 +28,10 @@ const SocialFeed: FC<Props> = ({
 
     setVisibleTweets(pagedTweets);
   }, [page, tweets, tweetsPerPage]);
+
+  const onPageChange = ({ selected }: { selected: number }) => {
+    scrollTo(0, () => setPage(selected));
+  };
 
   return (
     <Box bg="white" p={6} mb={5} boxShadow="sm">
@@ -56,7 +61,7 @@ const SocialFeed: FC<Props> = ({
                   pageRangeDisplayed={1}
                   marginPagesDisplayed={1}
                   forcePage={page}
-                  onPageChange={({ selected }) => setPage(selected)}
+                  onPageChange={onPageChange}
                 />
               </Flex>
             </Box>
