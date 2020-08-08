@@ -2,10 +2,11 @@ import React, { FC } from 'react';
 import { Box, Flex, Link, Image, Text } from '@chakra-ui/core';
 import { Article as ArticleType } from './../../interfaces/article';
 import { formatDistanceToNow } from 'date-fns';
+import { Link as RouterLink } from 'react-router-dom';
 
-type Props = { article: ArticleType };
+type Props = { article: ArticleType; displayTeamLink?: boolean };
 
-const Article: FC<Props> = ({ article }) => {
+const Article: FC<Props> = ({ article, displayTeamLink = false }) => {
   const formattedDate = formatDistanceToNow(new Date(article.publishedDate), {
     addSuffix: true,
     includeSeconds: true
@@ -36,9 +37,14 @@ const Article: FC<Props> = ({ article }) => {
             </Text>
           </Link>
 
-          <Flex>
-            <Box color="gray.700" fontSize="xs" pr={2}>
-              {article.newsSource?.name} |
+          <Flex flexWrap="wrap">
+            <Box color="gray.700" fontSize="xs" pr={1}>
+              {displayTeamLink && (
+                <RouterLink to={`/teams/${article.newsSource?.team?.slug}`}>
+                  {article.newsSource?.team?.fullName} |{' '}
+                </RouterLink>
+              )}
+              {article.newsSource?.name} -
             </Box>
 
             <Box color="gray.500" fontSize="xs" fontStyle="italic">

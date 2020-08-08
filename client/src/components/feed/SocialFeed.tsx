@@ -1,13 +1,23 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Box, Flex, Spinner } from '@chakra-ui/core';
+import { Box, Flex, Spinner, Heading } from '@chakra-ui/core';
 import { Tweet as TweetType } from './../../interfaces/tweet';
 import Tweet from './Tweet';
 import { calcualteTotalPages } from './../../utils/feed';
 import ReactPaginate from 'react-paginate';
 
-type Props = { tweets?: TweetType[]; isFetching: Boolean; tweetsPerPage?: number };
+type Props = {
+  tweets?: TweetType[];
+  isFetching: Boolean;
+  tweetsPerPage?: number;
+  displayTeamLink?: boolean;
+};
 
-const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false, tweetsPerPage = 10 }) => {
+const SocialFeed: FC<Props> = ({
+  tweets = [],
+  isFetching = false,
+  tweetsPerPage = 10,
+  displayTeamLink = false
+}) => {
   const [page, setPage] = useState(0);
   const [visibleTweets, setVisibleTweets] = useState(tweets);
   const totalPages = calcualteTotalPages(tweets.length, tweetsPerPage);
@@ -19,11 +29,11 @@ const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false, tweetsPerPage 
   }, [page, tweets, tweetsPerPage]);
 
   return (
-    <Box bg="white" p={6} boxShadow="sm">
-      <Box as="h1" textTransform="uppercase" mb={2} fontSize="16px">
+    <Box bg="white" p={6} mb={5} boxShadow="sm">
+      <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
         Social Feed
         <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
-      </Box>
+      </Heading>
 
       {isFetching ? (
         <Flex justify="center" w="100%" p={10}>
@@ -33,7 +43,7 @@ const SocialFeed: FC<Props> = ({ tweets = [], isFetching = false, tweetsPerPage 
         <>
           <Box overflow="auto">
             {visibleTweets.map((tweet: TweetType) => (
-              <Tweet key={tweet.id} tweet={tweet} />
+              <Tweet key={tweet.id} tweet={tweet} displayTeamLink={displayTeamLink} />
             ))}
           </Box>
 

@@ -1,13 +1,23 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Box, Flex, Spinner } from '@chakra-ui/core';
+import { Box, Flex, Spinner, Heading } from '@chakra-ui/core';
 import { Article as ArticleType } from './../../interfaces/article';
 import ReactPaginate from 'react-paginate';
 import Article from './Article';
 import { calcualteTotalPages } from './../../utils/feed';
 
-type Props = { articles?: ArticleType[]; isFetching: boolean; articlesPerPage?: number };
+type Props = {
+  articles: ArticleType[];
+  isFetching: boolean;
+  articlesPerPage?: number;
+  displayTeamLink?: boolean;
+};
 
-const ArticlesFeed: FC<Props> = ({ articles = [], isFetching = false, articlesPerPage = 20 }) => {
+const ArticlesFeed: FC<Props> = ({
+  articles = [],
+  isFetching = false,
+  articlesPerPage = 20,
+  displayTeamLink = false
+}) => {
   const [page, setPage] = useState(0);
   const [visibleArtices, setVisibleArticles] = useState(articles);
   const totalPages = calcualteTotalPages(articles.length, articlesPerPage);
@@ -18,11 +28,11 @@ const ArticlesFeed: FC<Props> = ({ articles = [], isFetching = false, articlesPe
   }, [page, articles, articlesPerPage]);
 
   return (
-    <Box bg="white" p={6} boxShadow="sm">
-      <Box as="h1" textTransform="uppercase" mb={2} fontSize="16px">
+    <Box bg="white" p={6} mb={5} boxShadow="sm">
+      <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
         Headlines
         <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
-      </Box>
+      </Heading>
 
       {isFetching ? (
         <Flex justify="center" w="100%" p={10}>
@@ -31,7 +41,7 @@ const ArticlesFeed: FC<Props> = ({ articles = [], isFetching = false, articlesPe
       ) : (
         <>
           {visibleArtices.map((article: ArticleType) => (
-            <Article key={article.id} article={article} />
+            <Article key={article.id} article={article} displayTeamLink={displayTeamLink} />
           ))}
 
           {!!articles.length && (

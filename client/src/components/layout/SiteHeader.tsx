@@ -31,7 +31,7 @@ const SiteHeader: FC<Props> = ({ logoutUser, auth }) => {
       justify="space-between"
       align="center"
       w="100%"
-      px={5}
+      px={10}
       py={2}
       bg="white"
       borderBottomWidth="1px"

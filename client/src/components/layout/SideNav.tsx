@@ -54,16 +54,16 @@ const SideNav: FC<Props> = props => {
   };
 
   return (
-    <Box bg="gray.700" h="100%">
-      <Flex height="55px" align="center" justify="center" bg="gray.900">
-        <Box px={4}>
+    <Box bg="gray.800" h="100%">
+      <Flex height="55px" align="center" justify="center">
+        <Box px={3}>
           <Link to="/">
             <Image src="/images/logo/logo-transparent.png" alt="logo" title="logo" ignoreFallback />
           </Link>
         </Box>
       </Flex>
 
-      <Box as="ul" my={3}>
+      <Box as="ul">
         {leagues.map(league => {
           const icon = leagueIconMap.get(league.shortName);
           const leagueIsSelected = openKeys.includes(league.shortName);
@@ -72,7 +72,6 @@ const SideNav: FC<Props> = props => {
             <PseudoBox
               key={league.id}
               as="li"
-              fontWeight="semibold"
               cursor="pointer"
               _hover={{ color: 'white' }}
               transition="all 0.5s ease"
@@ -107,7 +106,6 @@ const SideNav: FC<Props> = props => {
                     <PseudoBox
                       key={league.id}
                       as="li"
-                      fontWeight="semibold"
                       cursor="pointer"
                       _hover={{ color: 'white' }}
                       transition="color 0.5s ease"

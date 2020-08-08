@@ -2,7 +2,7 @@ import React, { useState, useEffect, FC } from 'react';
 import { Article } from '../interfaces/article';
 import { Tweet } from '../interfaces/tweet';
 import { Team as TeamInterface } from '../interfaces/team';
-import { Box, Flex } from '@chakra-ui/core';
+import { Box, Flex, Heading, Link } from '@chakra-ui/core';
 import ArticlesFeed from '../components/feed/ArticlesFeed';
 import SocialFeed from '../components/feed/SocialFeed';
 import axios from 'axios';
@@ -76,12 +76,22 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
 
   return (
     <Box as="main">
+      <Box px={10} py={5} bg="white">
+        <Heading as="h1" size="md" fontWeight="normal">
+          {team?.fullName}
+        </Heading>
+
+        <Link href={team?.websiteUrl} color="blue.700" isExternal>
+          {team?.websiteUrl}
+        </Link>
+      </Box>
+
       <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
-        <Box px={5} flex="3" minWidth={450}>
+        <Box px={5} flex="3" minWidth={400}>
           <ArticlesFeed articles={articles} isFetching={fetchingArticles || fetchingTeam} />
         </Box>
 
-        <Box px={5} flex="2" minWidth={350}>
+        <Box px={5} flex="2" minWidth={400}>
           <SocialFeed tweets={tweets} isFetching={fetchingTweets || fetchingTeam} />
         </Box>
       </Flex>

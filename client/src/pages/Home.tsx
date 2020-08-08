@@ -48,12 +48,12 @@ const Home = () => {
   return (
     <Box as="main">
       <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
-        <Box px={5} flex="3" minWidth={450}>
-          <ArticlesFeed articles={articles} isFetching={fetchingArticles} />
+        <Box px={5} flex="3" minWidth={400}>
+          <ArticlesFeed articles={articles} isFetching={fetchingArticles} displayTeamLink />
         </Box>
 
-        <Box px={5} flex="2" minWidth={350}>
-          <SocialFeed tweets={tweets} isFetching={fetchingTweets} />
+        <Box px={5} flex="2" minWidth={400}>
+          <SocialFeed tweets={tweets} isFetching={fetchingTweets} displayTeamLink />
         </Box>
       </Flex>
     </Box>
