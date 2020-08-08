@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Box } from '@chakra-ui/core';
 
-const Admin: FC = () => {
+const Admin = () => {
   return (
     <Box maxWidth={1600} margin="auto" p={10}>
       <Box fontWeight="medium" textTransform="uppercase" mb={2}>

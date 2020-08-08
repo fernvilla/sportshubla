@@ -10,7 +10,7 @@ const { Op } = require('sequelize');
     const articles = await Article.findAll({
       where: {
         publishedDate: {
-          [Op.gte]: db.sequelize.literal("NOW() - INTERVAL '7d'")
+          [Op.lte]: db.sequelize.literal("NOW() - INTERVAL '7d'")
         }
       }
     });

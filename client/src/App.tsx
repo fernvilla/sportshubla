@@ -16,6 +16,7 @@ import axios from 'axios';
 import { League } from './interfaces/league';
 
 import './app.scss';
+import Team from './pages/Team';
 
 const jwtToken = store.get('jwtToken');
 
@@ -58,6 +59,7 @@ const App: FC = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
+          <Route path="/teams/:slug" exact component={Team} />
           <PrivateRoute path="/admin" exact component={Admin} adminRequired />
           <Route component={NotFound} />
         </Switch>

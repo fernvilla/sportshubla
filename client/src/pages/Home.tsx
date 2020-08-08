@@ -1,11 +1,12 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Article } from '../interfaces/article';
 import { Tweet } from '../interfaces/tweet';
 import { Box, Flex } from '@chakra-ui/core';
 import ArticlesFeed from '../components/feed/ArticlesFeed';
 import SocialFeed from '../components/feed/SocialFeed';
+import axios from 'axios';
 
-const Home: FC = () => {
+const Home = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [tweets, setTweets] = useState<Tweet[]>([]);
   const [fetchingArticles, setFetchingArticles] = useState(false);
@@ -20,10 +21,9 @@ const Home: FC = () => {
     try {
       setFetchingArticles(true);
 
-      const res = await fetch('/api/articles/lastday');
-      const { payload } = await res.json();
+      const { data } = await axios.get('/api/articles/lastday');
 
-      setArticles(payload);
+      setArticles(data.payload);
     } catch (err) {
       console.error(err);
     } finally {
@@ -35,10 +35,9 @@ const Home: FC = () => {
     try {
       setFetchingTweets(true);
 
-      const res = await fetch('/api/tweets/lastday');
-      const { payload } = await res.json();
+      const { data } = await axios.get('/api/tweets/lastday');
 
-      setTweets(payload);
+      setTweets(data.payload);
     } catch (err) {
       console.error(err);
     } finally {

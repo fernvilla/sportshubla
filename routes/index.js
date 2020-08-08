@@ -18,6 +18,7 @@ const users = require('./../controllers/users');
 
 // Team Routes
 router.get('/api/teams', teams.findAll);
+router.get('/api/teams/slug/:slug', teams.findBySlug);
 
 // League Routes
 router.get('/api/leagues', leagues.findAll);
@@ -34,6 +35,8 @@ router.get('/api/twitteraccounts', twitterAccounts.findAll);
 // Tweet Routes
 router.get('/api/tweets', tweets.findAll);
 router.get('/api/tweets/lastday', tweets.findByLastDay);
+router.get('/api/tweets/team/id/:id', tweets.findAllByTeamId);
+// router.get('/api/tweets/team/slug/:slug', tweets.findAllByTeamSlug);
 
 // Feed Item Routes
 router.get('/api/feeditems', feedItems.findAll);
@@ -50,6 +53,8 @@ router.get('/api/rssfeeds', rssFeeds.findAll);
 // Articles Routes
 router.get('/api/articles', articles.findAll);
 router.get('/api/articles/lastday', articles.findByLastDay);
+router.get('/api/articles/team/id/:id', articles.findAllByTeamId);
+// router.get('/api/articles/team/slug/:id', articles.findAllByTeamSlug);
 
 // User Routes
 // router.get('/api/users', verifyToken, users.findAll);
