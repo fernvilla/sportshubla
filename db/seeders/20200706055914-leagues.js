@@ -8,7 +8,7 @@ module.exports = {
         {
           fullName: 'National Basketball Association',
           shortName: 'NBA',
-          websiteUrl: 'https://www.nba.com',
+          websiteUrl: 'http://www.nba.com',
           slug: 'national-basketball-association',
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
@@ -16,7 +16,7 @@ module.exports = {
         {
           fullName: 'Major League Baseball',
           shortName: 'MLB',
-          websiteUrl: 'https://www.mlb.com',
+          websiteUrl: 'http://www.mlb.com',
           slug: 'major-league-baseball',
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()

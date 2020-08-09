@@ -70,7 +70,6 @@ export const setCurrentUser = (decoded: User | {}) => ({
 });
 
 export const logoutUser = () => (dispatch: Dispatch) => {
-  console.log('logout');
   store.remove('jwtToken');
   setAuthToken(null);
   dispatch(setCurrentUser({}));

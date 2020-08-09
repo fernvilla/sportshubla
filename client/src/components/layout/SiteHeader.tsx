@@ -1,15 +1,10 @@
-import React, { FC } from 'react';
-// import { Team } from '../../interfaces/team';
+import React from 'react';
 import { Box, Flex, Input, InputLeftElement, InputGroup, Icon } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 import { ConnectedProps, connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { RootState } from '../../reducers';
 import { logoutUser } from '../../actions/authActions';
-
-// type TeamProps = {
-//   // teams: Team[];
-// };
 
 const mapState = (state: RootState) => ({
   auth: state.auth
@@ -25,7 +20,8 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type Props = PropsFromRedux;
 
-const SiteHeader: FC<Props> = ({ logoutUser, auth }) => {
+const SiteHeader = ({ logoutUser, auth }: Props) => {
+  console.log(auth);
   return (
     <Flex
       justify="space-between"
@@ -46,15 +42,15 @@ const SiteHeader: FC<Props> = ({ logoutUser, auth }) => {
       </Box>
 
       {auth.isAuthenticated ? (
-        <Box px={5} color="red">
+        <Box px={5}>
           <Flex align="center">
             {auth.user.isAdmin && (
-              <Box pl={5}>
+              <Box color="brand" pl={5}>
                 <Link to="/admin">Admin</Link>
               </Box>
             )}
 
-            <Box pl={5}>
+            <Box color="brand" pl={5}>
               <Link to="#" onClick={() => logoutUser()}>
                 Logout
               </Link>
@@ -62,7 +58,7 @@ const SiteHeader: FC<Props> = ({ logoutUser, auth }) => {
           </Flex>
         </Box>
       ) : (
-        <Box pl={5}>
+        <Box color="brand" pl={5}>
           <Link to="/login">Login</Link>
         </Box>
       )}

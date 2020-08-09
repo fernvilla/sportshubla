@@ -6,7 +6,7 @@ module.exports = {
       'NewsSources',
       [
         {
-          websiteUrl: 'https://www.lakers.com',
+          websiteUrl: 'http://www.lakers.com',
           slug: 'lakers-official-site',
           name: 'Lakers Official Site',
           teamId: 1,
@@ -14,7 +14,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          websiteUrl: 'https://www.dodgers.com',
+          websiteUrl: 'http://www.dodgers.com',
           slug: 'dodgers-official-site',
           name: 'Dodgers Official Site',
           teamId: 2,

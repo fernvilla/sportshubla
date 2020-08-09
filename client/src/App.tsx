@@ -14,9 +14,9 @@ import PrivateRoute from './components/PrivateRoute';
 import Admin from './pages/Admin';
 import axios from 'axios';
 import { League } from './interfaces/league';
+import Team from './pages/Team';
 
 import './app.scss';
-import Team from './pages/Team';
 
 const jwtToken = store.get('jwtToken');
 

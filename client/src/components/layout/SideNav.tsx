@@ -54,7 +54,7 @@ const SideNav: FC<Props> = props => {
   };
 
   return (
-    <Box bg="gray.800" h="100%">
+    <Box bg="brand" h="100%">
       <Flex height="55px" align="center" justify="center">
         <Box px={3}>
           <Link to="/">
@@ -117,7 +117,7 @@ const SideNav: FC<Props> = props => {
                           my={1}
                           height="40px"
                           lineHeight="40px"
-                          bg={teamIsSelected ? 'blue.500' : 'gray.900'}
+                          bg={teamIsSelected ? 'blue.500' : 'black'}
                         >
                           {team.shortName}
                         </Box>

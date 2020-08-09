@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Article } from '../interfaces/article';
 import { Tweet } from '../interfaces/tweet';
-import { Box, Flex } from '@chakra-ui/core';
+import { Box, Flex, Image, Heading, Button, Icon } from '@chakra-ui/core';
 import ArticlesFeed from '../components/feed/ArticlesFeed';
 import SocialFeed from '../components/feed/SocialFeed';
 import axios from 'axios';
@@ -11,6 +11,7 @@ const Home = () => {
   const [tweets, setTweets] = useState<Tweet[]>([]);
   const [fetchingArticles, setFetchingArticles] = useState(false);
   const [fetchingTweets, setFetchingTweets] = useState(false);
+  // const [showHero, setShowHero] = useState(true);
 
   useEffect(() => {
     fetchArticles();
@@ -47,6 +48,56 @@ const Home = () => {
 
   return (
     <Box as="main">
+      <Box
+        backgroundImage="url(/images/fans_alt.jpg)"
+        height={300}
+        backgroundPosition="0 25%"
+        backgroundSize="cover"
+        pos="relative"
+      >
+        {/* <Icon
+          name="close"
+          color="#fff"
+          position="absolute"
+          top={5}
+          right={5}
+          textShadow="sm"
+          cursor="pointer"
+        /> */}
+
+        <Flex
+          bg="rgb(0 22 41 / 65%)"
+          height="100%"
+          width="100%"
+          p={10}
+          align="center"
+          justifyContent="center"
+        >
+          <Box textAlign="center">
+            <Image
+              src="/images/logo/logo-transparent-solo.png"
+              alt="logo"
+              title="logo"
+              ignoreFallback
+              width="75px"
+              margin="auto"
+            />
+
+            <Heading mt={2} size="xl" color="gray.100" textShadow="sm">
+              Stay up to date with all the{' '}
+              <Box as="span" color="blue.400" textShadow="sm">
+                latest sports news
+              </Box>
+              .
+            </Heading>
+
+            <Button variantColor="blue" bg="blue.400" mt={5} boxShadow="sm">
+              Set My Teams
+            </Button>
+          </Box>
+        </Flex>
+      </Box>
+
       <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
         <Box px={5} flex="3" minWidth={400}>
           <ArticlesFeed articles={articles} isFetching={fetchingArticles} displayTeamLink />

@@ -14,11 +14,11 @@ const SiteLayout: FC<Props> = props => {
   return (
     <Box w="100%" minH="100%">
       <Flex flexDir="row">
-        <Box pos="fixed" minH="100vh" height="100%" width={200} overflow="auto">
+        <Box pos="fixed" minH="100vh" height="100%" width={220} overflow="auto">
           <SideNav leagues={leagues} />
         </Box>
 
-        <Box marginLeft={200} width="100%">
+        <Box marginLeft={220} width="100%">
           <SiteHeader />
 
           {children}

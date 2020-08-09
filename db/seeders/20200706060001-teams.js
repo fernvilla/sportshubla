@@ -8,7 +8,7 @@ module.exports = {
         {
           fullName: 'Los Angeles Lakers',
           shortName: 'Lakers',
-          websiteUrl: 'https://www.lakers.com',
+          websiteUrl: 'http://www.lakers.com',
           slug: 'los-angeles-lakers',
           leagueId: 1,
           conferenceId: 1,
@@ -19,7 +19,7 @@ module.exports = {
         {
           fullName: 'Los Angeles Dodgers',
           shortName: 'Dodgers',
-          websiteUrl: 'https://www.dodgers.com',
+          websiteUrl: 'http://www.dodgers.com',
           slug: 'los-angeles-dodgers',
           leagueId: 2,
           conferenceId: 2,

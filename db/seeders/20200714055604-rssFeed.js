@@ -6,14 +6,14 @@ module.exports = {
       'RssFeeds',
       [
         {
-          url: 'https://www.nba.com/lakers/rss.xml',
+          url: 'http://www.nba.com/lakers/rss.xml',
           isActive: true,
           newsSourceId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         },
         {
-          url: 'https://www.mlb.com/dodgers/feeds/news/rss.xml',
+          url: 'http://www.mlb.com/dodgers/feeds/news/rss.xml',
           isActive: true,
           newsSourceId: 2,
           createdAt: new Date().toUTCString(),
