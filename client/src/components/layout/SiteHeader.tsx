@@ -21,7 +21,6 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux;
 
 const SiteHeader = ({ logoutUser, auth }: Props) => {
-  console.log(auth);
   return (
     <Flex
       justify="space-between"

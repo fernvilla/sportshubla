@@ -5,13 +5,16 @@ import { Box, Flex, Image, Heading, Button, Icon } from '@chakra-ui/core';
 import ArticlesFeed from '../components/feed/ArticlesFeed';
 import SocialFeed from '../components/feed/SocialFeed';
 import axios from 'axios';
+import store from 'store';
 
 const Home = () => {
+  const heroLocalStorage = store.get('showHomeHero');
+  const showHeroDefault = typeof heroLocalStorage === 'undefined' ? true : heroLocalStorage;
   const [articles, setArticles] = useState<Article[]>([]);
   const [tweets, setTweets] = useState<Tweet[]>([]);
   const [fetchingArticles, setFetchingArticles] = useState(false);
   const [fetchingTweets, setFetchingTweets] = useState(false);
-  // const [showHero, setShowHero] = useState(true);
+  const [showHero, setShowHero] = useState(showHeroDefault);
 
   useEffect(() => {
     fetchArticles();
@@ -48,56 +51,61 @@ const Home = () => {
 
   return (
     <Box as="main">
-      <Box
-        backgroundImage="url(/images/fans_alt.jpg)"
-        height={300}
-        backgroundPosition="0 25%"
-        backgroundSize="cover"
-        pos="relative"
-      >
-        {/* <Icon
-          name="close"
-          color="#fff"
-          position="absolute"
-          top={5}
-          right={5}
-          textShadow="sm"
-          cursor="pointer"
-        /> */}
-
-        <Flex
-          bg="rgb(0 22 41 / 65%)"
-          height="100%"
-          width="100%"
-          p={10}
-          align="center"
-          justifyContent="center"
+      {showHero && (
+        <Box
+          backgroundImage="url(/images/fans_alt.jpg)"
+          height={300}
+          backgroundPosition="0 25%"
+          backgroundSize="cover"
+          pos="relative"
         >
-          <Box textAlign="center">
-            <Image
-              src="/images/logo/logo-transparent-solo.png"
-              alt="logo"
-              title="logo"
-              ignoreFallback
-              width="75px"
-              margin="auto"
-            />
+          <Icon
+            name="close"
+            color="#fff"
+            position="absolute"
+            top={5}
+            right={5}
+            textShadow="sm"
+            cursor="pointer"
+            onClick={() => {
+              setShowHero(false);
+              store.set('showHomeHero', false);
+            }}
+          />
 
-            <Heading mt={2} size="xl" color="gray.100" textShadow="sm">
-              Stay up to date with all the{' '}
-              <Box as="span" color="blue.400" textShadow="sm">
-                latest sports news
-              </Box>
-              .
-            </Heading>
+          <Flex
+            bg="rgb(0 22 41 / 65%)"
+            height="100%"
+            width="100%"
+            p={10}
+            align="center"
+            justifyContent="center"
+          >
+            <Box textAlign="center">
+              <Image
+                src="/images/logo/logo-transparent-solo.png"
+                alt="logo"
+                title="logo"
+                ignoreFallback
+                width="75px"
+                margin="auto"
+              />
 
-            <Button variantColor="blue" bg="blue.400" mt={5} boxShadow="sm">
-              Set My Teams
-            </Button>
-          </Box>
-        </Flex>
-      </Box>
+              <Heading mt={2} size="xl" color="gray.100" textShadow="sm">
+                Stay up to date with all the{' '}
+                <Box as="span" color="blue.400" textShadow="sm">
+                  latest sports news
+                </Box>
+                .
+              </Heading>
 
+              <Button variantColor="blue" bg="blue.400" mt={5} boxShadow="sm">
+                Set My Teams
+              </Button>
+            </Box>
+          </Flex>
+        </Box>
+      )}
       <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
         <Box px={5} flex="3" minWidth={400}>
           <ArticlesFeed articles={articles} isFetching={fetchingArticles} displayTeamLink />
