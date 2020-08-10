@@ -55,7 +55,7 @@ const Home = () => {
         <Box
           backgroundImage="url(/images/fans_alt.jpg)"
           height={300}
-          backgroundPosition="0 25%"
+          backgroundPosition="center"
           backgroundSize="cover"
           pos="relative"
         >
@@ -87,7 +87,7 @@ const Home = () => {
                 alt="logo"
                 title="logo"
                 ignoreFallback
-                width="75px"
+                width="70px"
                 margin="auto"
               />
 

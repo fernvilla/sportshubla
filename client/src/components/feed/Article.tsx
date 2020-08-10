@@ -6,14 +6,14 @@ import { Link as RouterLink } from 'react-router-dom';
 
 type Props = { article: ArticleType; displayTeamLink?: boolean };
 
-const Article: FC<Props> = ({ article, displayTeamLink = false }) => {
+const Article = ({ article, displayTeamLink = false }: Props) => {
   const formattedDate = formatDistanceToNow(new Date(article.publishedDate), {
     addSuffix: true,
     includeSeconds: true
   });
 
   return (
-    <Box borderBottomWidth="1px" py={4}>
+    <Box borderBottomWidth="1px" py={4} pr={2}>
       <Flex wrap="wrap">
         {article.image && (
           <Box pt={1} pr={4}>
