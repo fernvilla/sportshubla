@@ -18,7 +18,6 @@ module.exports = {
       const payload = await Team.findOne({
         where: { slug: req.params.slug }
       });
-      console.log({ payload });
 
       return res.status(200).send({ payload });
     } catch (error) {
