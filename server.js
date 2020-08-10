@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(compression());
-app.use(routes);
+app.use('/api', routes);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/client/build')));
