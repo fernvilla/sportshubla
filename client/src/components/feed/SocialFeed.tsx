@@ -5,6 +5,7 @@ import Tweet from './Tweet';
 import { calcualteTotalPages } from './../../utils/feed';
 import ReactPaginate from 'react-paginate';
 import { scrollTo } from '../../utils/window';
+import Loader from '../Loader';
 
 type Props = {
   tweets?: TweetType[];
@@ -41,9 +42,7 @@ const SocialFeed = ({
       </Heading>
 
       {isFetching ? (
-        <Flex justify="center" w="100%" p={10}>
-          <Spinner thickness="4px" speed="0.65s" emptyColor="gray.300" color="blue.900" size="lg" />
-        </Flex>
+        <Loader />
       ) : (
         <>
           <Box overflow="auto">

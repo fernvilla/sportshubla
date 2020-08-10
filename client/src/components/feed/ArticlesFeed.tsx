@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, Flex, Spinner, Heading } from '@chakra-ui/core';
+import { Box, Flex, Heading } from '@chakra-ui/core';
 import { Article as ArticleType } from './../../interfaces/article';
 import ReactPaginate from 'react-paginate';
 import Article from './Article';
 import { calcualteTotalPages } from './../../utils/feed';
 import { scrollTo } from '../../utils/window';
+import Loader from '../Loader';
 
 type Props = {
   articles: ArticleType[];
@@ -40,9 +41,7 @@ const ArticlesFeed = ({
       </Heading>
 
       {isFetching ? (
-        <Flex justify="center" w="100%" p={10}>
-          <Spinner thickness="4px" speed="0.65s" emptyColor="gray.300" color="blue.900" size="lg" />
-        </Flex>
+        <Loader />
       ) : (
         <>
           {visibleArtices.map((article: ArticleType) => (

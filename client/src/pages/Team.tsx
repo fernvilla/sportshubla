@@ -7,6 +7,7 @@ import ArticlesFeed from '../components/feed/ArticlesFeed';
 import SocialFeed from '../components/feed/SocialFeed';
 import axios from 'axios';
 import { RouteComponentProps } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 interface MatchParams {
   slug: string;
@@ -86,15 +87,19 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
         </Link>
       </Box>
 
-      <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
-        <Box px={5} flex="3" minWidth={400}>
-          <ArticlesFeed articles={articles} isFetching={fetchingArticles || fetchingTeam} />
-        </Box>
+      {fetchingTeam ? (
+        <Loader />
+      ) : (
+        <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
+          <Box px={5} flex="3" minWidth={400}>
+            <ArticlesFeed articles={articles} isFetching={fetchingArticles} />
+          </Box>
 
-        <Box px={5} flex="2" minWidth={400}>
-          <SocialFeed tweets={tweets} isFetching={fetchingTweets || fetchingTeam} />
-        </Box>
-      </Flex>
+          <Box px={5} flex="2" minWidth={400}>
+            <SocialFeed tweets={tweets} isFetching={fetchingTweets} />
+          </Box>
+        </Flex>
+      )}
     </Box>
   );
 };
