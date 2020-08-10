@@ -13,7 +13,7 @@
     "delete:articles": "node data/deleteArticles",
     "fetch": "yarn run fetch:articles && yarn run fetch:tweets",
     "delete": "yarn run delete:articles && yarn run delete:tweets",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
+    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
