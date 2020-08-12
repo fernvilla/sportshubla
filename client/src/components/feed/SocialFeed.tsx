@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Flex, Spinner, Heading } from '@chakra-ui/core';
+import { Box, Flex, Heading } from '@chakra-ui/core';
 import { Tweet as TweetType } from './../../interfaces/tweet';
 import Tweet from './Tweet';
 import { calcualteTotalPages } from './../../utils/feed';

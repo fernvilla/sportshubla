@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Flex, Heading } from '@chakra-ui/core';
 import { Article as ArticleType } from './../../interfaces/article';
 import ReactPaginate from 'react-paginate';

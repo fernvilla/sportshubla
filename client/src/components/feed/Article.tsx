@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Box, Flex, Link, Image, Text } from '@chakra-ui/core';
 import { Article as ArticleType } from './../../interfaces/article';
 import { formatDistanceToNow } from 'date-fns';

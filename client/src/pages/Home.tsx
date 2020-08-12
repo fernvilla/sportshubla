@@ -54,7 +54,6 @@ const Home = () => {
       {showHero && (
         <Box
           backgroundImage="url(/images/fans_alt.jpg)"
-          height={300}
           backgroundPosition="center"
           backgroundSize="cover"
           pos="relative"
@@ -87,11 +86,11 @@ const Home = () => {
                 alt="logo"
                 title="logo"
                 ignoreFallback
-                width="70px"
+                width="50px"
                 margin="auto"
               />
 
-              <Heading mt={2} size="xl" color="gray.100" textShadow="sm">
+              <Heading mt={2} fontSize="3xl" color="gray.100" textShadow="sm">
                 Stay up to date with all the{' '}
                 <Box as="span" color="blue.400" textShadow="sm">
                   latest sports news
@@ -99,13 +98,14 @@ const Home = () => {
                 .
               </Heading>
 
-              <Button variantColor="blue" bg="blue.400" mt={5} boxShadow="sm">
+              <Button variantColor="blue" bg="blue.400" mt={5} boxShadow="sm" size="sm">
                 Set My Teams
               </Button>
             </Box>
           </Flex>
         </Box>
       )}
+
       <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
         <Box px={5} flex="3" minWidth={400}>
           <ArticlesFeed articles={articles} isFetching={fetchingArticles} displayTeamLink />

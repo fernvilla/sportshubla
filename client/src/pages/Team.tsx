@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Article } from '../interfaces/article';
 import { Tweet } from '../interfaces/tweet';
 import { Team as TeamInterface } from '../interfaces/team';
