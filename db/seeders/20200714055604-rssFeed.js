@@ -13,7 +13,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          url: 'http://www.mlb.com/dodgers/feeds/news/rss.xml',
+          url: 'https://www.mlb.com/dodgers/feeds/news/rss.xml',
           isActive: true,
           newsSourceId: 2,
           createdAt: new Date().toUTCString(),

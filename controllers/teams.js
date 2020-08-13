@@ -3,7 +3,9 @@ const Team = require('./../db/models').Team;
 module.exports = {
   findAll: async (req, res) => {
     try {
-      const payload = await Team.findAll({});
+      const payload = await Team.findAll({
+        order: [['shortName', 'asc']]
+      });
 
       return res.status(200).send({ payload });
     } catch (error) {

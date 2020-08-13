@@ -1,21 +1,22 @@
-import React, { FC } from 'react';
+import React, { ReactNode } from 'react';
 import SiteHeader from './SiteHeader';
 import { Flex, Box } from '@chakra-ui/core';
-import { League } from '../../interfaces/league';
+import { Team } from '../../interfaces/team';
 import SideNav from './SideNav';
 
 type Props = {
-  leagues: League[];
+  teams: Team[];
+  children: ReactNode;
 };
 
-const SiteLayout: FC<Props> = props => {
-  const { children, leagues } = props;
+const SiteLayout = (props: Props) => {
+  const { children, teams } = props;
 
   return (
     <Box w="100%" minH="100%">
       <Flex flexDir="row">
         <Box pos="fixed" minH="100vh" height="100%" width={220} overflow="auto">
-          <SideNav leagues={leagues} />
+          <SideNav teams={teams} />
         </Box>
 
         <Box marginLeft={220} width="100%">

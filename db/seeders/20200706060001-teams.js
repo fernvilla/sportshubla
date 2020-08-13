@@ -10,9 +10,6 @@ module.exports = {
           shortName: 'Lakers',
           websiteUrl: 'http://www.lakers.com',
           slug: 'los-angeles-lakers',
-          leagueId: 1,
-          conferenceId: 1,
-          divisionId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         },
@@ -21,9 +18,22 @@ module.exports = {
           shortName: 'Dodgers',
           websiteUrl: 'http://www.dodgers.com',
           slug: 'los-angeles-dodgers',
-          leagueId: 2,
-          conferenceId: 2,
-          divisionId: 2,
+          createdAt: new Date().toUTCString(),
+          updatedAt: new Date().toUTCString()
+        },
+        {
+          fullName: 'Los Angeles Rams',
+          shortName: 'Rams',
+          websiteUrl: 'http://www.therams.com',
+          slug: 'los-angeles-rams',
+          createdAt: new Date().toUTCString(),
+          updatedAt: new Date().toUTCString()
+        },
+        {
+          fullName: 'Los Angeles Chargers',
+          shortName: 'Chargers',
+          websiteUrl: 'http://www.chargers.com',
+          slug: 'los-angeles-chargers',
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         }

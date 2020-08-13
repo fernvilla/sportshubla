@@ -13,7 +13,7 @@ import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Admin from './pages/Admin';
 import axios from 'axios';
-import { League } from './interfaces/league';
+import { Team as TeamInterface } from './interfaces/team';
 import Team from './pages/Team';
 
 import './app.scss';
@@ -36,17 +36,17 @@ if (jwtToken) {
 }
 
 const App: FC = () => {
-  const [leagues, setLeagues] = useState<League[]>([]);
+  const [teams, setTeams] = useState<TeamInterface[]>([]);
 
   useEffect(() => {
-    fetchLeagues();
+    fetchTeams();
   }, []);
 
-  const fetchLeagues = async () => {
+  const fetchTeams = async () => {
     try {
-      const { data } = await axios.get('/api/leagues');
+      const { data } = await axios.get('/api/teams');
 
-      setLeagues(data.payload);
+      setTeams(data.payload);
     } catch (err) {
       console.error(err);
     } finally {
@@ -55,7 +55,7 @@ const App: FC = () => {
 
   return (
     <Router>
-      <SiteLayout leagues={leagues}>
+      <SiteLayout teams={teams}>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />

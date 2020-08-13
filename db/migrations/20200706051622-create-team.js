@@ -25,16 +25,6 @@ module.exports = {
       websiteUrl: {
         type: Sequelize.STRING
       },
-      leagueId: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      conferenceId: {
-        type: Sequelize.INTEGER
-      },
-      divisionId: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -81,19 +81,19 @@ const Home = () => {
             justifyContent="center"
           >
             <Box textAlign="center">
-              <Image
+              {/* <Image
                 src="/images/logo/logo-transparent-solo.png"
                 alt="logo"
                 title="logo"
                 ignoreFallback
                 width="50px"
                 margin="auto"
-              />
+              /> */}
 
               <Heading mt={2} fontSize="3xl" color="gray.100" textShadow="sm">
-                Stay up to date with all the{' '}
+                Stay up to date with all the latest{' '}
                 <Box as="span" color="blue.400" textShadow="sm">
-                  latest sports news
+                  L.A. sports news
                 </Box>
                 .
               </Heading>
