@@ -76,7 +76,7 @@ const Home = () => {
             bg="rgb(0 22 41 / 65%)"
             height="100%"
             width="100%"
-            p={10}
+            p="4em 2em"
             align="center"
             justifyContent="center"
           >
