@@ -40,8 +40,10 @@ const user = new Twitter({
             publishedDate: tweet.created_at || new Date(),
             screenName: tweet.user.screen_name,
             name: tweet.user.name,
-            profileImageUrl: tweet.user.profile_image_url,
-            mediaUrl: tweet.extended_entities ? tweet.extended_entities.media[0].media_url : null,
+            profileImageUrl: tweet.user.profile_image_url_https,
+            mediaUrl: tweet.extended_entities
+              ? tweet.extended_entities.media[0].media_url_https
+              : null,
             profileBannerUrl: tweet.user.profile_banner_url || null
           };
 
