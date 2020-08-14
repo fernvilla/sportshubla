@@ -8,6 +8,7 @@ import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import customTheme from './theme';
 
 const rootElement = document.getElementById('root');
+
 const component = (
   <React.StrictMode>
     <Provider store={reduxStore}>
