@@ -7,14 +7,14 @@ const logger = require('morgan');
 const passport = require('passport');
 const compression = require('compression');
 const cors = require('cors');
-// const helmet = require('helmet');
+const helmet = require('helmet');
 const routes = require('./routes');
 const app = express();
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
-// app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
