@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Team } from '../../interfaces/team';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import { Image, Box, Flex, PseudoBox, Text } from '@chakra-ui/core';
+import { Box, Flex, PseudoBox, Text } from '@chakra-ui/core';
 import {
   // FaBasketballBall,
   // FaBaseballBall,

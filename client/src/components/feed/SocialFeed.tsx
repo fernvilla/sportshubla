@@ -25,6 +25,8 @@ const SocialFeed = ({
   const totalPages = calcualteTotalPages(tweets.length, tweetsPerPage);
 
   useEffect(() => {
+    if (!tweets || !tweets.length) return;
+
     const pagedTweets = tweets.slice(page * tweetsPerPage, (page + 1) * tweetsPerPage);
 
     setVisibleTweets(pagedTweets);

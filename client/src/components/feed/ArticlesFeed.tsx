@@ -21,11 +21,14 @@ const ArticlesFeed = ({
   displayTeamLink = false
 }: Props) => {
   const [page, setPage] = useState(0);
-  const [visibleArtices, setVisibleArticles] = useState(articles);
+  const [visibleArtices, setVisibleArticles] = useState<ArticleType[]>(articles);
   const totalPages = calcualteTotalPages(articles.length, articlesPerPage);
 
   useEffect(() => {
+    if (!articles || !articles.length) return;
+
     const pagedArticles = articles.slice(page * articlesPerPage, (page + 1) * articlesPerPage);
+
     setVisibleArticles(pagedArticles);
   }, [page, articles, articlesPerPage]);
 

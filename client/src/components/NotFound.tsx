@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Text, Box } from '@chakra-ui/core';
 
-const NotFound: FC = () => {
+const NotFound = () => {
   return (
     <Box m={5} p={10} bg="white" boxShadow="sm">
       <Text textAlign="center" fontWeight="bold" fontSize="3xl">

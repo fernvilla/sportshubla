@@ -8,6 +8,7 @@ import SocialFeed from '../components/feed/SocialFeed';
 import axios from 'axios';
 import { RouteComponentProps } from 'react-router-dom';
 import Loader from '../components/Loader';
+import useAxios from '../hooks/useAxios';
 
 interface MatchParams {
   slug: string;
@@ -15,23 +16,30 @@ interface MatchParams {
 
 const Team = (props: RouteComponentProps<MatchParams>) => {
   const slug = props.match.params.slug;
-  const [team, setTeam] = useState<TeamInterface>();
+  const [team, setTeam] = useState<TeamInterface | null>(null);
   const [fetchingTeam, setFetchingTeam] = useState(false);
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [tweets, setTweets] = useState<Tweet[]>([]);
-  const [fetchingArticles, setFetchingArticles] = useState(false);
-  const [fetchingTweets, setFetchingTweets] = useState(false);
+
+  const {
+    response: tweets,
+    isLoading: fetchingTweets
+  }: { response: Tweet[]; isLoading: boolean } = useAxios({
+    url: `/api/tweets/team/id/${team?.id}`,
+    dependency: team?.id,
+    trigger: !!team?.id
+  });
+
+  const {
+    response: articles,
+    isLoading: fetchingArticles
+  }: { response: Article[]; isLoading: boolean } = useAxios({
+    url: `/api/articles/team/id/${team?.id}`,
+    dependency: team?.id,
+    trigger: !!team?.id
+  });
 
   useEffect(() => {
     fetchTeam();
   }, [slug]);
-
-  useEffect(() => {
-    if (!team) return;
-
-    fetchArticles(team.id);
-    fetchTweets(team.id);
-  }, [team]);
 
   const fetchTeam = async () => {
     try {
@@ -44,34 +52,6 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
       console.error(err);
     } finally {
       setFetchingTeam(false);
-    }
-  };
-
-  const fetchArticles = async (id: number) => {
-    try {
-      setFetchingArticles(true);
-
-      const { data } = await axios.get(`/api/articles/team/id/${id}`);
-
-      setArticles(data.payload);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setFetchingArticles(false);
-    }
-  };
-
-  const fetchTweets = async (id: number) => {
-    try {
-      setFetchingTweets(true);
-
-      const { data } = await axios.get(`/api/tweets/team/id/${id}`);
-
-      setTweets(data.payload);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setFetchingTweets(false);
     }
   };
 

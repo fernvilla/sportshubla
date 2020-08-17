@@ -1,53 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Article } from '../interfaces/article';
 import { Tweet } from '../interfaces/tweet';
-import { Box, Flex, Image, Heading, Button, Icon } from '@chakra-ui/core';
+import { Box, Flex, Heading, Button, Icon } from '@chakra-ui/core';
 import ArticlesFeed from '../components/feed/ArticlesFeed';
 import SocialFeed from '../components/feed/SocialFeed';
-import axios from 'axios';
 import store from 'store';
+import useAxios from '../hooks/useAxios';
 
 const Home = () => {
   const heroLocalStorage = store.get('showHomeHero');
   const showHeroDefault = typeof heroLocalStorage === 'undefined' ? true : heroLocalStorage;
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [tweets, setTweets] = useState<Tweet[]>([]);
-  const [fetchingArticles, setFetchingArticles] = useState(false);
-  const [fetchingTweets, setFetchingTweets] = useState(false);
   const [showHero, setShowHero] = useState(showHeroDefault);
 
-  useEffect(() => {
-    fetchArticles();
-    fetchTweets();
-  }, []);
+  const {
+    response: articles,
+    isLoading: fetchingArticles
+  }: { response: Article[]; isLoading: boolean } = useAxios({ url: '/api/articles/lastday' });
 
-  const fetchArticles = async () => {
-    try {
-      setFetchingArticles(true);
-
-      const { data } = await axios.get('/api/articles/lastday');
-
-      setArticles(data.payload);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setFetchingArticles(false);
-    }
-  };
-
-  const fetchTweets = async () => {
-    try {
-      setFetchingTweets(true);
-
-      const { data } = await axios.get('/api/tweets/lastday');
-
-      setTweets(data.payload);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setFetchingTweets(false);
-    }
-  };
+  const {
+    response: tweets,
+    isLoading: fetchingTweets
+  }: { response: Tweet[]; isLoading: boolean } = useAxios({ url: '/api/tweets/lastday' });
 
   return (
     <Box as="main">
