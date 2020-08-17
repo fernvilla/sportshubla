@@ -25,7 +25,7 @@ const ArticlesFeed = ({
   const totalPages = calcualteTotalPages(articles.length, articlesPerPage);
 
   useEffect(() => {
-    if (!articles || !articles.length) return;
+    if (!articles || !articles.length) return setVisibleArticles([]);
 
     const pagedArticles = articles.slice(page * articlesPerPage, (page + 1) * articlesPerPage);
 
