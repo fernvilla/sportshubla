@@ -62,6 +62,8 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
 
             await dbArticle.save();
           }
+
+          console('article created', newArticle.title);
         };
 
         const feed = await parser.parseURL(rssFeed.url);
