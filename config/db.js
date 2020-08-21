@@ -4,7 +4,8 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: 'sportshubla_development',
     host: process.env.DB_HOST,
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
   },
   test: {
     username: process.env.DB_USER,
