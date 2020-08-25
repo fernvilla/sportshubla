@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Article } from '../interfaces/article';
 import { Tweet } from '../interfaces/tweet';
-import { Box, Flex, Heading, Button, Icon } from '@chakra-ui/core';
+import { Box, Flex } from '@chakra-ui/core';
 import ArticlesFeed from '../components/feed/ArticlesFeed';
 import SocialFeed from '../components/feed/SocialFeed';
-import store from 'store';
+// import store from 'store';
 import useAxios from '../hooks/useAxios';
+import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
 
 const Home = () => {
-  const heroLocalStorage = store.get('showHomeHero');
-  const showHeroDefault = typeof heroLocalStorage === 'undefined' ? true : heroLocalStorage;
-  const [showHero, setShowHero] = useState(showHeroDefault);
+  // const heroLocalStorage = store.get('showHomeHero');
+  // const showHeroDefault = typeof heroLocalStorage === 'undefined' ? true : heroLocalStorage;
+  // const [showHero, setShowHero] = useState(showHeroDefault);
 
   const {
     response: articles,
@@ -24,7 +25,7 @@ const Home = () => {
 
   return (
     <Box as="main">
-      {showHero && (
+      {/* {showHero && (
         <Box
           backgroundImage="url(/images/fans_alt.jpg)"
           backgroundPosition="center"
@@ -62,7 +63,7 @@ const Home = () => {
                 width="50px"
                 margin="auto"
               /> */}
-
+      {/* 
               <Heading mt={2} fontSize="3xl" color="gray.100" textShadow="sm">
                 Stay up to date with all the latest{' '}
                 <Box as="span" color="blue.400" textShadow="sm">
@@ -77,9 +78,9 @@ const Home = () => {
             </Box>
           </Flex>
         </Box>
-      )}
+      )} */}
 
-      <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
+      <Flex py={10} flexWrap="wrap" flexDir="row" maxW={CONTENT_WRAPPER_WIDTH} marginX="auto">
         <Box px={5} flex="3" minWidth={400}>
           <ArticlesFeed articles={articles} isFetching={fetchingArticles} displayTeamLink />
         </Box>

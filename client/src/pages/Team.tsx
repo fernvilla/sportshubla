@@ -9,6 +9,7 @@ import axios from 'axios';
 import { RouteComponentProps } from 'react-router-dom';
 import Loader from '../components/Loader';
 import useAxios from '../hooks/useAxios';
+import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
 
 interface MatchParams {
   slug: string;
@@ -58,19 +59,21 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
   return (
     <Box as="main">
       <Box px={10} py={5} bg="white">
-        <Heading as="h1" size="md" fontWeight="normal">
-          {team?.fullName}
-        </Heading>
+        <Box maxW={CONTENT_WRAPPER_WIDTH} marginX="auto">
+          <Heading as="h1" size="md" fontWeight="normal">
+            {team?.fullName}
+          </Heading>
 
-        <Link href={team?.websiteUrl} color="blue.700" isExternal>
-          {team?.websiteUrl}
-        </Link>
+          <Link href={team?.websiteUrl} color="blue.700" isExternal>
+            {team?.websiteUrl}
+          </Link>
+        </Box>
       </Box>
 
       {fetchingTeam ? (
         <Loader />
       ) : (
-        <Flex px={5} py={10} flexWrap="wrap" flexDir="row">
+        <Flex py={10} flexWrap="wrap" flexDir="row" maxW={CONTENT_WRAPPER_WIDTH} marginX="auto">
           <Box px={5} flex="3" minWidth={400}>
             <ArticlesFeed articles={articles} isFetching={fetchingArticles} />
           </Box>
