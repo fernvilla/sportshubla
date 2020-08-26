@@ -12,9 +12,6 @@ module.exports = {
         unique: true,
         type: Sequelize.STRING
       },
-      twitterAccountTypeId: {
-        type: Sequelize.INTEGER
-      },
       teamId: {
         type: Sequelize.INTEGER
       },

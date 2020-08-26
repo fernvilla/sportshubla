@@ -40,11 +40,11 @@ const Article = ({ article, displayTeamLink = false }: Props) => {
           <Flex flexWrap="wrap">
             <Box color="gray.700" fontSize="xs" pr={1}>
               {displayTeamLink && (
-                <RouterLink to={`/teams/${article.newsSource?.team?.slug}`}>
-                  {article.newsSource?.team?.fullName} |{' '}
+                <RouterLink to={`/teams/${article.rssFeed?.team?.slug}`}>
+                  {article.rssFeed?.team?.fullName} |{' '}
                 </RouterLink>
               )}
-              {article.newsSource?.name} -
+              {article.rssFeed?.newsSource?.name} -
             </Box>
 
             <Box color="gray.500" fontSize="xs" fontStyle="italic">

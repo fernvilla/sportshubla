@@ -9,8 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Article.belongsTo(models.NewsSource, { foreignKey: 'newsSourceId', as: 'newsSource' });
-      Article.belongsTo(models.FeedItem, { foreignKey: 'feedItemId', as: 'feedItem' });
+      Article.belongsTo(models.RssFeed, { foreignKey: 'rssFeedId', as: 'rssFeed' });
     }
   }
   Article.init(
@@ -22,8 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       clicks: DataTypes.INTEGER,
       author: DataTypes.STRING,
       summary: DataTypes.TEXT,
-      feedItemId: DataTypes.INTEGER,
-      newsSourceId: DataTypes.INTEGER
+      rssFeedId: DataTypes.INTEGER
     },
     {
       sequelize,

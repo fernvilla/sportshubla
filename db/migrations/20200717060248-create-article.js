@@ -31,10 +31,7 @@ module.exports = {
       summary: {
         type: Sequelize.TEXT
       },
-      feedItemId: {
-        type: Sequelize.INTEGER
-      },
-      newsSourceId: {
+      rssFeedId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

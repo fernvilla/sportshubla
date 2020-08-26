@@ -1,7 +1,6 @@
 const Tweet = require('./../db/models').Tweet;
 const TwitterAccount = require('./../db/models').TwitterAccount;
 const Team = require('./../db/models').Team;
-const FeedItem = require('./../db/models').FeedItem;
 const { Op } = require('sequelize');
 const db = require('./../db/models');
 
@@ -56,7 +55,6 @@ module.exports = {
       const payload = await Tweet.findAll({
         include: [
           { model: TwitterAccount, as: 'twitterAccount', include: { model: Team, as: 'team' } }
-          // { model: FeedItem, as: 'feedItem', include: { model: Team, as: 'team' } }
         ],
         where: {
           publishedDate: {

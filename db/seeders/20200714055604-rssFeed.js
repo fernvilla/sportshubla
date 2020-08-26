@@ -9,6 +9,7 @@ module.exports = {
           url: 'http://www.nba.com/lakers/rss.xml',
           isActive: true,
           newsSourceId: 1,
+          teamId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         },
@@ -16,6 +17,7 @@ module.exports = {
           url: 'https://www.mlb.com/dodgers/feeds/news/rss.xml',
           isActive: true,
           newsSourceId: 2,
+          teamId: 2,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         }

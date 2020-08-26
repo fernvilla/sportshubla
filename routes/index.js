@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 router.use('/articles', require('./articles'));
-router.use('/feeditems', require('./feedItems'));
-router.use('/feeditemstypes', require('./feedItemTypes'));
 router.use('/newssources', require('./newsSources'));
 router.use('/rssfeeds', require('./rssFeeds'));
 router.use('/teams', require('./teams'));

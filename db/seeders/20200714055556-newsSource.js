@@ -9,7 +9,6 @@ module.exports = {
           websiteUrl: 'http://www.lakers.com',
           slug: 'lakers-official-site',
           name: 'Lakers Official Site',
-          teamId: 1,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         },
@@ -17,7 +16,6 @@ module.exports = {
           websiteUrl: 'http://www.dodgers.com',
           slug: 'dodgers-official-site',
           name: 'Dodgers Official Site',
-          teamId: 2,
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
         }

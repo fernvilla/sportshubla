@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'twitterAccountId',
         as: 'twitterAccount'
       });
-      Tweet.belongsTo(models.FeedItem, { foreignKey: 'feedItemId', as: 'feedItem' });
     }
   }
   Tweet.init(
@@ -27,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       profileBannerUrl: DataTypes.STRING,
       mediaUrl: DataTypes.STRING,
       twitterAccountId: DataTypes.INTEGER,
-      feedItemId: DataTypes.INTEGER,
       clicks: DataTypes.INTEGER
     },
     {

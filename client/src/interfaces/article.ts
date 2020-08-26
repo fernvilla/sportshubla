@@ -1,5 +1,4 @@
-import { NewsSource } from './newsSource';
-import { FeedItem } from './feedItem';
+import { RssFeed } from './rssFeed';
 
 export interface Article {
   id: number;
@@ -10,6 +9,5 @@ export interface Article {
   clicks: number;
   author: string;
   summary: string;
-  newsSource: NewsSource;
-  feedItem: FeedItem;
+  rssFeed: RssFeed;
 }

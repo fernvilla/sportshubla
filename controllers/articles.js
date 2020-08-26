@@ -1,7 +1,7 @@
 const Article = require('./../db/models').Article;
-const NewsSource = require('./../db/models').NewsSource;
+const RssFeed = require('./../db/models').RssFeed;
 const Team = require('./../db/models').Team;
-const FeedItem = require('./../db/models').FeedItem;
+const NewsSource = require('./../db/models').NewsSource;
 const { Op } = require('sequelize');
 const db = require('./../db/models');
 
@@ -11,9 +11,12 @@ module.exports = {
       const payload = await Article.findAll({
         include: [
           {
-            model: NewsSource,
-            as: 'newsSource',
-            include: { model: Team, as: 'team' }
+            model: RssFeed,
+            as: 'rssFeed',
+            include: [
+              { model: Team, as: 'team' },
+              { model: NewsSource, as: 'newsSource' }
+            ]
           }
         ],
         order: [['publishedDate', 'DESC']]
@@ -33,10 +36,13 @@ module.exports = {
       const payload = await Article.findAll({
         include: [
           {
-            model: NewsSource,
-            as: 'newsSource',
+            model: RssFeed,
+            as: 'rssFeed',
             where: { teamId: req.params.id },
-            include: { model: Team, as: 'team' }
+            include: [
+              { model: Team, as: 'team' },
+              { model: NewsSource, as: 'newsSource' }
+            ]
           }
         ],
         order: [['publishedDate', 'DESC']]
@@ -55,8 +61,14 @@ module.exports = {
     try {
       const payload = await Article.findAll({
         include: [
-          { model: NewsSource, as: 'newsSource', include: { model: Team, as: 'team' } },
-          { model: FeedItem, as: 'feedItem', include: { model: Team, as: 'team' } }
+          {
+            model: RssFeed,
+            as: 'rssFeed',
+            include: [
+              { model: Team, as: 'team' },
+              { model: NewsSource, as: 'newsSource' }
+            ]
+          }
         ],
         where: {
           publishedDate: {

@@ -36,9 +36,6 @@ module.exports = {
       twitterAccountId: {
         type: Sequelize.INTEGER
       },
-      feedItemId: {
-        type: Sequelize.INTEGER
-      },
       clicks: {
         type: Sequelize.INTEGER,
         defaultValue: 0

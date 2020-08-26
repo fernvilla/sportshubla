@@ -2,8 +2,6 @@ require('dotenv').config();
 
 const TwitterAccount = require('./../db/models').TwitterAccount;
 const Tweet = require('./../db/models').Tweet;
-const FeedItem = require('./../db/models').FeedItem;
-const FeedItemType = require('./../db/models').FeedItemType;
 const Team = require('./../db/models').Team;
 const Twitter = require('twitter-lite');
 const db = require('./../db/models');
@@ -23,7 +21,7 @@ const user = new Twitter({
     const app = new Twitter({ bearer_token: response.access_token });
     const accounts = await TwitterAccount.findAll({ include: { model: Team, as: 'team' } });
 
-    const fetchAndMapTweets = async ({ accountName, id, team }, feedItemType) => {
+    const fetchAndMapTweets = async ({ accountName, id }) => {
       try {
         const data = await app.get('statuses/user_timeline', {
           screen_name: accountName,
@@ -52,17 +50,7 @@ const user = new Twitter({
             defaults: newTweet
           });
 
-          if (created) {
-            const feedItem = await FeedItem.create({
-              feedItemTypeId: feedItemType.id,
-              teamId: team.id,
-              publishedDate: dbTweet.publishedDate
-            });
-
-            dbTweet.feedItemId = feedItem.id;
-
-            await dbTweet.save();
-          }
+          if (created) console.log('tweet created', dbTweet.text);
         };
 
         await Promise.all(data.map(createTweet));
@@ -72,9 +60,7 @@ const user = new Twitter({
       }
     };
 
-    const feedItemType = await FeedItemType.findOne({ where: { type: 'tweet' } });
-
-    await Promise.all(accounts.map(account => fetchAndMapTweets(account, feedItemType)));
+    await Promise.all(accounts.map(account => fetchAndMapTweets(account)));
 
     db.sequelize.close();
   } catch (error) {

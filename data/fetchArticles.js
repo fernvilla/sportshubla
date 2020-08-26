@@ -1,8 +1,6 @@
 const db = require('./../db/models');
 const NewsSource = require('./../db/models').NewsSource;
 const RssFeed = require('./../db/models').RssFeed;
-const FeedItemType = require('./../db/models').FeedItemType;
-const FeedItem = require('./../db/models').FeedItem;
 const Team = require('./../db/models').Team;
 const Article = require('./../db/models').Article;
 const Parser = require('rss-parser');
@@ -19,10 +17,10 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
     await db.sequelize.authenticate();
 
     const feeds = await RssFeed.findAll({
-      include: { model: NewsSource, as: 'newsSource', include: { model: Team, as: 'team' } }
+      include: { model: Team, as: 'team' }
     });
 
-    const fetchAndMapArticles = async (rssFeed, feedItemType) => {
+    const fetchAndMapArticles = async rssFeed => {
       try {
         if (!rssFeed.isActive) return;
 
@@ -43,7 +41,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
             image: article.enclosure ? getPathFromUrl(article.enclosure.url) : null,
             author: article.author,
             summary: entities.decode(article.content),
-            newsSourceId: rssFeed.newsSource.id
+            rssFeedId: rssFeed.id
           };
 
           const [dbArticle, created] = await Article.findCreateFind({
@@ -51,18 +49,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
             defaults: newArticle
           });
 
-          if (created) {
-            const feedItem = await FeedItem.create({
-              feedItemTypeId: feedItemType.id,
-              teamId: rssFeed.newsSource.team.id,
-              publishedDate: dbArticle.publishedDate
-            });
-
-            dbArticle.feedItemId = feedItem.id;
-
-            await dbArticle.save();
-            console.log('article created', dbArticle.title);
-          }
+          if (created) console.log('article created', dbArticle.title);
         };
 
         const feed = await parser.parseURL(rssFeed.url);
@@ -74,9 +61,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
       }
     };
 
-    const feedItemType = await FeedItemType.findOne({ where: { type: 'article' } });
-
-    await Promise.all(feeds.map(feed => fetchAndMapArticles(feed, feedItemType)));
+    await Promise.all(feeds.map(feed => fetchAndMapArticles(feed)));
 
     db.sequelize.close();
   } catch (err) {

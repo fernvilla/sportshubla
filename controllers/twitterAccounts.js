@@ -1,15 +1,11 @@
 const TwitterAccount = require('./../db/models').TwitterAccount;
 const Team = require('./../db/models').Team;
-const TwitterAccountType = require('./../db/models').TwitterAccountType;
 
 module.exports = {
   findAll: async (req, res) => {
     try {
       const payload = await TwitterAccount.findAll({
-        include: [
-          { model: Team, as: 'team' },
-          { model: TwitterAccountType, as: 'twitterAccountType' }
-        ]
+        include: [{ model: Team, as: 'team' }]
       });
 
       return res.status(200).send({ payload });

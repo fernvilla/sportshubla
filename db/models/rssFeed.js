@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       RssFeed.belongsTo(models.NewsSource, { foreignKey: 'newsSourceId', as: 'newsSource' });
+      RssFeed.belongsTo(models.Team, { foreignKey: 'teamId', as: 'team' });
+
+      RssFeed.hasMany(models.Article, { foreignKey: 'rssFeedId', as: 'articles' });
     }
   }
   RssFeed.init(
@@ -17,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       url: DataTypes.STRING,
       isActive: DataTypes.BOOLEAN,
       lastStatusCode: DataTypes.INTEGER,
-      newsSourceId: DataTypes.INTEGER
+      newsSourceId: DataTypes.INTEGER,
+      teamId: DataTypes.INTEGER
     },
     {
       sequelize,

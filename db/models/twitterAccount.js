@@ -9,23 +9,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      TwitterAccount.belongsTo(models.TwitterAccountType, {
-        foreignKey: 'twitterAccountTypeId',
-        as: 'twitterAccountType'
-      });
       TwitterAccount.belongsTo(models.Team, { foreignKey: 'teamId', as: 'team' });
-      // TwitterAccount.belongsTo(models.NewsSource, {
-      //   foreignKey: 'newsSourceId',
-      //   as: 'newsSource'
-      // });
-
       TwitterAccount.hasMany(models.Tweet, { foreignKey: 'twitterAccountId', as: 'tweets' });
     }
   }
   TwitterAccount.init(
     {
       accountName: DataTypes.STRING,
-      twitterAccountTypeId: DataTypes.INTEGER,
       teamId: DataTypes.INTEGER,
       newsSourceId: DataTypes.INTEGER
     },
