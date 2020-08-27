@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Team.hasMany(models.TwitterAccount, { foreignKey: 'teamId', as: 'twitterAccounts' });
       Team.hasMany(models.RssFeed, { foreignKey: 'teamId', as: 'rssFeeds' });
+      Team.hasMany(models.YoutubeAccount, { foreignKey: 'teamId', as: 'youtubeAccounts' });
     }
   }
   Team.init(

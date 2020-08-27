@@ -8,5 +8,7 @@ router.use('/teams', require('./teams'));
 router.use('/tweets', require('./tweets'));
 router.use('/twitteraccounts', require('./twitterAccounts'));
 router.use('/users', require('./users'));
+router.use('/youtubevideos', require('./youtubeVideos'));
+router.use('/youtubeaccounts', require('./youtubeAccounts'));
 
 module.exports = router;

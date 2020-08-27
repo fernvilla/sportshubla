@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const TwitterAccount = require('./../db/models').TwitterAccount;
 const Tweet = require('./../db/models').Tweet;
-const Team = require('./../db/models').Team;
 const Twitter = require('twitter-lite');
 const db = require('./../db/models');
 const Entities = require('html-entities').AllHtmlEntities;
@@ -19,12 +18,12 @@ const user = new Twitter({
 
     const response = await user.getBearerToken();
     const app = new Twitter({ bearer_token: response.access_token });
-    const accounts = await TwitterAccount.findAll({ include: { model: Team, as: 'team' } });
+    const accounts = await TwitterAccount.findAll();
 
-    const fetchAndMapTweets = async ({ accountName, id }) => {
+    const fetchAndMapTweets = async account => {
       try {
         const data = await app.get('statuses/user_timeline', {
-          screen_name: accountName,
+          screen_name: account.accountName,
           include_rts: true,
           exclude_replies: true,
           count: 15
@@ -32,7 +31,7 @@ const user = new Twitter({
 
         const createTweet = async tweet => {
           const newTweet = {
-            twitterAccountId: id,
+            twitterAccountId: account.id,
             text: entities.decode(tweet.text),
             tweetId: tweet.id_str,
             publishedDate: tweet.created_at || new Date(),
