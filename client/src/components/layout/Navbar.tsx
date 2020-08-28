@@ -35,14 +35,7 @@ const Navbar = (props: Props) => {
   const handleToggle = () => setShow(!show);
 
   return (
-    <Box
-      as="nav"
-      color="brand"
-      bg="white"
-
-      // borderBottomWidth="1px"
-      // borderBottomColor="gray.300"
-    >
+    <Box as="nav" color="brand" bg="white">
       <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto" py={3} px={5}>
         <Flex align="center" justify="space-between" wrap="wrap" height="60px">
           <Flex align="center" mr={5}>
