@@ -1,2 +1,2 @@
-export const calcualteTotalPages = (dataLength: number, rowsPerPage: number) =>
+export const calculateTotalPages = (dataLength: number, rowsPerPage: number) =>
   Math.ceil(dataLength / rowsPerPage);

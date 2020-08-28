@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Flex, Link, Image, Text } from '@chakra-ui/core';
-import { Tweet as TweetType } from './../../interfaces/tweet';
+import { Tweet as TweetInterface } from './../../interfaces/tweet';
 import { formatDistanceToNow } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 
-type Props = { tweet: TweetType; displayTeamLink?: boolean };
+type Props = { tweet: TweetInterface; displayTeamLink?: boolean };
 
 const Tweet = ({ tweet, displayTeamLink = false }: Props) => {
   const formattedDate = formatDistanceToNow(new Date(tweet.publishedDate), {

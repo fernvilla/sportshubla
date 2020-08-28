@@ -7,6 +7,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { logoutUser } from '../../actions/authActions';
 import { connect, ConnectedProps } from 'react-redux';
 import { CONTENT_WRAPPER_WIDTH } from '../../globals/constants';
+import { FaHome } from 'react-icons/fa';
 
 const mapState = (state: RootState) => ({
   auth: state.auth
@@ -27,7 +28,8 @@ type Props = PropsFromRedux &
   };
 
 const Navbar = (props: Props) => {
-  const { teams, auth, logoutUser } = props;
+  // const { teams, auth, logoutUser } = props;
+  const { teams } = props;
   const [show, setShow] = useState(false);
 
   const handleToggle = () => setShow(!show);
@@ -37,13 +39,12 @@ const Navbar = (props: Props) => {
       as="nav"
       color="brand"
       bg="white"
-      py={3}
-      px={5}
-      borderBottomWidth="1px"
-      borderBottomColor="gray.300"
+
+      // borderBottomWidth="1px"
+      // borderBottomColor="gray.300"
     >
-      <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto">
-        <Flex align="center" justify="space-between" wrap="wrap">
+      <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto" py={3} px={5}>
+        <Flex align="center" justify="space-between" wrap="wrap" height="60px">
           <Flex align="center" mr={5}>
             <Heading as="h1" size="md">
               <Link to="/">Sports Hub L.A.</Link>
@@ -58,7 +59,7 @@ const Navbar = (props: Props) => {
           </Box>
 
           <Box
-            display={{ sm: show ? 'block' : 'none', md: 'flex' }}
+            display={{ xs: show ? 'block' : 'none', sm: show ? 'block' : 'none' }}
             width={{ sm: 'full', md: 'auto' }}
             alignItems="center"
             flexGrow={1}
@@ -76,7 +77,7 @@ const Navbar = (props: Props) => {
             </Menu>
           </Box>
 
-          <Box display={{ sm: show ? 'block' : 'none', md: 'block' }} mt={{ base: 4, md: 0 }}>
+          {/* <Box display={{ sm: show ? 'block' : 'none', md: 'block' }} mt={{ base: 4, md: 0 }}>
             <Box>
               {auth.isAuthenticated ? (
                 <Flex align="center">
@@ -98,7 +99,35 @@ const Navbar = (props: Props) => {
                 </Box>
               )}
             </Box>
-          </Box>
+          </Box> */}
+        </Flex>
+      </Box>
+
+      <Box bg="brand" w="100%">
+        <Flex
+          color="white"
+          maxW={CONTENT_WRAPPER_WIDTH}
+          mx="auto"
+          alignItems="center"
+          h="45px"
+          py={3}
+          px={5}
+        >
+          <Link to="/">
+            <Box pr={5} py={2}>
+              <FaHome />
+            </Box>
+          </Link>
+
+          {teams.map(team => {
+            return (
+              <Link key={team.id} to={`/teams/${team.slug}`}>
+                <Box pr={5} py={2}>
+                  {team.shortName}
+                </Box>
+              </Link>
+            );
+          })}
         </Flex>
       </Box>
     </Box>

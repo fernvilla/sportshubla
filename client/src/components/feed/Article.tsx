@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Flex, Link, Image, Text } from '@chakra-ui/core';
-import { Article as ArticleType } from './../../interfaces/article';
+import { Article as ArticleInterface } from './../../interfaces/article';
 import { formatDistanceToNow } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 
-type Props = { article: ArticleType; displayTeamLink?: boolean };
+type Props = { article: ArticleInterface; displayTeamLink?: boolean };
 
 const Article = ({ article, displayTeamLink = false }: Props) => {
   const formattedDate = formatDistanceToNow(new Date(article.publishedDate), {

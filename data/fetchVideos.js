@@ -4,6 +4,8 @@ const YoutubeAccount = require('./../db/models').YoutubeAccount;
 const YoutubeVideo = require('./../db/models').YoutubeVideo;
 const db = require('./../db/models');
 const fetch = require('isomorphic-unfetch');
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
 
 (async () => {
   try {
@@ -21,11 +23,11 @@ const fetch = require('isomorphic-unfetch');
         const createVideo = async video => {
           const { id, snippet } = video;
           const newVideo = {
-            title: snippet.title,
+            title: entities.decode(snippet.title),
             youtubeAccountId: account.id,
             publishedDate: snippet.publishedAt || new Date(),
             videoId: id.videoId,
-            description: snippet.description,
+            description: entities.decode(snippet.description),
             thumbnail: snippet.thumbnails.high.url
           };
 

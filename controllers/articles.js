@@ -85,5 +85,31 @@ module.exports = {
         message: error.message || 'There was an error fetching articles.'
       });
     }
+  },
+
+  findByLatest: async (req, res) => {
+    try {
+      const payload = await Article.findAll({
+        include: [
+          {
+            model: RssFeed,
+            as: 'rssFeed',
+            include: [
+              { model: Team, as: 'team' },
+              { model: NewsSource, as: 'newsSource' }
+            ]
+          }
+        ],
+        order: [['publishedDate', 'DESC']],
+        limit: 30
+      });
+
+      return res.status(200).send({ payload });
+    } catch (error) {
+      return res.status(500).send({
+        payload: [],
+        message: error.message || 'There was an error fetching articles.'
+      });
+    }
   }
 };

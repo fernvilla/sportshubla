@@ -30,7 +30,7 @@
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "pg": "^8.3.2",
+    "pg": "^8.3.3",
     "rss-parser": "^3.9.0",
     "sequelize": "^6.3.4",
     "twitter-lite": "^0.14.0"

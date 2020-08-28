@@ -71,5 +71,24 @@ module.exports = {
         message: error.message || 'There was an error fetching youtube videos.'
       });
     }
+  },
+
+  findByLatest: async (req, res) => {
+    try {
+      const payload = await YoutubeVideo.findAll({
+        include: [
+          { model: YoutubeAccount, as: 'youtubeAccount', include: { model: Team, as: 'team' } }
+        ],
+        order: [['publishedDate', 'DESC']],
+        limit: 20
+      });
+
+      return res.status(200).send({ payload });
+    } catch (error) {
+      return res.status(500).send({
+        payload: [],
+        message: error.message || 'There was an error fetching youtube videos.'
+      });
+    }
   }
 };

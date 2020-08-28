@@ -10,6 +10,12 @@ module.exports = {
           channelId: 'UC8CSt-oVqy8pUAoKSApTxQw',
           createdAt: new Date().toUTCString(),
           updatedAt: new Date().toUTCString()
+        },
+        {
+          teamId: 2,
+          channelId: 'UC05cNJvMKzDLRPo59X2Xx7g',
+          createdAt: new Date().toUTCString(),
+          updatedAt: new Date().toUTCString()
         }
       ],
       {}
