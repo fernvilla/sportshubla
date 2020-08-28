@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Heading, Flex, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/core';
+import { Box, Heading, Flex, Menu, MenuButton, MenuList, MenuItem, Image } from '@chakra-ui/core';
 import { Team } from '../../interfaces/team';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../reducers';
@@ -37,10 +37,18 @@ const Navbar = (props: Props) => {
   return (
     <Box as="nav" color="brand" bg="white">
       <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto" py={3} px={5}>
-        <Flex align="center" justify="space-between" wrap="wrap" height="60px">
+        <Flex align="center" justify="space-between" wrap="wrap">
           <Flex align="center" mr={5}>
             <Heading as="h1" size="md">
-              <Link to="/">Sports Hub L.A.</Link>
+              <Link to="/">
+                <Image
+                  src="/images/logo/original/logo-transparent.png"
+                  alt="logo"
+                  title="logo"
+                  ignoreFallback
+                  height={100}
+                />
+              </Link>
             </Heading>
           </Flex>
 
@@ -107,7 +115,7 @@ const Navbar = (props: Props) => {
           px={5}
         >
           <Link to="/">
-            <Box pr={5} py={2}>
+            <Box pr={5} py={2} fontSize="lg">
               <FaHome />
             </Box>
           </Link>
