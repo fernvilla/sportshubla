@@ -111,7 +111,7 @@ module.exports = {
         },
         {
           fullName: 'South Bay Lakers',
-          shortName: 'Lakers(South Bay)',
+          shortName: 'SB Lakers',
           websiteUrl: 'https://southbay.gleague.nba.com',
           slug: 'south-bay-lakers',
           createdAt: new Date().toUTCString(),
