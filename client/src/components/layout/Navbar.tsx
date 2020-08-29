@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Box, Heading, Flex, Menu, MenuButton, MenuList, MenuItem, Image } from '@chakra-ui/core';
+import {
+  Box,
+  Heading,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Image,
+  PseudoBox
+} from '@chakra-ui/core';
 import { Team } from '../../interfaces/team';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../reducers';
@@ -29,7 +39,7 @@ type Props = PropsFromRedux &
 
 const Navbar = (props: Props) => {
   // const { teams, auth, logoutUser } = props;
-  const { teams } = props;
+  const { teams, location } = props;
   const [show, setShow] = useState(false);
 
   const handleToggle = () => setShow(!show);
@@ -69,11 +79,15 @@ const Navbar = (props: Props) => {
               <MenuButton>Teams</MenuButton>
 
               <MenuList>
-                {teams.map(team => (
-                  <Link key={team.id} to={`/teams/${team.slug}`}>
-                    <MenuItem>{team.shortName}</MenuItem>
-                  </Link>
-                ))}
+                {teams.map(team => {
+                  // const teamIsSelected = location.pathname === `/teams/${team.slug}`;
+
+                  return (
+                    <Link key={team.id} to={`/teams/${team.slug}`}>
+                      <MenuItem>{team.shortName}</MenuItem>
+                    </Link>
+                  );
+                })}
               </MenuList>
             </Menu>
           </Box>
@@ -110,22 +124,34 @@ const Navbar = (props: Props) => {
           maxW={CONTENT_WRAPPER_WIDTH}
           mx="auto"
           alignItems="center"
-          h="45px"
-          py={3}
           px={5}
+          flexWrap="wrap"
         >
           <Link to="/">
-            <Box pr={5} py={2} fontSize="lg">
+            <PseudoBox
+              px={3}
+              py={3}
+              fontSize="lg"
+              _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
+              {...(location.pathname === `/` ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
+            >
               <FaHome />
-            </Box>
+            </PseudoBox>
           </Link>
 
           {teams.map(team => {
+            const teamIsSelected = location.pathname === `/teams/${team.slug}`;
+
             return (
               <Link key={team.id} to={`/teams/${team.slug}`}>
-                <Box pr={5} py={2}>
+                <PseudoBox
+                  px={3}
+                  py={3}
+                  _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
+                  {...(teamIsSelected ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
+                >
                   {team.shortName}
-                </Box>
+                </PseudoBox>
               </Link>
             );
           })}
