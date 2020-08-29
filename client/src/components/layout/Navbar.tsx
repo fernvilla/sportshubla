@@ -132,6 +132,9 @@ const Navbar = (props: Props) => {
               px={3}
               py={3}
               fontSize="lg"
+              height="45px"
+              display="flex"
+              alignItems="center"
               _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
               {...(location.pathname === `/` ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
             >
@@ -147,6 +150,9 @@ const Navbar = (props: Props) => {
                 <PseudoBox
                   px={3}
                   py={3}
+                  height="45px"
+                  display="flex"
+                  alignItems="center"
                   _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
                   {...(teamIsSelected ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
                 >
