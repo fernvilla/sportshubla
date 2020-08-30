@@ -10,8 +10,7 @@ import { Token } from './interfaces/token';
 import Home from './pages/Home';
 import NotFound from './components/NotFound';
 import Login from './pages/Login';
-import PrivateRoute from './components/PrivateRoute';
-import Admin from './pages/Admin';
+// import PrivateRoute from './components/PrivateRoute';
 import axios from 'axios';
 import { Team as TeamInterface } from './interfaces/team';
 import Team from './pages/Team';
@@ -60,7 +59,7 @@ const App: FC = () => {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/teams/:slug" exact component={Team} />
-          <PrivateRoute path="/admin" exact component={Admin} adminRequired />
+          {/* <PrivateRoute path="/admin" exact component={Admin} adminRequired /> */}
           <Route component={NotFound} />
         </Switch>
       </SiteLayout>

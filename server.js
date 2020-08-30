@@ -9,7 +9,11 @@ const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 const routes = require('./routes');
+const adminBro = require('./config/adminBro');
+
 const app = express();
+
+app.use(adminBro.path, adminBro.router);
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
