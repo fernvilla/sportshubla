@@ -12,7 +12,8 @@ import {
   Icon,
   Input,
   InputLeftElement,
-  Link
+  Link,
+  Heading
 } from '@chakra-ui/core';
 import { Team } from '../../interfaces/team';
 import { Link as RouterLink, RouteComponentProps, withRouter } from 'react-router-dom';
@@ -52,15 +53,31 @@ const Navbar = (props: Props) => {
     <Box as="nav" color="brand" bg="white">
       <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto" py={3} px={5}>
         <Flex align="center" justify="space-between" wrap="wrap">
-          <RouterLink to="/">
-            <Image
-              src="/images/logo/original/logo-transparent.png"
-              alt="logo"
-              title="logo"
-              ignoreFallback
-              height={100}
-            />
-          </RouterLink>
+          <Flex alignItems="center">
+            <Box>
+              <RouterLink to="/">
+                <Image
+                  src="/images/logo/original/logo-transparent.png"
+                  alt="logo"
+                  title="logo"
+                  ignoreFallback
+                  height={100}
+                />
+              </RouterLink>
+            </Box>
+
+            <Box pl={3} maxW="300px">
+              <Heading
+                as="h1"
+                fontSize="lg"
+                color="blue.800"
+                lineHeight="1.25em"
+                fontFamily="SpecialElite"
+              >
+                Stay up to date with everything L.A. sports
+              </Heading>
+            </Box>
+          </Flex>
 
           <Box flex="0 1 250px">
             <Flex fontSize="2xl" color="blue.700" mb={3} justifyContent="flex-end">
