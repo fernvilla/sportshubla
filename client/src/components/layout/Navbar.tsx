@@ -72,6 +72,7 @@ const Navbar = (props: Props) => {
                 fontSize="lg"
                 color="blue.800"
                 lineHeight="1.25em"
+                fontWeight="normal"
                 fontFamily="SpecialElite"
               >
                 Stay up to date with everything L.A. sports
