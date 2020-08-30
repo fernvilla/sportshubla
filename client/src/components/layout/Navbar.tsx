@@ -104,7 +104,12 @@ const Navbar = (props: Props) => {
 
             <InputGroup size="sm">
               <InputLeftElement children={<Icon name="search" color="gray.400" size="15px" />} />
-              <Input placeholder="Search" bg="gray.200" rounded="md" />
+              <Input
+                placeholder="Search"
+                bg="gray.200"
+                rounded="md"
+                _focus={{ bg: 'white', border: '1px', borderColor: 'blue.700' }}
+              />
             </InputGroup>
           </Box>
 
