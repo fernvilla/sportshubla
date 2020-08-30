@@ -23,6 +23,7 @@ import { logoutUser } from '../../actions/authActions';
 import { connect, ConnectedProps } from 'react-redux';
 import { CONTENT_WRAPPER_WIDTH } from '../../globals/constants';
 import { FaHome, FaTwitterSquare, FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
+import Sticky from 'react-stickynode';
 
 const mapState = (state: RootState) => ({
   auth: state.auth
@@ -139,51 +140,52 @@ const Navbar = (props: Props) => {
         </Flex>
       </Box>
 
-      <Box bg="brand" w="100%">
-        <Flex
-          color="white"
-          maxW={CONTENT_WRAPPER_WIDTH}
-          mx="auto"
-          alignItems="center"
-          px={5}
-          flexWrap="wrap"
-        >
-          <RouterLink to="/">
-            <PseudoBox
-              px={3}
-              py={3}
-              fontSize="lg"
-              height="45px"
-              display="flex"
-              alignItems="center"
-              _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
-              {...(location.pathname === `/` ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
-            >
-              <FaHome />
-            </PseudoBox>
-          </RouterLink>
+      <Sticky enabled innerZ={1000}>
+        <Box bg="brand" w="100%">
+          <Flex
+            color="white"
+            maxW={CONTENT_WRAPPER_WIDTH}
+            mx="auto"
+            alignItems="center"
+            px={5}
+            flexWrap="wrap"
+          >
+            <RouterLink to="/">
+              <PseudoBox
+                px={3}
+                py={3}
+                fontSize="lg"
+                height="45px"
+                display="flex"
+                alignItems="center"
+                _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
+                {...(location.pathname === `/` ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
+              >
+                <FaHome />
+              </PseudoBox>
+            </RouterLink>
 
-          {teams.map(team => {
-            const teamIsSelected = location.pathname === `/teams/${team.slug}`;
+            {teams.map(team => {
+              const teamIsSelected = location.pathname === `/teams/${team.slug}`;
 
-            return (
-              <RouterLink key={team.id} to={`/teams/${team.slug}`}>
-                <PseudoBox
-                  px={3}
-                  py={3}
-                  height="45px"
-                  display="flex"
-                  alignItems="center"
-                  _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
-                  {...(teamIsSelected ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
-                >
-                  {team.shortName}
-                </PseudoBox>
-              </RouterLink>
-            );
-          })}
+              return (
+                <RouterLink key={team.id} to={`/teams/${team.slug}`}>
+                  <PseudoBox
+                    px={3}
+                    py={3}
+                    height="45px"
+                    display="flex"
+                    alignItems="center"
+                    _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
+                    {...(teamIsSelected ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
+                  >
+                    {team.shortName}
+                  </PseudoBox>
+                </RouterLink>
+              );
+            })}
 
-          {/* <Box display={{ sm: show ? 'block' : 'none', md: 'block' }} mt={{ base: 4, md: 0 }}>
+            {/* <Box display={{ sm: show ? 'block' : 'none', md: 'block' }} mt={{ base: 4, md: 0 }}>
             <Box>
               {auth.isAuthenticated ? (
                 <Flex align="center">
@@ -206,8 +208,9 @@ const Navbar = (props: Props) => {
               )}
             </Box>
           </Box> */}
-        </Flex>
-      </Box>
+          </Flex>
+        </Box>
+      </Sticky>
     </Box>
   );
 };
