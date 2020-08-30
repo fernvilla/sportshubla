@@ -66,7 +66,7 @@ const Navbar = (props: Props) => {
               </RouterLink>
             </Box>
 
-            <Box pl={3} maxW="300px">
+            <Box pl={3} maxW="300px" display={{ xs: 'none', md: 'block' }}>
               <Heading
                 as="h1"
                 fontSize="lg"
