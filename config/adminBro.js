@@ -7,7 +7,13 @@ const bcrypt = require('bcryptjs');
 
 AdminBro.registerAdapter(AdminBroSequelize);
 
-const adminBro = new AdminBro({ databases: [db], rootPath: '/admin' });
+const adminBro = new AdminBro({
+  databases: [db],
+  rootPath: '/admin',
+  branding: {
+    companyName: 'Sports Hub L.A.'
+  }
+});
 
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
   authenticate: async (email, password) => {
