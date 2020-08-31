@@ -6,7 +6,7 @@ module.exports = {
       'Teams',
       [
         {
-          fullName: 'Los Angeles Lakers',
+          name: 'Los Angeles Lakers',
           shortName: 'Lakers',
           websiteUrl: 'http://www.lakers.com',
           slug: 'los-angeles-lakers',
@@ -14,7 +14,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Los Angeles Dodgers',
+          name: 'Los Angeles Dodgers',
           shortName: 'Dodgers',
           websiteUrl: 'http://www.dodgers.com',
           slug: 'los-angeles-dodgers',
@@ -22,7 +22,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Los Angeles Rams',
+          name: 'Los Angeles Rams',
           shortName: 'Rams',
           websiteUrl: 'http://www.therams.com',
           slug: 'los-angeles-rams',
@@ -30,7 +30,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Los Angeles Chargers',
+          name: 'Los Angeles Chargers',
           shortName: 'Chargers',
           websiteUrl: 'http://www.chargers.com',
           slug: 'los-angeles-chargers',
@@ -38,7 +38,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Los Angeles Clippers',
+          name: 'Los Angeles Clippers',
           shortName: 'Clippers',
           websiteUrl: 'http://www.clippers.com',
           slug: 'los-angeles-clippers',
@@ -46,7 +46,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Los Angeles Football Club',
+          name: 'Los Angeles Football Club',
           shortName: 'LAFC',
           websiteUrl: 'http://www.lafc.com',
           slug: 'los-angeles-football-club',
@@ -54,7 +54,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Los Angeles Galaxy',
+          name: 'Los Angeles Galaxy',
           shortName: 'Galaxy',
           websiteUrl: 'http://www.lagalaxy.com',
           slug: 'los-angeles-galaxy',
@@ -62,7 +62,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Los Angeles Kings',
+          name: 'Los Angeles Kings',
           shortName: 'Kings',
           websiteUrl: 'http://www.lakings.com',
           slug: 'los-angeles-kings',
@@ -70,7 +70,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Los Angeles Angels',
+          name: 'Los Angeles Angels',
           shortName: 'Angels',
           websiteUrl: 'http://www.angels.com',
           slug: 'los-angeles-angels',
@@ -78,7 +78,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Anaheim Ducks',
+          name: 'Anaheim Ducks',
           shortName: 'Ducks',
           websiteUrl: 'http://www.anaheimducks.com',
           slug: 'anaheim-ducks',
@@ -86,7 +86,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'UCLA Bruins',
+          name: 'UCLA Bruins',
           shortName: 'UCLA',
           websiteUrl: 'http://www.uclabruins.com',
           slug: 'ucla-bruins',
@@ -94,7 +94,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'USC Trojans',
+          name: 'USC Trojans',
           shortName: 'USC',
           websiteUrl: 'http://www.usctrojans.com',
           slug: 'usc-trojans',
@@ -102,7 +102,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'Los Angeles Sparks',
+          name: 'Los Angeles Sparks',
           shortName: 'Sparks',
           websiteUrl: 'http://sparks.wnba.com',
           slug: 'los-angeles-sparks',
@@ -110,7 +110,7 @@ module.exports = {
           updatedAt: new Date().toUTCString()
         },
         {
-          fullName: 'South Bay Lakers',
+          name: 'South Bay Lakers',
           shortName: 'SB Lakers',
           websiteUrl: 'https://southbay.gleague.nba.com',
           slug: 'south-bay-lakers',

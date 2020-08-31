@@ -10,7 +10,6 @@ module.exports = {
       'Users',
       [
         {
-          username: 'admin',
           email: 'sportshubla@gmail.com',
           password: bcrypt.hashSync(process.env.USER_SEED_PASSWORD, 10),
           isAdmin: true,

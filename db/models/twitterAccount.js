@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       TwitterAccount.belongsTo(models.Team, { foreignKey: 'teamId', as: 'team' });
+      TwitterAccount.belongsTo(models.NewsSource, { foreignKey: 'newsSourceId', as: 'newsSource' });
+
       TwitterAccount.hasMany(models.Tweet, { foreignKey: 'twitterAccountId', as: 'tweets' });
     }
   }

@@ -78,7 +78,7 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
       {/* <Box px={10} py={5} bg="white">
         <Box maxW={CONTENT_WRAPPER_WIDTH} marginX="auto">
           <Heading as="h1" size="md" fontWeight="normal">
-            {team?.fullName}
+            {team?.name}
           </Heading>
 
           <Link href={team?.websiteUrl} color="blue.700" isExternal>

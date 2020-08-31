@@ -46,7 +46,7 @@ const Tweet = ({ tweet, displayTeamLink = false }: Props) => {
             {displayTeamLink && (
               <RouterLink to={`/teams/${tweet.twitterAccount?.team?.slug}`}>
                 <Box color="gray.700" fontSize="xs" pr={1}>
-                  {tweet.twitterAccount?.team?.fullName} |
+                  {tweet.twitterAccount?.team?.name} |
                 </Box>
               </RouterLink>
             )}

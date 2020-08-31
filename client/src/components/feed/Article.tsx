@@ -41,7 +41,7 @@ const Article = ({ article, displayTeamLink = false }: Props) => {
             <Box color="gray.700" fontSize="xs" pr={1}>
               {displayTeamLink && (
                 <RouterLink to={`/teams/${article.rssFeed?.team?.slug}`}>
-                  {article.rssFeed?.team?.fullName} |{' '}
+                  {article.rssFeed?.team?.name} |{' '}
                 </RouterLink>
               )}
               {article.rssFeed?.newsSource?.name} -

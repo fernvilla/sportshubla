@@ -8,10 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.STRING,
-        unique: true
-      },
       email: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -25,12 +21,6 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false
-      },
-      resetPasswordToken: {
-        type: Sequelize.STRING
-      },
-      resetPasswordExpires: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

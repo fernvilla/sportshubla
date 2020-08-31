@@ -1,6 +1,6 @@
 export interface Team {
   id: number;
-  fullName: string;
+  name: string;
   shortName: string;
   websiteUrl: string;
   slug: string;
