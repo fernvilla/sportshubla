@@ -22,7 +22,13 @@ import { ThunkDispatch } from 'redux-thunk';
 import { logoutUser } from '../../actions/authActions';
 import { connect, ConnectedProps } from 'react-redux';
 import { CONTENT_WRAPPER_WIDTH } from '../../globals/constants';
-import { FaHome, FaTwitterSquare, FaFacebookSquare, FaInstagramSquare } from 'react-icons/fa';
+import {
+  FaHome,
+  FaTwitterSquare,
+  FaFacebookSquare,
+  FaInstagramSquare,
+  FaLinkedin
+} from 'react-icons/fa';
 import Sticky from 'react-stickynode';
 
 const mapState = (state: RootState) => ({
@@ -84,21 +90,27 @@ const Navbar = (props: Props) => {
           <Box flex="0 1 250px">
             <Flex fontSize="2xl" color="blue.700" mb={3} justifyContent="flex-end">
               <Link href="https://twitter.com/SportsHubLA" isExternal>
-                <Box mr={2}>
+                <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
                   <FaTwitterSquare />
-                </Box>
+                </PseudoBox>
               </Link>
 
               <Link href="https://www.facebook.com/sportshubla" isExternal>
-                <Box mr={2}>
+                <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
                   <FaFacebookSquare />
-                </Box>
+                </PseudoBox>
               </Link>
 
               <Link href="https://www.instagram.com/sportshubla" isExternal>
-                <Box mr={2}>
+                <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
                   <FaInstagramSquare />
-                </Box>
+                </PseudoBox>
+              </Link>
+
+              <Link href="https://www.linkedin.com/company/sportshubla" isExternal>
+                <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
+                  <FaLinkedin />
+                </PseudoBox>
               </Link>
             </Flex>
 
