@@ -16,6 +16,7 @@ import { Team as TeamInterface } from './interfaces/team';
 import Team from './pages/Team';
 
 import './app.scss';
+import Search from './pages/Search';
 
 const jwtToken = store.get('jwtToken');
 
@@ -59,6 +60,7 @@ const App: FC = () => {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/teams/:slug" exact component={Team} />
+          <Route path="/search" exact component={Search} />
           {/* <PrivateRoute path="/admin" exact component={Admin} adminRequired /> */}
           <Route component={NotFound} />
         </Switch>

@@ -10,21 +10,21 @@ import { CONTENT_WRAPPER_WIDTH } from '../../globals/constants';
 
 interface Props {
   articles: Article[];
-  fetchingArticles: boolean;
+  fetchingArticles?: boolean;
   tweets: Tweet[];
-  fetchingTweets: boolean;
+  fetchingTweets?: boolean;
   videos: YoutubeVideo[];
-  fetchingVideos: boolean;
+  fetchingVideos?: boolean;
   displayTeamLink?: boolean;
 }
 
 const FeedLayout = ({
   articles,
-  fetchingArticles,
+  fetchingArticles = false,
   tweets,
-  fetchingTweets,
+  fetchingTweets = false,
   videos,
-  fetchingVideos,
+  fetchingVideos = false,
   displayTeamLink
 }: Props) => {
   return (

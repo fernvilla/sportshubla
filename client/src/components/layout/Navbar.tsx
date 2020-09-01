@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Flex,
@@ -16,7 +16,7 @@ import {
   Heading
 } from '@chakra-ui/core';
 import { Team } from '../../interfaces/team';
-import { Link as RouterLink, RouteComponentProps, withRouter } from 'react-router-dom';
+import { Link as RouterLink, RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
 import { RootState } from '../../reducers';
 import { ThunkDispatch } from 'redux-thunk';
 import { logoutUser } from '../../actions/authActions';
@@ -52,9 +52,23 @@ type Props = PropsFromRedux &
 const Navbar = (props: Props) => {
   // const { teams, auth, logoutUser } = props;
   const { teams, location } = props;
+  const history = useHistory();
+  const [searchQuery, setSearchQuery] = useState('');
   // const [show, setShow] = useState(false);
 
   // const handleToggle = () => setShow(!show);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value);
+
+  const keyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) {
+      const params = new URLSearchParams();
+
+      params.append('q', searchQuery);
+
+      history.push(`/search?${params.toString()}`);
+    }
+  };
 
   return (
     <Box as="nav" color="brand" bg="white">
@@ -87,7 +101,7 @@ const Navbar = (props: Props) => {
             </Box>
           </Flex>
 
-          <Box flex="0 1 250px">
+          <Box flex="0 1 275px">
             <Flex fontSize="2xl" color="blue.700" mb={3} justifyContent="flex-end">
               <Link href="https://twitter.com/SportsHubLA" isExternal>
                 <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
@@ -117,10 +131,12 @@ const Navbar = (props: Props) => {
             <InputGroup size="sm">
               <InputLeftElement children={<Icon name="search" color="gray.400" size="15px" />} />
               <Input
-                placeholder="Search"
+                placeholder="Search articles, videos, tweets..."
                 bg="gray.200"
                 rounded="md"
                 _focus={{ bg: 'white', border: '1px', borderColor: 'blue.700' }}
+                onChange={onChange}
+                onKeyDown={keyPress}
               />
             </InputGroup>
           </Box>
