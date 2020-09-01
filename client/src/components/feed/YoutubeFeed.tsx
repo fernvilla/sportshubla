@@ -53,7 +53,7 @@ const YoutubeFeed = ({
         <Loader />
       ) : (
         <Box>
-          <Flex overflow="scroll">
+          <Flex overflow="auto">
             {visibleTweets.map((video: YoutubeVideoInterface) => (
               <YoutubeVideo key={video.id} video={video} displayTeamLink={displayTeamLink} />
             ))}
