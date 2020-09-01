@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Article } from '../interfaces/article';
 import { Tweet } from '../interfaces/tweet';
 import { Team as TeamInterface } from '../interfaces/team';
-import { Box, Flex } from '@chakra-ui/core';
-import ArticlesFeed from '../components/feed/ArticlesFeed';
-import TweetsFeed from '../components/feed/TweetsFeed';
-import axios from 'axios';
+import { Box, Heading, Link } from '@chakra-ui/core';
 import { RouteComponentProps } from 'react-router-dom';
 import Loader from '../components/Loader';
 import useAxios from '../hooks/useAxios';
-import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
 import { YoutubeVideo } from '../interfaces/youtubeVideo';
-import YoutubeFeed from '../components/feed/YoutubeFeed';
+import FeedLayout from '../components/feed/FeedLayout';
+import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
 
 interface MatchParams {
   slug: string;
@@ -32,10 +29,19 @@ interface VideoData {
   isLoading: boolean;
 }
 
+interface TeamData {
+  response: TeamInterface;
+  isLoading: boolean;
+}
+
 const Team = (props: RouteComponentProps<MatchParams>) => {
   const slug = props.match.params.slug;
-  const [team, setTeam] = useState<TeamInterface | null>(null);
-  const [fetchingTeam, setFetchingTeam] = useState(false);
+
+  const { response: team, isLoading: fetchingTeam }: TeamData = useAxios({
+    url: `/api/teams/slug/${slug}`,
+    dependency: slug,
+    trigger: !!slug
+  });
 
   const { response: tweets, isLoading: fetchingTweets }: TweetData = useAxios({
     url: `/api/tweets/team/id/${team?.id}`,
@@ -55,28 +61,10 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
     trigger: !!team?.id
   });
 
-  useEffect(() => {
-    fetchTeam();
-  }, [slug]);
-
-  const fetchTeam = async () => {
-    try {
-      setFetchingTeam(true);
-
-      const { data } = await axios.get(`/api/teams/slug/${slug}`);
-
-      setTeam(data.payload);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setFetchingTeam(false);
-    }
-  };
-
   return (
     <Box as="main">
-      {/* <Box px={10} py={5} bg="white">
-        <Box maxW={CONTENT_WRAPPER_WIDTH} marginX="auto">
+      <Box px={3} pt={5} maxW={CONTENT_WRAPPER_WIDTH} marginX="auto">
+        <Box p={5} bg="white" boxShadow="sm">
           <Heading as="h1" size="md" fontWeight="normal">
             {team?.name}
           </Heading>
@@ -85,21 +73,19 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
             {team?.websiteUrl}
           </Link>
         </Box>
-      </Box> */}
+      </Box>
 
       {fetchingTeam ? (
         <Loader />
       ) : (
-        <Flex py={10} flexWrap="wrap" flexDir="row" maxW={CONTENT_WRAPPER_WIDTH} marginX="auto">
-          <Box px={5} flex="3" minWidth={400}>
-            <ArticlesFeed articles={articles} isFetching={fetchingArticles} />
-          </Box>
-
-          <Box px={5} flex="1" minWidth={400}>
-            <TweetsFeed tweets={tweets} isFetching={fetchingTweets} />
-            <YoutubeFeed videos={videos} isFetching={fetchingVideos} />
-          </Box>
-        </Flex>
+        <FeedLayout
+          articles={articles}
+          fetchingArticles={fetchingArticles}
+          tweets={tweets}
+          fetchingTweets={fetchingTweets}
+          videos={videos}
+          fetchingVideos={fetchingVideos}
+        />
       )}
     </Box>
   );

@@ -39,11 +39,11 @@ const YoutubeFeed = ({
   };
 
   const scrollTo = () => {
-    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (window.pageXOffset > 0) ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <Box bg="white" p={6} mb={5} boxShadow="sm" ref={ref}>
+    <Box bg="white" p={6} boxShadow="sm" ref={ref}>
       <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
         Videos
         <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
@@ -52,12 +52,12 @@ const YoutubeFeed = ({
       {isFetching ? (
         <Loader />
       ) : (
-        <>
-          <Box overflow="auto">
+        <Box>
+          <Flex overflow="scroll">
             {visibleTweets.map((video: YoutubeVideoInterface) => (
               <YoutubeVideo key={video.id} video={video} displayTeamLink={displayTeamLink} />
             ))}
-          </Box>
+          </Flex>
 
           {!!videos.length && (
             <Box marginBottom={-6}>
@@ -73,7 +73,7 @@ const YoutubeFeed = ({
               </Flex>
             </Box>
           )}
-        </>
+        </Box>
       )}
     </Box>
   );

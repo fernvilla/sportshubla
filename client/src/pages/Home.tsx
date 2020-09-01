@@ -1,13 +1,10 @@
 import React from 'react';
 import { Article } from '../interfaces/article';
 import { Tweet } from '../interfaces/tweet';
-import { Box, Flex } from '@chakra-ui/core';
-import ArticlesFeed from '../components/feed/ArticlesFeed';
-import TweetsFeed from '../components/feed/TweetsFeed';
+import { Box } from '@chakra-ui/core';
 import useAxios from '../hooks/useAxios';
-import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
 import { YoutubeVideo } from '../interfaces/youtubeVideo';
-import YoutubeFeed from '../components/feed/YoutubeFeed';
+import FeedLayout from '../components/feed/FeedLayout';
 
 interface ArticleData {
   response: Article[];
@@ -37,20 +34,17 @@ const Home = () => {
     url: '/api/youtubevideos/latest'
   });
 
-  console.log({ videos });
-
   return (
     <Box as="main">
-      <Flex py={10} flexWrap="wrap" flexDir="row" maxW={CONTENT_WRAPPER_WIDTH} mx="auto">
-        <Box px={5} flex="3" minWidth={400}>
-          <ArticlesFeed articles={articles} isFetching={fetchingArticles} displayTeamLink />
-        </Box>
-
-        <Box px={5} flex="1" minWidth={400}>
-          <TweetsFeed tweets={tweets} isFetching={fetchingTweets} displayTeamLink />
-          <YoutubeFeed videos={videos} isFetching={fetchingVideos} />
-        </Box>
-      </Flex>
+      <FeedLayout
+        articles={articles}
+        fetchingArticles={fetchingArticles}
+        tweets={tweets}
+        fetchingTweets={fetchingTweets}
+        videos={videos}
+        fetchingVideos={fetchingVideos}
+        displayTeamLink
+      />
     </Box>
   );
 };

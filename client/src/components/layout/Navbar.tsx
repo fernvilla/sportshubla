@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Flex,
@@ -52,7 +52,7 @@ const Navbar = (props: Props) => {
 
   return (
     <Box as="nav" color="brand" bg="white">
-      <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto" py={3} px={5}>
+      <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto" py={3} px={3}>
         <Flex align="center" justify="space-between" wrap="wrap">
           <Flex alignItems="center">
             <Box>
@@ -152,7 +152,7 @@ const Navbar = (props: Props) => {
             maxW={CONTENT_WRAPPER_WIDTH}
             mx="auto"
             alignItems="center"
-            px={5}
+            px={3}
             flexWrap="wrap"
           >
             <RouterLink to="/">

@@ -1235,10 +1235,10 @@ accepts@~1.3.5, accepts@~1.3.7:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
-admin-bro@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/admin-bro/-/admin-bro-3.1.2.tgz#bbb56fdb77a08d3444f3b863ba0a3680f1d3f35e"
-  integrity sha512-2hg6mjmQ6e8AWuC3pBgfUa31t6l573QYYuvO99bmGF2t5g6ubKBQxJEjKTepnSPg1g4ywZdX2Ob4RXrNMd2N5w==
+admin-bro@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/admin-bro/-/admin-bro-3.2.2.tgz#b7a35f702211e5c8a541419283fbf049cfc91a37"
+  integrity sha512-GHg/UCoTgtn7T9z2641XJ4MOtkb0wg/kTFM4KJevW4PSEHfljCei7sI8qKxXw8xXEcwDXEisQu/GEYZaNvkoWA==
   dependencies:
     "@admin-bro/design-system" "^1.3.3"
     "@babel/core" "^7.10.2"

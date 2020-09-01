@@ -20,7 +20,7 @@
   "dependencies": {
     "@admin-bro/express": "^3.0.0",
     "@admin-bro/sequelize": "^1.0.0",
-    "admin-bro": "^3.1.2",
+    "admin-bro": "^3.2.2",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",

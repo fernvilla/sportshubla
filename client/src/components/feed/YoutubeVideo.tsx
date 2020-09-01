@@ -6,7 +6,10 @@ import ModalVideo from 'react-modal-video';
 
 import 'react-modal-video/scss/modal-video.scss';
 
-type Props = { video: YoutubeVideoInterface; displayTeamLink?: boolean };
+type Props = {
+  video: YoutubeVideoInterface;
+  displayTeamLink?: boolean;
+};
 
 const YoutubeVideo = ({ video }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +17,9 @@ const YoutubeVideo = ({ video }: Props) => {
   return (
     <Box
       borderBottomWidth="1px"
-      py={3}
+      p={3}
       cursor="pointer"
+      minWidth={250}
       onClick={() => {
         if (isOpen) return;
 
@@ -30,7 +34,7 @@ const YoutubeVideo = ({ video }: Props) => {
       />
 
       <Box pos="relative">
-        <Image src={video.thumbnail} />
+        <Image src={video.thumbnail} ignoreFallback />
         <Text color="white" bg="black" opacity={0.8} p={2} pos="absolute" bottom={0}>
           {video.title}
         </Text>
