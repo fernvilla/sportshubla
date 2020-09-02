@@ -101,7 +101,7 @@ const Navbar = (props: Props) => {
             </Box>
           </Flex>
 
-          <Box flex="0 1 275px">
+          <Box flex="0 1 260px">
             <Flex fontSize="2xl" color="blue.700" mb={3} justifyContent="flex-end">
               <Link href="https://twitter.com/SportsHubLA" isExternal>
                 <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
