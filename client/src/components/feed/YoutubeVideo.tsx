@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
-import { Box, Image, Text } from '@chakra-ui/core';
+import React from 'react';
+import {
+  Box,
+  Image,
+  Text,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalBody
+} from '@chakra-ui/core';
 import { YoutubeVideo as YoutubeVideoInterface } from '../../interfaces/youtubeVideo';
-// @ts-ignore
-import ModalVideo from 'react-modal-video';
-
-import 'react-modal-video/scss/modal-video.scss';
+import YouTube from 'react-youtube';
 
 type Props = {
   video: YoutubeVideoInterface;
@@ -12,26 +19,27 @@ type Props = {
 };
 
 const YoutubeVideo = ({ video }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const opts: any = {
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1
+    }
+  };
 
   return (
-    <Box
-      borderBottomWidth="1px"
-      p={3}
-      cursor="pointer"
-      minWidth={250}
-      onClick={() => {
-        if (isOpen) return;
+    <Box borderBottomWidth="1px" p={3} cursor="pointer" minWidth={250} onClick={onOpen}>
+      <Modal isOpen={isOpen} onClose={onClose} size="full" isCentered>
+        <ModalOverlay />
 
-        setIsOpen(true);
-      }}
-    >
-      <ModalVideo
-        channel="youtube"
-        isOpen={isOpen}
-        videoId={video.videoId}
-        onClose={() => setIsOpen(false)}
-      />
+        <ModalContent background="transparent" boxShadow="none" alignItems="center">
+          <ModalBody position="relative" maxW="940px" w="100%" h="100%">
+            <ModalCloseButton color="white" top={-25} fontWeight="bold" />
+
+            <YouTube videoId={video.videoId} opts={opts} containerClassName="youtubeContainer" />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
 
       <Box pos="relative">
         <Image src={video.thumbnail} ignoreFallback />
