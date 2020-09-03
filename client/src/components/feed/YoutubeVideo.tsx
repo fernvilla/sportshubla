@@ -36,7 +36,12 @@ const YoutubeVideo = ({ video }: Props) => {
           <ModalBody position="relative" maxW="940px" w="100%" h="100%">
             <ModalCloseButton color="white" top={-25} fontWeight="bold" />
 
-            <YouTube videoId={video.videoId} opts={opts} containerClassName="youtubeContainer" />
+            <YouTube
+              videoId={video.videoId}
+              opts={opts}
+              containerClassName="youtubeContainer"
+              onError={props => console.error('error', props)}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>
