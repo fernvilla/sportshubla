@@ -1,6 +1,6 @@
 import { TwitterAccount } from './twitterAccount';
 
-export interface Tweet {
+export default interface Tweet {
   id: number;
   twitterAccountId: number;
   text: string;
@@ -12,4 +12,10 @@ export interface Tweet {
   profileBannerUrl?: string;
   mediaUrl: string;
   twitterAccount?: TwitterAccount;
+}
+
+export interface TweetData {
+  response: Tweet[];
+  isLoading: boolean;
+  refetch: () => void;
 }

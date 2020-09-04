@@ -1,6 +1,6 @@
 import { RssFeed } from './rssFeed';
 
-export interface Article {
+export default interface Article {
   id: number;
   title: string;
   publishedDate: string;
@@ -10,4 +10,10 @@ export interface Article {
   author: string;
   summary: string;
   rssFeed: RssFeed;
+}
+
+export interface ArticleData {
+  response: Article[];
+  isLoading: boolean;
+  refetch: () => void;
 }

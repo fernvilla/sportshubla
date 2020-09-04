@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { Article } from '../interfaces/article';
-import { Tweet } from '../interfaces/tweet';
+import Article from '../interfaces/article';
+import Tweet from '../interfaces/tweet';
 import { YoutubeVideo } from '../interfaces/youtubeVideo';
 import useAxios from '../hooks/useAxios';
 import { isEmpty } from '../utils/validation';

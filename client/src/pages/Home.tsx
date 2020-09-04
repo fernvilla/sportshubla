@@ -1,36 +1,33 @@
 import React from 'react';
-import { Article } from '../interfaces/article';
-import { Tweet } from '../interfaces/tweet';
+import { TweetData } from '../interfaces/tweet';
 import { Box } from '@chakra-ui/core';
 import useAxios from '../hooks/useAxios';
-import { YoutubeVideo } from '../interfaces/youtubeVideo';
+import { YoutubeVideoData } from '../interfaces/youtubeVideo';
 import FeedLayout from '../components/feed/FeedLayout';
-
-interface ArticleData {
-  response: Article[];
-  isLoading: boolean;
-}
-
-interface TweetData {
-  response: Tweet[];
-  isLoading: boolean;
-}
-
-interface VideoData {
-  response: YoutubeVideo[];
-  isLoading: boolean;
-}
+import { ArticleData } from '../interfaces/article';
 
 const Home = () => {
-  const { response: articles, isLoading: fetchingArticles }: ArticleData = useAxios({
+  const {
+    response: articles,
+    isLoading: fetchingArticles,
+    refetch: refetchArticles
+  }: ArticleData = useAxios({
     url: '/api/articles/latest'
   });
 
-  const { response: tweets, isLoading: fetchingTweets }: TweetData = useAxios({
+  const {
+    response: tweets,
+    isLoading: fetchingTweets,
+    refetch: refetchTweets
+  }: TweetData = useAxios({
     url: '/api/tweets/latest'
   });
 
-  const { response: videos, isLoading: fetchingVideos }: VideoData = useAxios({
+  const {
+    response: videos,
+    isLoading: fetchingVideos,
+    refetch: refetchVideos
+  }: YoutubeVideoData = useAxios({
     url: '/api/youtubevideos/latest'
   });
 
@@ -39,10 +36,13 @@ const Home = () => {
       <FeedLayout
         articles={articles}
         fetchingArticles={fetchingArticles}
+        refetchArticles={refetchArticles}
         tweets={tweets}
         fetchingTweets={fetchingTweets}
+        refetchTweets={refetchTweets}
         videos={videos}
         fetchingVideos={fetchingVideos}
+        refetchVideos={refetchVideos}
         displayTeamLink
       />
     </Box>

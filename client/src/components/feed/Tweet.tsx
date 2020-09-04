@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Flex, Link, Image, Text } from '@chakra-ui/core';
-import { Tweet as TweetInterface } from './../../interfaces/tweet';
+import { default as TweetInterface } from './../../interfaces/tweet';
 import { formatDistanceToNow } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 

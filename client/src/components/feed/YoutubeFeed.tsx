@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { YoutubeVideo as YoutubeVideoInterface } from './../../interfaces/youtubeVideo';
-import { Box, Heading, Flex } from '@chakra-ui/core';
+import { Box, Heading, Flex, PseudoBox } from '@chakra-ui/core';
 import Loader from '../Loader';
 import YoutubeVideo from './YoutubeVideo';
 import { calculateTotalPages } from '../../utils/feed';
 import ReactPaginate from 'react-paginate';
 import { useRef } from 'react';
+import { FaRedo } from 'react-icons/fa';
 
 type Props = {
   videos?: YoutubeVideoInterface[];
   isFetching: Boolean;
   videosPerPage?: number;
   displayTeamLink?: boolean;
+  refetchData?: () => void;
 };
 
 const YoutubeFeed = ({
   videos = [],
   isFetching = false,
   videosPerPage = 5,
-  displayTeamLink = false
+  displayTeamLink = false,
+  refetchData
 }: Props) => {
   const [page, setPage] = useState(0);
   const [visibleTweets, setVisibleTweets] = useState(videos);
@@ -44,10 +47,25 @@ const YoutubeFeed = ({
 
   return (
     <Box bg="white" p={6} boxShadow="sm" ref={ref}>
-      <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
-        Videos
-        <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
-      </Heading>
+      <Flex justifyContent="space-between" alignItems="baseline">
+        <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
+          Videos
+          <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
+        </Heading>
+
+        {refetchData && (
+          <PseudoBox
+            _hover={{ color: 'blue.500' }}
+            transition="color 0.5s ease"
+            cursor="pointer"
+            onClick={refetchData}
+            color="blue.700"
+            title="Refresh"
+          >
+            <FaRedo />
+          </PseudoBox>
+        )}
+      </Flex>
 
       {isFetching ? (
         <Loader />

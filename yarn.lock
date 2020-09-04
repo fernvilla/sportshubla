@@ -18,10 +18,10 @@
   resolved "https://registry.yarnpkg.com/@admin-bro/express/-/express-3.0.0.tgz#0ac581bbd4511d8854d07409b980e0fff3d9d8e0"
   integrity sha512-Ya/a3F/JT//VanaIjlVBeU6gh1afwcjU/q9qhMcETKwy3M+QbVhfmLdOyD1mFqVxwifnkiGnC6gPkupb51C9Pg==
 
-"@admin-bro/sequelize@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@admin-bro/sequelize/-/sequelize-1.0.0.tgz#80699093e4368993717780e567d1a795c412a5a6"
-  integrity sha512-/WQLc2I/FhkMrExhMwtwYHadEsQLVWQfp6Cqp9xr+2d+LtOB0s+PUxFWz4dTB22vtbAfmro8ImFPXyMop5sGLg==
+"@admin-bro/sequelize@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@admin-bro/sequelize/-/sequelize-1.1.0.tgz#ddd9556a64b04a487bedc98424456afe3a7fe387"
+  integrity sha512-uCJI7Slm4zjQWxF+Ey/317SJ6QbNi24+VOx/tGq39id9x2oxs6ofkWdTwisntzngRxLWd6FR0u311bODi4LWJg==
   dependencies:
     escape-regexp "0.0.1"
     flat "^5.0.0"
@@ -1228,10 +1228,10 @@ accepts@~1.3.5, accepts@~1.3.7:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
-admin-bro@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/admin-bro/-/admin-bro-3.2.2.tgz#b7a35f702211e5c8a541419283fbf049cfc91a37"
-  integrity sha512-GHg/UCoTgtn7T9z2641XJ4MOtkb0wg/kTFM4KJevW4PSEHfljCei7sI8qKxXw8xXEcwDXEisQu/GEYZaNvkoWA==
+admin-bro@^3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/admin-bro/-/admin-bro-3.2.5.tgz#ee9c41c4342099d48639e106800a6af07416fa0f"
+  integrity sha512-KMiWXj7UbYuMFZ+p8aPh3KQ8BuPXS5zL+IakY8vjJnBlNz4MEdlL4KMT5o8sOGCA4oa8ikRfZs+IAZN1h/NXgA==
   dependencies:
     "@admin-bro/design-system" "^1.3.3"
     "@babel/core" "^7.10.2"
@@ -4125,10 +4125,10 @@ sequelize-pool@^6.0.0:
   resolved "https://registry.yarnpkg.com/sequelize-pool/-/sequelize-pool-6.1.0.tgz#caaa0c1e324d3c2c3a399fed2c7998970925d668"
   integrity sha512-4YwEw3ZgK/tY/so+GfnSgXkdwIJJ1I32uZJztIEgZeAO6HMgj64OzySbWLgxj+tXhZCJnzRfkY9gINw8Ft8ZMg==
 
-sequelize@^6.3.4:
-  version "6.3.4"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.3.4.tgz#dd6f4801ba5e4d7a6f845a5ad3e616f24453694f"
-  integrity sha512-W6Y96N5QHTgEz5Q37v2GYbKufSXaw0b3v4rCLTPbcCMfIG0MHI42Ozp7IwiyV9bdNkfFEdY7XP8R6lWrWg4hUw==
+sequelize@^6.3.5:
+  version "6.3.5"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.3.5.tgz#80e3db7ac8b76d98c45ca93334197eb6e2335158"
+  integrity sha512-MiwiPkYSA8NWttRKAXdU9h0TxP6HAc1fl7qZmMO/VQqQOND83G4nZLXd0kWILtAoT9cxtZgFqeb/MPYgEeXwsw==
   dependencies:
     debug "^4.1.1"
     dottie "^2.0.0"

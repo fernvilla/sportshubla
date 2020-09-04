@@ -10,3 +10,9 @@ export interface YoutubeVideo {
   thumbnail: string;
   youtubeAccount?: YoutubeAccount;
 }
+
+export interface YoutubeVideoData {
+  response: YoutubeVideo[];
+  isLoading: boolean;
+  refetch: () => void;
+}

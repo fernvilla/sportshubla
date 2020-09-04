@@ -1,23 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, Flex, Heading } from '@chakra-ui/core';
-import { Article as ArticleInterface } from './../../interfaces/article';
+import { Box, Flex, Heading, PseudoBox } from '@chakra-ui/core';
+import { default as ArticleInterface } from './../../interfaces/article';
 import ReactPaginate from 'react-paginate';
 import Article from './Article';
 import { calculateTotalPages } from './../../utils/feed';
 import Loader from '../Loader';
+import { FaRedo } from 'react-icons/fa';
 
 type Props = {
   articles: ArticleInterface[];
   isFetching: boolean;
   articlesPerPage?: number;
   displayTeamLink?: boolean;
+  refetchData?: () => void;
 };
 
 const ArticlesFeed = ({
   articles = [],
   isFetching = false,
   articlesPerPage = 20,
-  displayTeamLink = false
+  displayTeamLink = false,
+  refetchData
 }: Props) => {
   const [page, setPage] = useState(0);
   const [visibleArtices, setVisibleArticles] = useState<ArticleInterface[]>(articles);
@@ -43,10 +46,25 @@ const ArticlesFeed = ({
 
   return (
     <Box bg="white" p={6} mb={5} boxShadow="sm" ref={ref}>
-      <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
-        Headlines
-        <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
-      </Heading>
+      <Flex justifyContent="space-between" alignItems="baseline">
+        <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
+          Articles
+          <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
+        </Heading>
+
+        {refetchData && (
+          <PseudoBox
+            _hover={{ color: 'blue.500' }}
+            transition="color 0.5s ease"
+            cursor="pointer"
+            onClick={refetchData}
+            color="blue.700"
+            title="Refresh"
+          >
+            <FaRedo />
+          </PseudoBox>
+        )}
+      </Flex>
 
       {isFetching ? (
         <Loader />

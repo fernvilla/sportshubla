@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Flex, Link, Image, Text } from '@chakra-ui/core';
-import { Article as ArticleInterface } from './../../interfaces/article';
+import { default as ArticleInterface } from './../../interfaces/article';
 import { formatDistanceToNow } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 

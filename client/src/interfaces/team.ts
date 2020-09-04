@@ -5,3 +5,9 @@ export interface Team {
   websiteUrl: string;
   slug: string;
 }
+
+export interface TeamData {
+  response: Team;
+  isLoading: boolean;
+  refetch: () => void;
+}

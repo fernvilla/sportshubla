@@ -1,37 +1,18 @@
 import React from 'react';
-import { Article } from '../interfaces/article';
-import { Tweet } from '../interfaces/tweet';
-import { Team as TeamInterface } from '../interfaces/team';
+
+import { TeamData } from '../interfaces/team';
 import { Box, Heading, Link } from '@chakra-ui/core';
 import { RouteComponentProps } from 'react-router-dom';
 import Loader from '../components/Loader';
 import useAxios from '../hooks/useAxios';
-import { YoutubeVideo } from '../interfaces/youtubeVideo';
+import { YoutubeVideoData } from '../interfaces/youtubeVideo';
 import FeedLayout from '../components/feed/FeedLayout';
 import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
+import { TweetData } from '../interfaces/tweet';
+import { ArticleData } from '../interfaces/article';
 
 interface MatchParams {
   slug: string;
-}
-
-interface ArticleData {
-  response: Article[];
-  isLoading: boolean;
-}
-
-interface TweetData {
-  response: Tweet[];
-  isLoading: boolean;
-}
-
-interface VideoData {
-  response: YoutubeVideo[];
-  isLoading: boolean;
-}
-
-interface TeamData {
-  response: TeamInterface;
-  isLoading: boolean;
 }
 
 const Team = (props: RouteComponentProps<MatchParams>) => {
@@ -43,19 +24,31 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
     trigger: !!slug
   });
 
-  const { response: tweets, isLoading: fetchingTweets }: TweetData = useAxios({
+  const {
+    response: tweets,
+    isLoading: fetchingTweets,
+    refetch: refetchTweets
+  }: TweetData = useAxios({
     url: `/api/tweets/team/id/${team?.id}`,
     dependency: team?.id,
     trigger: !!team?.id
   });
 
-  const { response: articles, isLoading: fetchingArticles }: ArticleData = useAxios({
+  const {
+    response: articles,
+    isLoading: fetchingArticles,
+    refetch: refetchArticles
+  }: ArticleData = useAxios({
     url: `/api/articles/team/id/${team?.id}`,
     dependency: team?.id,
     trigger: !!team?.id
   });
 
-  const { response: videos, isLoading: fetchingVideos }: VideoData = useAxios({
+  const {
+    response: videos,
+    isLoading: fetchingVideos,
+    refetch: refetchVideos
+  }: YoutubeVideoData = useAxios({
     url: `/api/youtubevideos/team/id/${team?.id}`,
     dependency: team?.id,
     trigger: !!team?.id
@@ -81,10 +74,13 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
         <FeedLayout
           articles={articles}
           fetchingArticles={fetchingArticles}
+          refetchArticles={refetchArticles}
           tweets={tweets}
           fetchingTweets={fetchingTweets}
+          refetchTweets={refetchTweets}
           videos={videos}
           fetchingVideos={fetchingVideos}
+          refetchVideos={refetchVideos}
         />
       )}
     </Box>
