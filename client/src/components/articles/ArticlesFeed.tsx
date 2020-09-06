@@ -1,40 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { YoutubeVideo as YoutubeVideoInterface } from './../../interfaces/youtubeVideo';
-import { Box, Heading, Flex, PseudoBox } from '@chakra-ui/core';
-import Loader from '../Loader';
-import YoutubeVideo from './YoutubeVideo';
-import { calculateTotalPages } from '../../utils/feed';
+import React, { useState, useEffect, useRef } from 'react';
+import { Box, Flex, Heading, PseudoBox } from '@chakra-ui/core';
+import { default as ArticleInterface } from './../../interfaces/article';
 import ReactPaginate from 'react-paginate';
-import { useRef } from 'react';
-import { FaRedo } from 'react-icons/fa';
+import Article from './Article';
+import { calculateTotalPages } from './../../utils/feed';
+import Loader from '../Loader';
+import { FaRedo, FaRegFrown } from 'react-icons/fa';
 
 type Props = {
-  videos?: YoutubeVideoInterface[];
-  isFetching: Boolean;
-  videosPerPage?: number;
+  articles: ArticleInterface[];
+  isFetching: boolean;
+  articlesPerPage?: number;
   displayTeamLink?: boolean;
   refetchData?: () => void;
 };
 
-const YoutubeFeed = ({
-  videos = [],
+const ArticlesFeed = ({
+  articles = [],
   isFetching = false,
-  videosPerPage = 5,
+  articlesPerPage = 20,
   displayTeamLink = false,
   refetchData
 }: Props) => {
   const [page, setPage] = useState(0);
-  const [visibleTweets, setVisibleTweets] = useState(videos);
-  const totalPages = calculateTotalPages(videos.length, videosPerPage);
+  const [visibleArtices, setVisibleArticles] = useState<ArticleInterface[]>(articles);
+  const totalPages = calculateTotalPages(articles.length, articlesPerPage);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!videos || !videos.length) return setVisibleTweets([]);
+    if (!articles || !articles.length) return setVisibleArticles([]);
 
-    const pagedTweets = videos.slice(page * videosPerPage, (page + 1) * videosPerPage);
+    const pagedArticles = articles.slice(page * articlesPerPage, (page + 1) * articlesPerPage);
 
-    setVisibleTweets(pagedTweets);
-  }, [page, videos, videosPerPage]);
+    setVisibleArticles(pagedArticles);
+  }, [page, articles, articlesPerPage]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
     scrollTo();
@@ -46,10 +45,10 @@ const YoutubeFeed = ({
   };
 
   return (
-    <Box bg="white" p={6} boxShadow="sm" ref={ref}>
+    <Box bg="white" p={6} mb={5} boxShadow="sm" ref={ref}>
       <Flex justifyContent="space-between" alignItems="baseline">
         <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
-          Videos
+          Articles
           <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
         </Heading>
 
@@ -70,14 +69,12 @@ const YoutubeFeed = ({
       {isFetching ? (
         <Loader />
       ) : (
-        <Box>
-          <Flex overflow="auto">
-            {visibleTweets.map((video: YoutubeVideoInterface) => (
-              <YoutubeVideo key={video.id} video={video} displayTeamLink={displayTeamLink} />
-            ))}
-          </Flex>
+        <>
+          {visibleArtices.map((article: ArticleInterface) => (
+            <Article key={article.id} article={article} displayTeamLink={displayTeamLink} />
+          ))}
 
-          {!!videos.length && (
+          {!!articles.length ? (
             <Box marginBottom={-6}>
               <Flex justifyContent="flex-end">
                 <ReactPaginate
@@ -90,11 +87,20 @@ const YoutubeFeed = ({
                 />
               </Flex>
             </Box>
+          ) : (
+            <Flex justifyContent="center" padding={5}>
+              <Box textAlign="center">
+                <Flex justifyContent="center" fontSize="2xl">
+                  <FaRegFrown />
+                </Flex>
+                No Articles Available
+              </Box>
+            </Flex>
           )}
-        </Box>
+        </>
       )}
     </Box>
   );
 };
 
-export default YoutubeFeed;
+export default ArticlesFeed;

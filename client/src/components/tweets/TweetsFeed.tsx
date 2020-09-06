@@ -5,7 +5,7 @@ import Tweet from './Tweet';
 import { calculateTotalPages } from './../../utils/feed';
 import ReactPaginate from 'react-paginate';
 import Loader from '../Loader';
-import { FaRedo } from 'react-icons/fa';
+import { FaRedo, FaRegFrown } from 'react-icons/fa';
 
 type Props = {
   tweets?: TweetInterface[];
@@ -76,7 +76,7 @@ const TweetsFeed = ({
             ))}
           </Box>
 
-          {!!tweets.length && (
+          {!!tweets.length ? (
             <Box marginBottom={-6}>
               <Flex justifyContent="flex-end">
                 <ReactPaginate
@@ -89,6 +89,15 @@ const TweetsFeed = ({
                 />
               </Flex>
             </Box>
+          ) : (
+            <Flex justifyContent="center" padding={5}>
+              <Box textAlign="center">
+                <Flex justifyContent="center" fontSize="2xl">
+                  <FaRegFrown />
+                </Flex>
+                No Tweets Available
+              </Box>
+            </Flex>
           )}
         </>
       )}

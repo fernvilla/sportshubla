@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/core';
-import ArticlesFeed from './ArticlesFeed';
-import TweetsFeed from './TweetsFeed';
-import YoutubeFeed from './YoutubeFeed';
+import ArticlesFeed from './../articles/ArticlesFeed';
+import TweetsFeed from './../tweets/TweetsFeed';
+import YoutubeFeed from './../videos/YoutubeFeed';
 import Article from '../../interfaces/article';
 import Tweet from '../../interfaces/tweet';
 import { YoutubeVideo } from '../../interfaces/youtubeVideo';
@@ -11,7 +11,7 @@ import { CONTENT_WRAPPER_WIDTH } from '../../globals/constants';
 interface Props {
   articles: Article[];
   fetchingArticles?: boolean;
-  refetchArticles?: () => void | null;
+  refetchArticles?: () => void;
   tweets: Tweet[];
   fetchingTweets?: boolean;
   refetchTweets?: () => void;
@@ -23,19 +23,17 @@ interface Props {
 
 const FeedLayout = (props: Props) => {
   const {
-    articles,
+    articles = [],
     fetchingArticles = false,
     refetchArticles,
-    tweets,
+    tweets = [],
     fetchingTweets = false,
     refetchTweets,
-    videos,
+    videos = [],
     fetchingVideos = false,
     refetchVideos,
     displayTeamLink
   } = props;
-
-  console.log(props);
 
   return (
     <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto">

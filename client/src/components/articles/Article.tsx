@@ -32,7 +32,7 @@ const Article = ({ article, displayTeamLink = false }: Props) => {
 
         <Box flex={1}>
           <Link href={article.url} isExternal>
-            <Text color="blue.700" fontWeight="medium">
+            <Text as="p" color="blue.700" fontWeight="medium">
               {article.title}
             </Text>
           </Link>
@@ -53,9 +53,9 @@ const Article = ({ article, displayTeamLink = false }: Props) => {
           </Flex>
 
           {article.summary && (
-            <Box mt={2} color="gray.700">
+            <Text as="p" mt={2} color="gray.700">
               {article.summary}
-            </Box>
+            </Text>
           )}
         </Box>
       </Flex>
