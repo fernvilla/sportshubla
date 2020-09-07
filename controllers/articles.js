@@ -101,7 +101,7 @@ module.exports = {
           }
         ],
         order: [['publishedDate', 'DESC']],
-        limit: 30
+        limit: 10
       });
 
       return res.status(200).send({ payload });

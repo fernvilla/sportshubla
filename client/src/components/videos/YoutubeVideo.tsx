@@ -16,9 +16,10 @@ import YouTube from 'react-youtube';
 type Props = {
   video: YoutubeVideoInterface;
   displayTeamLink?: boolean;
+  noBorder?: boolean;
 };
 
-const YoutubeVideo = ({ video }: Props) => {
+const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const opts: any = {
     playerVars: {
@@ -28,7 +29,13 @@ const YoutubeVideo = ({ video }: Props) => {
   };
 
   return (
-    <Box borderBottomWidth="1px" p={3} cursor="pointer" minWidth={250} onClick={onOpen}>
+    <Box
+      {...(!noBorder ? { borderBottomWidth: '1px' } : {})}
+      p={3}
+      cursor="pointer"
+      minWidth={250}
+      onClick={onOpen}
+    >
       <Modal isOpen={isOpen} onClose={onClose} size="full" isCentered>
         <ModalOverlay />
 

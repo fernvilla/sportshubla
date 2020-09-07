@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { YoutubeVideo as YoutubeVideoInterface } from './../../interfaces/youtubeVideo';
-import { Box, Heading, Flex, PseudoBox } from '@chakra-ui/core';
+import { Box, Heading, Flex, PseudoBox, Grid } from '@chakra-ui/core';
 import Loader from '../Loader';
 import YoutubeVideo from './YoutubeVideo';
 import { calculateTotalPages } from '../../utils/feed';
@@ -42,7 +42,7 @@ const YoutubeFeed = ({
   };
 
   const scrollTo = () => {
-    if (window.pageXOffset > 0) ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
@@ -71,11 +71,11 @@ const YoutubeFeed = ({
         <Loader />
       ) : (
         <Box>
-          <Flex overflow="auto">
-            {visibleTweets.map((video: YoutubeVideoInterface) => (
+          <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))">
+            {visibleTweets.map(video => (
               <YoutubeVideo key={video.id} video={video} displayTeamLink={displayTeamLink} />
             ))}
-          </Flex>
+          </Grid>
 
           {!!videos.length ? (
             <Box marginBottom={-6}>

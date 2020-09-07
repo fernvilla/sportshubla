@@ -41,7 +41,7 @@ const TweetsFeed = ({
   };
 
   const scrollTo = () => {
-    if (window.pageXOffset > 0) ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (

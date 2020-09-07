@@ -17,6 +17,9 @@ import Team from './pages/Team';
 
 import './app.scss';
 import Search from './pages/Search';
+import Videos from './pages/Videos';
+import Articles from './pages/Articles';
+import Tweets from './pages/Tweets';
 
 const jwtToken = store.get('jwtToken');
 
@@ -61,6 +64,9 @@ const App: FC = () => {
           <Route path="/login" exact component={Login} />
           <Route path="/teams/:slug" exact component={Team} />
           <Route path="/search" exact component={Search} />
+          <Route path="/videos" exact component={Videos} />
+          <Route path="/articles" exact component={Articles} />
+          <Route path="/tweets" exact component={Tweets} />
           {/* <PrivateRoute path="/admin" exact component={Admin} adminRequired /> */}
           <Route component={NotFound} />
         </Switch>

@@ -4,16 +4,20 @@ import { default as TweetInterface } from './../../interfaces/tweet';
 import { formatDistanceToNow } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 
-type Props = { tweet: TweetInterface; displayTeamLink?: boolean };
+type Props = {
+  tweet: TweetInterface;
+  displayTeamLink?: boolean;
+  noBorder?: boolean;
+};
 
-const Tweet = ({ tweet, displayTeamLink = false }: Props) => {
+const Tweet = ({ tweet, displayTeamLink = false, noBorder = false }: Props) => {
   const formattedDate = formatDistanceToNow(new Date(tweet.publishedDate), {
     addSuffix: true,
     includeSeconds: true
   });
 
   return (
-    <Box borderBottomWidth="1px" py={3} pr={2}>
+    <Box {...(!noBorder ? { borderBottomWidth: '1px' } : {})} py={3} pr={2}>
       <Flex wrap="wrap">
         {tweet.profileImageUrl && (
           <Box pt={1} pr={3}>

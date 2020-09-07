@@ -80,7 +80,7 @@ module.exports = {
           { model: TwitterAccount, as: 'twitterAccount', include: { model: Team, as: 'team' } }
         ],
         order: [['publishedDate', 'DESC']],
-        limit: 20
+        limit: 10
       });
 
       return res.status(200).send({ payload });

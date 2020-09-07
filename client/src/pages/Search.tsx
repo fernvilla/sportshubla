@@ -26,8 +26,6 @@ interface SearchData {
 const Search = ({ location }: Props) => {
   const query = new URLSearchParams(location.search).get('q');
 
-  console.log({ query }, !isEmpty(query));
-
   const { response: results, isLoading: searching }: SearchData = useAxios({
     method: 'POST',
     url: '/api/search',

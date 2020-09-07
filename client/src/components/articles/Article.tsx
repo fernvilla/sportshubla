@@ -4,16 +4,16 @@ import { default as ArticleInterface } from './../../interfaces/article';
 import { formatDistanceToNow } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 
-type Props = { article: ArticleInterface; displayTeamLink?: boolean };
+type Props = { article: ArticleInterface; displayTeamLink?: boolean; noBorder?: boolean };
 
-const Article = ({ article, displayTeamLink = false }: Props) => {
+const Article = ({ article, displayTeamLink = false, noBorder = false }: Props) => {
   const formattedDate = formatDistanceToNow(new Date(article.publishedDate), {
     addSuffix: true,
     includeSeconds: true
   });
 
   return (
-    <Box borderBottomWidth="1px" py={4} pr={2}>
+    <Box {...(!noBorder ? { borderBottomWidth: '1px' } : {})} py={4} pr={2}>
       <Flex wrap="wrap">
         {article.image && (
           <Box pt={1} pr={4}>
@@ -53,7 +53,7 @@ const Article = ({ article, displayTeamLink = false }: Props) => {
           </Flex>
 
           {article.summary && (
-            <Text as="p" mt={2} color="gray.700">
+            <Text as="p" mt={2} color="gray.700" className="truncated-text">
               {article.summary}
             </Text>
           )}
