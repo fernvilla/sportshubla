@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import {
   Box,
   Flex,
-  // Menu,
-  // MenuButton,
-  // MenuList,
-  // MenuItem,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
   Image,
   PseudoBox,
   InputGroup,
@@ -13,7 +13,8 @@ import {
   Input,
   InputLeftElement,
   Link,
-  Heading
+  Heading,
+  Text
 } from '@chakra-ui/core';
 import { Team } from '../../interfaces/team';
 import { Link as RouterLink, RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
@@ -27,7 +28,8 @@ import {
   FaTwitterSquare,
   FaFacebookSquare,
   FaInstagramSquare,
-  FaLinkedin
+  FaLinkedin,
+  FaChevronDown
 } from 'react-icons/fa';
 import Sticky from 'react-stickynode';
 
@@ -54,9 +56,9 @@ const Navbar = (props: Props) => {
   const { teams, location } = props;
   const history = useHistory();
   const [searchQuery, setSearchQuery] = useState('');
-  // const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-  // const handleToggle = () => setShow(!show);
+  const handleToggle = () => setShow(!show);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value);
 
@@ -175,14 +177,7 @@ const Navbar = (props: Props) => {
 
       <Sticky enabled innerZ={1000}>
         <Box bg="brand" w="100%">
-          <Flex
-            color="white"
-            maxW={CONTENT_WRAPPER_WIDTH}
-            mx="auto"
-            alignItems="center"
-            px={3}
-            flexWrap="wrap"
-          >
+          <Flex color="white" maxW={CONTENT_WRAPPER_WIDTH} mx="auto" pl={3}>
             <RouterLink to="/">
               <PseudoBox
                 px={3}
@@ -198,49 +193,122 @@ const Navbar = (props: Props) => {
               </PseudoBox>
             </RouterLink>
 
-            {teams.map(team => {
-              const teamIsSelected = location.pathname === `/teams/${team.slug}`;
+            <Box display={{ sm: 'block', md: 'none' }}>
+              <Menu autoSelect={false}>
+                <MenuButton
+                  px={3}
+                  py={3}
+                  display="flex"
+                  alignItems="center"
+                  _focus={{ outline: 0, boxShadow: 'outline' }}
+                >
+                  Teams
+                  <Box pl={1} fontSize="10px" mb="-2px">
+                    <FaChevronDown />
+                  </Box>
+                </MenuButton>
 
-              return (
-                <RouterLink key={team.id} to={`/teams/${team.slug}`}>
+                <MenuList bg="brand">
+                  {teams.map(team => {
+                    const teamIsSelected = location.pathname === `/teams/${team.slug}`;
+
+                    return (
+                      <RouterLink key={team.id} to={`/teams/${team.slug}`}>
+                        <MenuItem
+                          _hover={{ borderColor: 'blue.700', bg: 'blue.700', color: 'blue.700' }}
+                          {...(teamIsSelected ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
+                        >
+                          {team.shortName}
+                        </MenuItem>
+                      </RouterLink>
+                    );
+                  })}
+                </MenuList>
+              </Menu>
+            </Box>
+
+            <Box
+              display={{ xs: 'none', md: 'flex' }}
+              width={{ sm: 'full', md: 'auto' }}
+              alignItems="center"
+              flexGrow={1}
+              flexWrap="wrap"
+            >
+              {teams.map(team => {
+                const teamIsSelected = location.pathname === `/teams/${team.slug}`;
+
+                return (
+                  <RouterLink key={team.id} to={`/teams/${team.slug}`}>
+                    <PseudoBox
+                      px={3}
+                      py={3}
+                      height="45px"
+                      display="flex"
+                      alignItems="center"
+                      _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
+                      {...(teamIsSelected ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
+                    >
+                      {team.shortName}
+                    </PseudoBox>
+                  </RouterLink>
+                );
+              })}
+            </Box>
+
+            <Box ml="auto">
+              <Flex>
+                <RouterLink to="/articles">
                   <PseudoBox
                     px={3}
                     py={3}
                     height="45px"
                     display="flex"
                     alignItems="center"
+                    color="gray.400"
                     _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
-                    {...(teamIsSelected ? { borderColor: 'blue.700', bg: 'blue.700' } : {})}
+                    {...(location.pathname === `/articles`
+                      ? { borderColor: 'blue.700', bg: 'blue.700' }
+                      : {})}
                   >
-                    {team.shortName}
+                    Articles
                   </PseudoBox>
                 </RouterLink>
-              );
-            })}
 
-            {/* <Box display={{ sm: show ? 'block' : 'none', md: 'block' }} mt={{ base: 4, md: 0 }}>
-            <Box>
-              {auth.isAuthenticated ? (
-                <Flex align="center">
-                  {auth.user.isAdmin && (
-                    <Box color="brand" pl={5}>
-                      <Link to="/admin">Admin</Link>
-                    </Box>
-                  )}
+                <RouterLink to="/videos">
+                  <PseudoBox
+                    px={3}
+                    py={3}
+                    height="45px"
+                    display="flex"
+                    alignItems="center"
+                    color="gray.400"
+                    _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
+                    {...(location.pathname === `/videos`
+                      ? { borderColor: 'blue.700', bg: 'blue.700' }
+                      : {})}
+                  >
+                    Videos
+                  </PseudoBox>
+                </RouterLink>
 
-                  <Box color="brand" pl={5}>
-                    <Link to="#" onClick={() => logoutUser()}>
-                      Logout
-                    </Link>
-                  </Box>
-                </Flex>
-              ) : (
-                <Box color="brand" pl={5}>
-                  <Link to="/login">Login</Link>
-                </Box>
-              )}
+                <RouterLink to="/tweets">
+                  <PseudoBox
+                    px={3}
+                    py={3}
+                    height="45px"
+                    display="flex"
+                    alignItems="center"
+                    color="gray.400"
+                    _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
+                    {...(location.pathname === `/tweets`
+                      ? { borderColor: 'blue.700', bg: 'blue.700' }
+                      : {})}
+                  >
+                    Tweets
+                  </PseudoBox>
+                </RouterLink>
+              </Flex>
             </Box>
-          </Box> */}
           </Flex>
         </Box>
       </Sticky>
