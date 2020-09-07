@@ -8,7 +8,8 @@ import {
   ModalOverlay,
   ModalContent,
   ModalCloseButton,
-  ModalBody
+  ModalBody,
+  PseudoBox
 } from '@chakra-ui/core';
 import { YoutubeVideo as YoutubeVideoInterface } from '../../interfaces/youtubeVideo';
 import YouTube from 'react-youtube';
@@ -62,7 +63,7 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
       <Box pos="relative">
         <Image src={video.thumbnail} ignoreFallback />
 
-        <Box
+        <PseudoBox
           color="white"
           bg="black"
           opacity={0.8}
@@ -71,13 +72,14 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
           bottom={0}
           minH="60px"
           w="100%"
+          _hover={{ opacity: 1, transition: 'opacity 0.5s ease' }}
         >
           {displayTeamLink && <Box display="inline">{video.youtubeAccount?.team?.shortName}: </Box>}
           <Box display="inline">{video.title}</Box> -{' '}
           <Box display="inline" color="gray.200" fontSize="xs" fontStyle="italic">
             {formattedDate}
           </Box>
-        </Box>
+        </PseudoBox>
       </Box>
     </Box>
   );
