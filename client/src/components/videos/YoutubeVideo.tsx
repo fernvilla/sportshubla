@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/core';
 import { YoutubeVideo as YoutubeVideoInterface } from '../../interfaces/youtubeVideo';
 import YouTube from 'react-youtube';
+import { formatDistanceToNow } from 'date-fns';
 
 type Props = {
   video: YoutubeVideoInterface;
@@ -28,12 +29,17 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
     }
   };
 
+  const formattedDate = formatDistanceToNow(new Date(video.publishedDate), {
+    addSuffix: true,
+    includeSeconds: true
+  });
+
   return (
     <Box
       {...(!noBorder ? { borderBottomWidth: '1px' } : {})}
       p={3}
       cursor="pointer"
-      minWidth={250}
+      minWidth={300}
       onClick={onOpen}
     >
       <Modal isOpen={isOpen} onClose={onClose} size="full" isCentered>
@@ -55,9 +61,23 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
 
       <Box pos="relative">
         <Image src={video.thumbnail} ignoreFallback />
-        <Text color="white" bg="black" opacity={0.8} p={2} pos="absolute" bottom={0}>
-          {video.title}
-        </Text>
+
+        <Box
+          color="white"
+          bg="black"
+          opacity={0.8}
+          p={2}
+          pos="absolute"
+          bottom={0}
+          minH="60px"
+          w="100%"
+        >
+          {displayTeamLink && <Box display="inline">{video.youtubeAccount?.team?.shortName}: </Box>}
+          <Box display="inline">{video.title}</Box> -{' '}
+          <Box display="inline" color="gray.200" fontSize="xs" fontStyle="italic">
+            {formattedDate}
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

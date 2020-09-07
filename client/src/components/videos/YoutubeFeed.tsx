@@ -19,7 +19,7 @@ type Props = {
 const YoutubeFeed = ({
   videos = [],
   isFetching = false,
-  videosPerPage = 5,
+  videosPerPage = 8,
   displayTeamLink = false,
   refetchData
 }: Props) => {
@@ -71,7 +71,7 @@ const YoutubeFeed = ({
         <Loader />
       ) : (
         <Box>
-          <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))">
+          <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))">
             {visibleTweets.map(video => (
               <YoutubeVideo key={video.id} video={video} displayTeamLink={displayTeamLink} />
             ))}
