@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const sendErrorEmail = require('../utils.js/emails').sendErrorEmail;
 const TwitterAccount = require('./../db/models').TwitterAccount;
 const Tweet = require('./../db/models').Tweet;
 const Twitter = require('twitter-lite');
@@ -55,6 +56,7 @@ const user = new Twitter({
         await Promise.all(data.map(createTweet));
       } catch (err) {
         console.error('fetchAndMapTweets err', err);
+        sendErrorEmail('Fetch Tweets error', err);
         throw new Error(err);
       }
     };
@@ -64,6 +66,7 @@ const user = new Twitter({
     db.sequelize.close();
   } catch (error) {
     console.error('main fetch tweets error(s)', error);
+    sendErrorEmail('Fetch Tweets error', err);
     db.sequelize.close();
   }
 })();

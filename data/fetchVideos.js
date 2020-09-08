@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const sendErrorEmail = require('../utils.js/emails').sendErrorEmail;
 const YoutubeAccount = require('./../db/models').YoutubeAccount;
 const YoutubeVideo = require('./../db/models').YoutubeVideo;
 const db = require('./../db/models');
@@ -42,6 +43,8 @@ const entities = new Entities();
         await Promise.all(data.items.map(createVideo));
       } catch (err) {
         console.error('fetchAndMapVideos err', err);
+        sendErrorEmail('Fetch Videos error', err);
+
         throw new Error(err);
       }
     };
@@ -51,6 +54,7 @@ const entities = new Entities();
     db.sequelize.close();
   } catch (error) {
     console.error('main fetch tweets error(s)', error);
+    sendErrorEmail('Fetch Videos error', err);
     db.sequelize.close();
   }
 })();

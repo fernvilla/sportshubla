@@ -1,5 +1,7 @@
+require('dotenv').config();
+
+const sendErrorEmail = require('../utils.js/emails').sendErrorEmail;
 const db = require('./../db/models');
-const NewsSource = require('./../db/models').NewsSource;
 const RssFeed = require('./../db/models').RssFeed;
 const Team = require('./../db/models').Team;
 const Article = require('./../db/models').Article;
@@ -27,6 +29,8 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
         const res = await fetch(rssFeed.url);
 
         if (res.status !== 200) {
+          sendErrorEmail('Bad RSS feed status code', { rssFeed, status: res.status });
+
           return await RssFeed.update(
             { lastStatusCode: res.status },
             { where: { id: rssFeed.id } }
@@ -57,6 +61,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
         await Promise.all(feed.items.map(createArticle));
       } catch (err) {
         console.error('fetchAndMapArticles err', err);
+        sendErrorEmail('Fetch Articles error', err);
         throw new Error(err);
       }
     };
@@ -66,6 +71,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
     db.sequelize.close();
   } catch (err) {
     console.error('main fetch articles error(s)', err);
+    sendErrorEmail('Fetch Articles error', err);
     db.sequelize.close();
   }
 })();
