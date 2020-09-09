@@ -56,11 +56,8 @@ const TweetsPreview = ({ tweets = [], isFetching = false, refetchData }: Props) 
             <Box marginBottom={-6}>
               <Flex justifyContent="flex-end" pb={3}>
                 <Link to="/tweets">
-                  <Flex color="blue.700" p={2} alignItems="center">
-                    <Text pr={2} mt="-1px">
-                      View all
-                    </Text>
-                    <FaAngleDoubleRight />
+                  <Flex color="blue.700" alignItems="center">
+                    <Text>View all</Text>
                   </Flex>
                 </Link>
               </Flex>

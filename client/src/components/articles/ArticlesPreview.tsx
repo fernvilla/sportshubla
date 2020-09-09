@@ -52,11 +52,8 @@ const ArticlesPreview = ({ refetchData, articles = [], isFetching = false }: Pro
             <Box marginBottom={-6}>
               <Flex justifyContent="flex-end" pb={3}>
                 <Link to="/articles">
-                  <Flex color="blue.700" p={2} alignItems="center">
-                    <Text pr={2} mt="-1px">
-                      View all
-                    </Text>
-                    <FaAngleDoubleRight />
+                  <Flex color="blue.700" alignItems="center">
+                    <Text>View all</Text>
                   </Flex>
                 </Link>
               </Flex>
