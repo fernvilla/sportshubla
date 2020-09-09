@@ -1,8 +1,19 @@
 import React from 'react';
-import { Box, Flex, Link, Image, Text } from '@chakra-ui/core';
+import {
+  Box,
+  Flex,
+  Link,
+  Image,
+  Text,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem
+} from '@chakra-ui/core';
 import { default as TweetInterface } from './../../interfaces/tweet';
 import { formatDistanceToNow } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
+import { FaRegComment, FaRetweet, FaRegHeart, FaEllipsisV } from 'react-icons/fa';
 
 type Props = {
   tweet: TweetInterface;
@@ -63,6 +74,61 @@ const Tweet = ({ tweet, displayTeamLink = false, noBorder = false }: Props) => {
               {formattedDate}
             </Box>
           </Flex>
+        </Box>
+
+        <Box color="blue.700" cursor="pointer" fontWeight="light">
+          <Menu autoSelect={false}>
+            <MenuButton p={2} mt={-2}>
+              <FaEllipsisV />
+            </MenuButton>
+
+            <MenuList placement="auto">
+              <MenuItem>
+                <Link
+                  href={`https://twitter.com/intent/tweet?in_reply_to=${tweet.tweetId}`}
+                  title="reply"
+                  isExternal
+                >
+                  <Flex alignItems="center">
+                    <FaRegComment />
+                    <Text as="span" pl={2}>
+                      Comment
+                    </Text>
+                  </Flex>
+                </Link>
+              </MenuItem>
+
+              <MenuItem>
+                <Link
+                  href={`https://twitter.com/intent/retweet?tweet_id=${tweet.tweetId}`}
+                  title="retweet"
+                  isExternal
+                >
+                  <Flex alignItems="center">
+                    <FaRetweet />
+                    <Text as="span" pl={2}>
+                      Retweet
+                    </Text>
+                  </Flex>
+                </Link>
+              </MenuItem>
+
+              <MenuItem>
+                <Link
+                  href={`https://twitter.com/intent/like?tweet_id=${tweet.tweetId}`}
+                  title="like"
+                  isExternal
+                >
+                  <Flex alignItems="center">
+                    <FaRegHeart />
+                    <Text as="span" pl={2}>
+                      Like
+                    </Text>
+                  </Flex>
+                </Link>
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </Box>
       </Flex>
     </Box>

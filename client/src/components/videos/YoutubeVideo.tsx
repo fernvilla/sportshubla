@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Box,
   Image,
-  Text,
   useDisclosure,
   Modal,
   ModalOverlay,

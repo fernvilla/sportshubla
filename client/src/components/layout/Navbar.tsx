@@ -13,8 +13,7 @@ import {
   Input,
   InputLeftElement,
   Link,
-  Heading,
-  Text
+  Heading
 } from '@chakra-ui/core';
 import { Team } from '../../interfaces/team';
 import { Link as RouterLink, RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
@@ -52,13 +51,10 @@ type Props = PropsFromRedux &
   };
 
 const Navbar = (props: Props) => {
-  // const { teams, auth, logoutUser } = props;
+  // const { teams, location, auth, logoutUser } = props;
   const { teams, location } = props;
   const history = useHistory();
   const [searchQuery, setSearchQuery] = useState('');
-  const [show, setShow] = useState(false);
-
-  const handleToggle = () => setShow(!show);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value);
 
