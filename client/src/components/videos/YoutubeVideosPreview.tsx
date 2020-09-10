@@ -51,7 +51,7 @@ const YoutubeVideosPreview = ({ videos = [], isFetching = false, refetchData }: 
             <Box marginBottom={-6}>
               <Flex justifyContent="flex-end" pb={3}>
                 <Link to="/videos">
-                  <Flex color="blue.700" alignItems="center">
+                  <Flex color="blue.700" p={1} alignItems="center">
                     <Text>View all</Text>
                   </Flex>
                 </Link>
