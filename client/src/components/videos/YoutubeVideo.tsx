@@ -60,7 +60,7 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
       </Modal>
 
       <Box pos="relative">
-        <Image src={video.thumbnail} ignoreFallback />
+        <Image src={video.thumbnail} ignoreFallback alt={video.title} title={video.title} />
 
         <PseudoBox
           color="white"
