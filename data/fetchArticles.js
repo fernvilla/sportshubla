@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const sendErrorEmail = require('../utils.js/emails').sendErrorEmail;
+const sendErrorEmail = require('../utils/emails').sendErrorEmail;
 const db = require('./../db/models');
 const RssFeed = require('./../db/models').RssFeed;
 const Team = require('./../db/models').Team;
@@ -29,7 +29,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
         const res = await fetch(rssFeed.url);
 
         if (res.status !== 200) {
-          sendErrorEmail('Bad RSS feed status code', { rssFeed, status: res.status });
+          sendErrorEmail('Bad RSS feed status code', { rssFeed: rssFeed.url, status: res.status });
 
           return await RssFeed.update(
             { lastStatusCode: res.status },

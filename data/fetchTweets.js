@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const sendErrorEmail = require('../utils.js/emails').sendErrorEmail;
+const sendErrorEmail = require('../utils/emails').sendErrorEmail;
 const TwitterAccount = require('./../db/models').TwitterAccount;
 const Tweet = require('./../db/models').Tweet;
 const Twitter = require('twitter-lite');

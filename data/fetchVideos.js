@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const sendErrorEmail = require('../utils.js/emails').sendErrorEmail;
+const sendErrorEmail = require('../utils/emails').sendErrorEmail;
 const YoutubeAccount = require('./../db/models').YoutubeAccount;
 const YoutubeVideo = require('./../db/models').YoutubeVideo;
 const db = require('./../db/models');
