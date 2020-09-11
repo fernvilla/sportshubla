@@ -78,7 +78,7 @@ const Tweet = ({ tweet, displayTeamLink = false, noBorder = false }: Props) => {
 
         <Box color="blue.700" cursor="pointer" fontWeight="light">
           <Menu autoSelect={false}>
-            <MenuButton p={2} mt={-2} mr={-3}>
+            <MenuButton p={2} ml={5} mt={-2}>
               <FaEllipsisV />
             </MenuButton>
 
