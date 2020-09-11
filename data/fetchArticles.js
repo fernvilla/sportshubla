@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const sendErrorEmail = require('../utils/emails').sendErrorEmail;
 const db = require('./../db/models');
-const RssFeed = require('./../db/models').RssFeed;
+const NewsFeed = require('./../db/models').NewsFeed;
 const Team = require('./../db/models').Team;
 const Article = require('./../db/models').Article;
 const Parser = require('rss-parser');
@@ -18,22 +18,25 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
   try {
     await db.sequelize.authenticate();
 
-    const feeds = await RssFeed.findAll({
+    const feeds = await NewsFeed.findAll({
       include: { model: Team, as: 'team' }
     });
 
-    const fetchAndMapArticles = async rssFeed => {
+    const fetchAndMapArticles = async newsFeed => {
       try {
-        if (!rssFeed.isActive) return;
+        if (!newsFeed.isActive) return;
 
-        const res = await fetch(rssFeed.url);
+        const res = await fetch(newsFeed.url);
 
         if (res.status !== 200) {
-          sendErrorEmail('Bad RSS feed status code', { rssFeed: rssFeed.url, status: res.status });
+          sendErrorEmail('Bad news feed status code', {
+            newsFeed: newsFeed.url,
+            status: res.status
+          });
 
-          return await RssFeed.update(
+          return await NewsFeed.update(
             { lastStatusCode: res.status },
-            { where: { id: rssFeed.id } }
+            { where: { id: newsFeed.id } }
           );
         }
 
@@ -45,7 +48,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
             image: article.enclosure ? getPathFromUrl(article.enclosure.url) : null,
             author: article.author,
             summary: entities.decode(article.content),
-            rssFeedId: rssFeed.id
+            newsFeedId: newsFeed.id
           };
 
           const [dbArticle, created] = await Article.findCreateFind({
@@ -56,7 +59,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
           if (created) console.log('article created', dbArticle.title);
         };
 
-        const feed = await parser.parseURL(rssFeed.url);
+        const feed = await parser.parseURL(newsFeed.url);
 
         await Promise.all(feed.items.map(createArticle));
       } catch (err) {

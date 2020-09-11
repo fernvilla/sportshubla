@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class NewsSource extends Model {
+  class TwitterAccountType extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,19 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      NewsSource.hasMany(models.NewsFeed, { foreignKey: 'newsSourceId', as: 'newsFeeds' });
+      TwitterAccountType.hasMany(models.TwitterAccount, {
+        foreignKey: 'twitterAccountTypeId',
+        as: 'twitterAccounts'
+      });
     }
   }
-  NewsSource.init(
+  TwitterAccountType.init(
     {
-      websiteUrl: DataTypes.STRING,
-      slug: DataTypes.STRING,
-      name: DataTypes.STRING
+      type: DataTypes.STRING
     },
     {
       sequelize,
-      modelName: 'NewsSource'
+      modelName: 'TwitterAccountType'
     }
   );
-  return NewsSource;
+  return TwitterAccountType;
 };

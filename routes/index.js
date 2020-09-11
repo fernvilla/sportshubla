@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.use('/articles', require('./articles'));
 router.use('/newssources', require('./newsSources'));
-router.use('/rssfeeds', require('./rssFeeds'));
+router.use('/newsfeeds', require('./newsFeeds'));
 router.use('/search', require('./search'));
 router.use('/teams', require('./teams'));
 router.use('/tweets', require('./tweets'));

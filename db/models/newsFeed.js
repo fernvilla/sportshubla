@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class RssFeed extends Model {
+  class NewsFeed extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,24 +9,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      RssFeed.belongsTo(models.NewsSource, { foreignKey: 'newsSourceId', as: 'newsSource' });
-      RssFeed.belongsTo(models.Team, { foreignKey: 'teamId', as: 'team' });
+      NewsFeed.belongsTo(models.NewsSource, { foreignKey: 'newsSourceId', as: 'newsSource' });
+      NewsFeed.belongsTo(models.Team, { foreignKey: 'teamId', as: 'team' });
+      NewsFeed.belongsTo(models.NewsFeedType, { foreignKey: 'newsFeedTypeId', as: 'newsFeedType' });
 
-      RssFeed.hasMany(models.Article, { foreignKey: 'rssFeedId', as: 'articles' });
+      NewsFeed.hasMany(models.Article, { foreignKey: 'newsFeedId', as: 'articles' });
     }
   }
-  RssFeed.init(
+  NewsFeed.init(
     {
       url: DataTypes.STRING,
       isActive: DataTypes.BOOLEAN,
       lastStatusCode: DataTypes.INTEGER,
       newsSourceId: DataTypes.INTEGER,
+      newsFeedTypeId: DataTypes.INTEGER,
       teamId: DataTypes.INTEGER
     },
     {
       sequelize,
-      modelName: 'RssFeed'
+      modelName: 'NewsFeed'
     }
   );
-  return RssFeed;
+  return NewsFeed;
 };

@@ -1,7 +1,7 @@
 import { Team } from './team';
 import { NewsSource } from './newsSource';
 
-export interface RssFeed {
+export interface NewsFeed {
   id: number;
   url: string;
   isActive: boolean;

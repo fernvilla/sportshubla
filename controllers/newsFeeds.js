@@ -1,11 +1,11 @@
-const RssFeed = require('./../db/models').RssFeed;
+const NewsFeed = require('./../db/models').NewsFeed;
 const NewsSource = require('./../db/models').NewsSource;
 const Team = require('./../db/models').Team;
 
 module.exports = {
   findAll: async (req, res) => {
     try {
-      const payload = await RssFeed.findAll({
+      const payload = await NewsFeed.findAll({
         include: {
           model: NewsSource,
           as: 'newsSource',
@@ -17,7 +17,7 @@ module.exports = {
     } catch (error) {
       return res.status(500).send({
         payload: [],
-        message: error.message || 'There was an error fetching rss feeds.'
+        message: error.message || 'There was an error fetching news feeds.'
       });
     }
   }

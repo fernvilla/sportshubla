@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       TwitterAccount.belongsTo(models.Team, { foreignKey: 'teamId', as: 'team' });
       TwitterAccount.belongsTo(models.NewsSource, { foreignKey: 'newsSourceId', as: 'newsSource' });
+      TwitterAccount.belongsTo(models.TwitterAccountType, {
+        foreignKey: 'twitterAccountTypeId',
+        as: 'twitterAccountType'
+      });
 
       TwitterAccount.hasMany(models.Tweet, { foreignKey: 'twitterAccountId', as: 'tweets' });
     }

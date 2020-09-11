@@ -1,4 +1,4 @@
-import { RssFeed } from './rssFeed';
+import { NewsFeed } from './newsFeed';
 
 export default interface Article {
   id: number;
@@ -9,7 +9,7 @@ export default interface Article {
   clicks: number;
   author: string;
   summary: string;
-  rssFeed: RssFeed;
+  newsFeed: NewsFeed;
 }
 
 export interface ArticleData {

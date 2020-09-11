@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const rssFeeds = require('./../controllers/rssFeeds');
+const newsFeeds = require('./../controllers/newsFeeds');
 
-router.get('/', rssFeeds.findAll);
+router.get('/', newsFeeds.findAll);
 
 module.exports = router;

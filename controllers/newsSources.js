@@ -1,11 +1,11 @@
 const NewsSource = require('./../db/models').NewsSource;
-const RssFeed = require('./../db/models').RssFeed;
+const NewsFeed = require('./../db/models').NewsFeed;
 
 module.exports = {
   findAll: async (req, res) => {
     try {
       const payload = await NewsSource.findAll({
-        include: { model: RssFeed, as: 'rssFeeds' }
+        include: { model: NewsFeed, as: 'newsFeeds' }
       });
 
       return res.status(200).send({ payload });

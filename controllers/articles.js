@@ -1,5 +1,5 @@
 const Article = require('./../db/models').Article;
-const RssFeed = require('./../db/models').RssFeed;
+const NewsFeed = require('./../db/models').NewsFeed;
 const Team = require('./../db/models').Team;
 const NewsSource = require('./../db/models').NewsSource;
 const { Op } = require('sequelize');
@@ -11,8 +11,8 @@ module.exports = {
       const payload = await Article.findAll({
         include: [
           {
-            model: RssFeed,
-            as: 'rssFeed',
+            model: NewsFeed,
+            as: 'newsFeed',
             include: [
               { model: Team, as: 'team' },
               { model: NewsSource, as: 'newsSource' }
@@ -36,8 +36,8 @@ module.exports = {
       const payload = await Article.findAll({
         include: [
           {
-            model: RssFeed,
-            as: 'rssFeed',
+            model: NewsFeed,
+            as: 'newsFeed',
             where: { teamId: req.params.id },
             include: [
               { model: Team, as: 'team' },
@@ -62,8 +62,8 @@ module.exports = {
       const payload = await Article.findAll({
         include: [
           {
-            model: RssFeed,
-            as: 'rssFeed',
+            model: NewsFeed,
+            as: 'newsFeed',
             include: [
               { model: Team, as: 'team' },
               { model: NewsSource, as: 'newsSource' }
@@ -92,8 +92,8 @@ module.exports = {
       const payload = await Article.findAll({
         include: [
           {
-            model: RssFeed,
-            as: 'rssFeed',
+            model: NewsFeed,
+            as: 'newsFeed',
             include: [
               { model: Team, as: 'team' },
               { model: NewsSource, as: 'newsSource' }
