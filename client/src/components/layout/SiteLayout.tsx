@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { Flex, Box } from '@chakra-ui/core';
 import { Team } from '../../interfaces/team';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 type Props = {
   teams: Team[];
@@ -18,6 +19,8 @@ const SiteLayout = (props: Props) => {
           <Navbar teams={teams} />
 
           {children}
+
+          <Footer />
         </Box>
       </Flex>
     </Box>
