@@ -13,7 +13,7 @@ const Article = ({ article, displayTeamLink = false, noBorder = false }: Props) 
   });
 
   return (
-    <Box {...(!noBorder ? { borderBottomWidth: '1px' } : {})} py={4} pr={2}>
+    <Box {...(!noBorder ? { borderBottomWidth: '1px' } : {})} p={3}>
       <Flex wrap="wrap">
         {article.image && (
           <Box pt={1} pr={4}>

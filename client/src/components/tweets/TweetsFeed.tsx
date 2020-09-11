@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, Flex, Heading, PseudoBox } from '@chakra-ui/core';
+import { Box, Flex, PseudoBox } from '@chakra-ui/core';
 import { default as TweetInterface } from './../../interfaces/tweet';
 import Tweet from './Tweet';
 import { calculateTotalPages } from './../../utils/feed';
 import ReactPaginate from 'react-paginate';
 import Loader from '../Loader';
 import { FaRedo, FaRegFrown } from 'react-icons/fa';
+import SectionHeader from '../SectionHeader';
 
 type Props = {
   tweets?: TweetInterface[];
@@ -47,10 +48,7 @@ const TweetsFeed = ({
   return (
     <Box bg="white" p={6} mb={5} boxShadow="sm" ref={ref}>
       <Flex justifyContent="space-between" alignItems="baseline">
-        <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
-          Tweets
-          <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
-        </Heading>
+        <SectionHeader title="Tweets" />
 
         {refetchData && (
           <PseudoBox

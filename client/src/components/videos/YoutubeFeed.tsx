@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { YoutubeVideo as YoutubeVideoInterface } from './../../interfaces/youtubeVideo';
-import { Box, Heading, Flex, PseudoBox, Grid } from '@chakra-ui/core';
+import { Box, Flex, PseudoBox, Grid } from '@chakra-ui/core';
 import Loader from '../Loader';
 import YoutubeVideo from './YoutubeVideo';
 import { calculateTotalPages } from '../../utils/feed';
 import ReactPaginate from 'react-paginate';
 import { useRef } from 'react';
 import { FaRedo, FaRegFrown } from 'react-icons/fa';
+import SectionHeader from '../SectionHeader';
 
 type Props = {
   videos?: YoutubeVideoInterface[];
@@ -48,10 +49,7 @@ const YoutubeFeed = ({
   return (
     <Box bg="white" p={6} boxShadow="sm" ref={ref}>
       <Flex justifyContent="space-between" alignItems="baseline">
-        <Heading as="h2" size="sm" textTransform="uppercase" mb={2} fontWeight="normal">
-          Videos
-          <Box borderBottomWidth="3px" width={10} borderBottomColor="gray.400"></Box>
-        </Heading>
+        <SectionHeader title="Videos" />
 
         {refetchData && (
           <PseudoBox

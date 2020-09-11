@@ -10,51 +10,31 @@ import TweetsPreview from '../components/tweets/TweetsPreview';
 import YoutubeVideosPreview from '../components/videos/YoutubeVideosPreview';
 
 const Home = () => {
-  const {
-    response: articles,
-    isLoading: fetchingArticles,
-    refetch: refetchArticles
-  }: ArticleData = useAxios({
+  const { response: articles, isLoading: fetchingArticles }: ArticleData = useAxios({
     url: '/api/articles/latest'
   });
 
-  const {
-    response: tweets,
-    isLoading: fetchingTweets,
-    refetch: refetchTweets
-  }: TweetData = useAxios({
+  const { response: tweets, isLoading: fetchingTweets }: TweetData = useAxios({
     url: '/api/tweets/latest'
   });
 
-  const {
-    response: videos,
-    isLoading: fetchingVideos,
-    refetch: refetchVideos
-  }: YoutubeVideoData = useAxios({
+  const { response: videos, isLoading: fetchingVideos }: YoutubeVideoData = useAxios({
     url: '/api/youtubevideos/latest'
   });
 
   return (
     <Box as="main" maxW={CONTENT_WRAPPER_WIDTH} mx="auto">
       <Box px={3} pt={5}>
-        <YoutubeVideosPreview
-          videos={videos}
-          isFetching={fetchingVideos}
-          refetchData={refetchVideos}
-        />
+        <YoutubeVideosPreview videos={videos} isFetching={fetchingVideos} />
       </Box>
 
       <Flex pt={5} flexWrap="wrap" flexDir="row">
         <Box px={3} flex="5" minWidth={400}>
-          <ArticlesPreview
-            articles={articles}
-            refetchData={refetchArticles}
-            isFetching={fetchingArticles}
-          />
+          <ArticlesPreview articles={articles} isFetching={fetchingArticles} />
         </Box>
 
         <Box px={3} flex="3" minWidth={400}>
-          <TweetsPreview tweets={tweets} isFetching={fetchingTweets} refetchData={refetchTweets} />
+          <TweetsPreview tweets={tweets} isFetching={fetchingTweets} />
         </Box>
       </Flex>
     </Box>

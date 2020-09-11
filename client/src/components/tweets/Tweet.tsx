@@ -28,7 +28,7 @@ const Tweet = ({ tweet, displayTeamLink = false, noBorder = false }: Props) => {
   });
 
   return (
-    <Box {...(!noBorder ? { borderBottomWidth: '1px' } : {})} py={3}>
+    <Box {...(!noBorder ? { borderBottomWidth: '1px' } : {})} p={3}>
       <Flex wrap="wrap">
         {tweet.profileImageUrl && (
           <Box pt={1} pr={3}>
@@ -78,7 +78,7 @@ const Tweet = ({ tweet, displayTeamLink = false, noBorder = false }: Props) => {
 
         <Box color="blue.700" cursor="pointer" fontWeight="light">
           <Menu autoSelect={false}>
-            <MenuButton p={2} ml={5} mt={-2}>
+            <MenuButton p={1} ml={5} mt={-2} mr={-2}>
               <FaEllipsisV />
             </MenuButton>
 
