@@ -101,25 +101,25 @@ const Navbar = (props: Props) => {
 
           <Box flex="0 1 260px">
             <Flex fontSize="2xl" color="blue.700" mb={3} justifyContent="flex-end">
-              <Link href="https://twitter.com/SportsHubLA" isExternal>
+              <Link href="https://twitter.com/SportsHubLA" isExternal title="Twitter">
                 <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
                   <FaTwitterSquare />
                 </PseudoBox>
               </Link>
 
-              <Link href="https://www.facebook.com/sportshubla" isExternal>
+              <Link href="https://www.facebook.com/sportshubla" isExternal title="Facebook">
                 <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
                   <FaFacebookSquare />
                 </PseudoBox>
               </Link>
 
-              <Link href="https://www.instagram.com/sportshubla" isExternal>
+              <Link href="https://www.instagram.com/sportshubla" isExternal title="Instagram">
                 <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
                   <FaInstagramSquare />
                 </PseudoBox>
               </Link>
 
-              <Link href="https://www.linkedin.com/company/sportshubla" isExternal>
+              <Link href="https://www.linkedin.com/company/sportshubla" isExternal title="Linkedin">
                 <PseudoBox mr={2} _hover={{ color: 'blue.500' }} transition="color 0.5s ease">
                   <FaLinkedin />
                 </PseudoBox>
