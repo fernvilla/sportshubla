@@ -42,7 +42,7 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
       minWidth={300}
       onClick={onOpen}
     >
-      <Modal isOpen={isOpen} onClose={onClose} size="full" isCentered>
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} size="full" isCentered>
         <ModalOverlay />
 
         <ModalContent background="transparent" boxShadow="none" alignItems="center">
