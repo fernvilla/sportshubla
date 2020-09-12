@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      accountName: {
+      name: {
         unique: true,
         type: Sequelize.STRING
       },

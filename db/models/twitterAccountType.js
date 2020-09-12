@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   TwitterAccountType.init(
     {
-      type: DataTypes.STRING
+      name: DataTypes.STRING
     },
     {
       sequelize,

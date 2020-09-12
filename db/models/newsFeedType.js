@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   NewsFeedType.init(
     {
-      type: DataTypes.STRING
+      name: DataTypes.STRING
     },
     {
       sequelize,

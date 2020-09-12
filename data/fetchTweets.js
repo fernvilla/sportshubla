@@ -24,7 +24,7 @@ const user = new Twitter({
     const fetchAndMapTweets = async account => {
       try {
         const data = await app.get('statuses/user_timeline', {
-          screen_name: account.accountName,
+          screen_name: account.name,
           include_rts: true,
           exclude_replies: true,
           count: 15
@@ -55,18 +55,16 @@ const user = new Twitter({
 
         await Promise.all(data.map(createTweet));
       } catch (err) {
-        console.error('fetchAndMapTweets err', err);
-        sendErrorEmail('Fetch Tweets error', err);
-        throw new Error(err);
+        return err;
       }
     };
 
     await Promise.all(accounts.map(account => fetchAndMapTweets(account)));
 
     db.sequelize.close();
-  } catch (error) {
-    console.error('main fetch tweets error(s)', error);
-    sendErrorEmail('Fetch Tweets error', err);
+  } catch (err) {
+    console.error('main fetch tweets error(s)', err);
+    sendErrorEmail('Fetch Tweets error', { err });
     db.sequelize.close();
   }
 })();

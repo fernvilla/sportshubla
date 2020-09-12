@@ -5,8 +5,10 @@ const db = require('./../db/models');
 const NewsFeed = require('./../db/models').NewsFeed;
 const Team = require('./../db/models').Team;
 const Article = require('./../db/models').Article;
+const NewsFeedType = require('./../db/models').NewsFeedType;
 const Parser = require('rss-parser');
 const fetch = require('isomorphic-unfetch');
+const { newsFeedTypes } = require('../constants');
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 
@@ -19,23 +21,31 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
     await db.sequelize.authenticate();
 
     const feeds = await NewsFeed.findAll({
-      include: { model: Team, as: 'team' }
+      include: [
+        { model: Team, as: 'team' },
+        {
+          model: NewsFeedType,
+          as: 'newsFeedType',
+          where: {
+            name: newsFeedTypes.TYPE_RSS
+          }
+        }
+      ],
+      where: { isActive: true }
     });
 
     const fetchAndMapArticles = async newsFeed => {
       try {
-        if (!newsFeed.isActive) return;
-
         const res = await fetch(newsFeed.url);
 
         if (res.status !== 200) {
           sendErrorEmail('Bad news feed status code', {
-            newsFeed: newsFeed.url,
-            status: res.status
+            url: newsFeed.url,
+            statusCode: res.status
           });
 
           return await NewsFeed.update(
-            { lastStatusCode: res.status },
+            { lastStatusCode: res.status, isActive: false },
             { where: { id: newsFeed.id } }
           );
         }
@@ -63,9 +73,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
 
         await Promise.all(feed.items.map(createArticle));
       } catch (err) {
-        console.error('fetchAndMapArticles err', err);
-        sendErrorEmail('Fetch Articles error', err);
-        throw new Error(err);
+        return err;
       }
     };
 
@@ -74,7 +82,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
     db.sequelize.close();
   } catch (err) {
     console.error('main fetch articles error(s)', err);
-    sendErrorEmail('Fetch Articles error', err);
+    sendErrorEmail('Fetch Articles error', { err });
     db.sequelize.close();
   }
 })();

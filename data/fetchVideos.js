@@ -42,19 +42,16 @@ const entities = new Entities();
 
         await Promise.all(data.items.map(createVideo));
       } catch (err) {
-        console.error('fetchAndMapVideos err', err);
-        sendErrorEmail('Fetch Videos error', err);
-
-        throw new Error(err);
+        return err;
       }
     };
 
     await Promise.all(accounts.map(account => fetchAndMapVideos(account)));
 
     db.sequelize.close();
-  } catch (error) {
-    console.error('main fetch tweets error(s)', error);
-    sendErrorEmail('Fetch Videos error', err);
+  } catch (err) {
+    console.error('main fetch tweets error(s)', err);
+    sendErrorEmail('Fetch Videos error', { err });
     db.sequelize.close();
   }
 })();
