@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/core';
+import { Box, Text } from '@chakra-ui/core';
 import React from 'react';
 import { CONTENT_WRAPPER_WIDTH } from '../../globals/constants';
 

@@ -8,7 +8,8 @@
     "bin/www",
     "db/**/*.js",
     "routes/**/*.js",
-    "controllers/**/*.js"
+    "controllers/**/*.js",
+    "admin/**/*.js"
   ],
   "env": {
     "NODE_ENV": "development"
