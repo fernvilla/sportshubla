@@ -1,7 +1,7 @@
 import React from 'react';
 import { default as ArticleInterface } from '../../interfaces/article';
-import { Box, Flex, PseudoBox, Text } from '@chakra-ui/core';
-import { FaRedo, FaRegFrown } from 'react-icons/fa';
+import { Box, Flex, Text } from '@chakra-ui/core';
+import { FaRegFrown } from 'react-icons/fa';
 import Loader from '../Loader';
 import Article from './Article';
 import { Link } from 'react-router-dom';

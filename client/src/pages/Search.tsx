@@ -49,7 +49,11 @@ const Search = ({ location }: Props) => {
         </Box>
       </Box>
 
-      {searching ? <Loader /> : <FeedLayout articles={articles} tweets={tweets} videos={videos} />}
+      {searching ? (
+        <Loader />
+      ) : (
+        <FeedLayout articles={articles} tweets={tweets} videos={videos} displayTeamLink />
+      )}
     </Box>
   );
 };
