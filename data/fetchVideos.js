@@ -14,10 +14,18 @@ const entities = new Entities();
 
     const accounts = await YoutubeAccount.findAll();
 
+    const startDate = new Date();
+    startDate.setHours(0, 0, 0, 0);
+    const startDateString = encodeURIComponent(startDate.toISOString());
+
+    const endDate = new Date();
+    endDate.setHours(23, 59, 59, 999);
+    const endDateString = encodeURIComponent(endDate.toISOString());
+
     const fetchAndMapVideos = async account => {
       try {
         const res = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${account.channelId}&maxResults=20&order=date&key=${process.env.YOUTUBE_API_KEY}`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${account.channelId}&order=date&publishedAfter=${startDateString}&publishedBefore=${endDateString}&type=video&key=${process.env.YOUTUBE_API_KEY}`
         );
         const data = await res.json();
 
