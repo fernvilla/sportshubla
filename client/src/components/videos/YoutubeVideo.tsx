@@ -25,7 +25,10 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
   const opts: any = {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
-      autoplay: 1
+      autoplay: 0,
+      enablejsapi: 1,
+      origin: 'https://www.sportshub.la',
+      rel: 1
     }
   };
 
@@ -53,7 +56,7 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
               videoId={video.videoId}
               opts={opts}
               containerClassName="youtubeContainer"
-              onError={props => console.error('error', props)}
+              onError={error => console.error('error', error)}
             />
           </ModalBody>
         </ModalContent>
