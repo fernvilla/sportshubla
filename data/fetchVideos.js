@@ -5,7 +5,9 @@ const YoutubeAccount = require('./../db/models').YoutubeAccount;
 const YoutubeVideo = require('./../db/models').YoutubeVideo;
 const db = require('./../db/models');
 const fetch = require('isomorphic-unfetch');
+const differenceInDays = require('date-fns').differenceInDays;
 const Entities = require('html-entities').AllHtmlEntities;
+
 const entities = new Entities();
 
 (async () => {
@@ -31,10 +33,15 @@ const entities = new Entities();
 
         const createVideo = async video => {
           const { id, snippet } = video;
+
+          const publishedDate = snippet.publishedAt || new Date();
+
+          if (differenceInDays(new Date(publishedDate), new Date()) < -1) return;
+
           const newVideo = {
             title: entities.decode(snippet.title),
             youtubeAccountId: account.id,
-            publishedDate: snippet.publishedAt || new Date(),
+            publishedDate,
             videoId: id.videoId,
             description: entities.decode(snippet.description),
             thumbnail: snippet.thumbnails.high.url

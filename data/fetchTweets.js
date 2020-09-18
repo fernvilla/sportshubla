@@ -5,7 +5,9 @@ const TwitterAccount = require('./../db/models').TwitterAccount;
 const Tweet = require('./../db/models').Tweet;
 const Twitter = require('twitter-lite');
 const db = require('./../db/models');
+const differenceInDays = require('date-fns').differenceInDays;
 const Entities = require('html-entities').AllHtmlEntities;
+
 const entities = new Entities();
 
 const user = new Twitter({
@@ -31,11 +33,15 @@ const user = new Twitter({
         });
 
         const createTweet = async tweet => {
+          const publishedDate = tweet.created_at || new Date();
+
+          if (differenceInDays(new Date(publishedDate), new Date()) < -1) return;
+
           const newTweet = {
             twitterAccountId: account.id,
             text: entities.decode(tweet.text),
             tweetId: tweet.id_str,
-            publishedDate: tweet.created_at || new Date(),
+            publishedDate,
             screenName: tweet.user.screen_name,
             name: tweet.user.name,
             profileImageUrl: tweet.user.profile_image_url_https,
