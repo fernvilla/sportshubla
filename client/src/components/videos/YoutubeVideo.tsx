@@ -15,13 +15,12 @@ import { YoutubeVideo as YoutubeVideoInterface } from '../../interfaces/youtubeV
 // import YouTube from 'react-youtube';
 import { formatDistanceToNow } from 'date-fns';
 
-type Props = {
+interface Props {
   video: YoutubeVideoInterface;
   displayTeamLink?: boolean;
-  noBorder?: boolean;
-};
+}
 
-const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Props) => {
+const YoutubeVideo = ({ video, displayTeamLink = false }: Props) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
   // const opts: any = {
   //   playerVars: {
@@ -50,10 +49,9 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
 
   return (
     <Box
-      {...(!noBorder ? { borderBottomWidth: '1px' } : {})}
       p={3}
       cursor="pointer"
-      minWidth={300}
+      minWidth={250}
       // onClick={onOpen}
     >
       {/* <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} size="full" isCentered>
@@ -74,29 +72,34 @@ const YoutubeVideo = ({ video, noBorder = false, displayTeamLink = false }: Prop
       </Modal> */}
 
       <Link isExternal href={`https://www.youtube.com/watch?v=${video.videoId}`}>
-        <Box pos="relative">
+        <PseudoBox pos="relative" _hover={{ outline: '2px solid #1e4e8c' }}>
           <Image src={video.thumbnail} ignoreFallback alt={video.title} title={video.title} />
 
-          <PseudoBox
+          <Box
             color="white"
             bg="black"
-            opacity={0.8}
             p={2}
             pos="absolute"
             bottom={0}
             minH="60px"
             w="100%"
-            _hover={{ opacity: 1, transition: 'opacity 0.5s ease' }}
+            lineHeight="shorter"
           >
             {displayTeamLink && (
               <Box display="inline">{video.youtubeAccount?.team?.shortName}: </Box>
             )}
             <Box display="inline">{video.title}</Box> -{' '}
-            <Box display="inline" color="gray.200" fontSize="xs" fontStyle="italic">
+            <Box
+              display="inline"
+              color="gray.200"
+              fontSize="xs"
+              fontStyle="italic"
+              letterSpacing="tight"
+            >
               {formattedDate}
             </Box>
-          </PseudoBox>
-        </Box>
+          </Box>
+        </PseudoBox>
       </Link>
     </Box>
   );

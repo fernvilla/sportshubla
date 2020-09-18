@@ -23,18 +23,13 @@ const TweetsPreview = ({ tweets = [], isFetching = false }: Props) => {
         <>
           <Box overflow="auto">
             {tweets.map((tweet, i) => (
-              <Tweet
-                key={tweet.id}
-                tweet={tweet}
-                displayTeamLink
-                noBorder={i === tweets.length - 1}
-              />
+              <Tweet key={tweet.id} tweet={tweet} displayTeamLink />
             ))}
           </Box>
 
           {!!tweets.length ? (
-            <Box marginBottom={-6}>
-              <Flex justifyContent="flex-end" pb={3}>
+            <Box mb={-6}>
+              <Flex justifyContent="flex-end" py={3}>
                 <Link to="/tweets">
                   <Flex color="blue.700" p={1} alignItems="center">
                     <Text>View all</Text>

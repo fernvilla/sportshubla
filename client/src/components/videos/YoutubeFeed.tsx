@@ -25,16 +25,16 @@ const YoutubeFeed = ({
   refetchData
 }: Props) => {
   const [page, setPage] = useState(0);
-  const [visibleTweets, setVisibleTweets] = useState(videos);
+  const [visibleVideos, setVisibleVideos] = useState(videos);
   const totalPages = calculateTotalPages(videos.length, videosPerPage);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!videos || !videos.length) return setVisibleTweets([]);
+    if (!videos || !videos.length) return setVisibleVideos([]);
 
     const pagedTweets = videos.slice(page * videosPerPage, (page + 1) * videosPerPage);
 
-    setVisibleTweets(pagedTweets);
+    setVisibleVideos(pagedTweets);
   }, [page, videos, videosPerPage]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
@@ -69,8 +69,8 @@ const YoutubeFeed = ({
         <Loader />
       ) : (
         <Box>
-          <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))">
-            {visibleTweets.map(video => (
+          <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))">
+            {visibleVideos.map(video => (
               <YoutubeVideo key={video.id} video={video} displayTeamLink={displayTeamLink} />
             ))}
           </Grid>

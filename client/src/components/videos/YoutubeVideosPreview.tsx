@@ -1,6 +1,6 @@
 import React from 'react';
 import { YoutubeVideo as YoutubeVideoInterface } from './../../interfaces/youtubeVideo';
-import { Box, Flex, Text } from '@chakra-ui/core';
+import { Box, Flex, Grid, Text } from '@chakra-ui/core';
 import Loader from '../Loader';
 import YoutubeVideo from './YoutubeVideo';
 import { FaRegFrown } from 'react-icons/fa';
@@ -21,15 +21,15 @@ const YoutubeVideosPreview = ({ videos = [], isFetching = false }: Props) => {
         <Loader />
       ) : (
         <Box>
-          <Flex overflow="auto">
+          <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))">
             {videos.map(video => (
-              <YoutubeVideo key={video.id} video={video} displayTeamLink noBorder />
+              <YoutubeVideo key={video.id} video={video} displayTeamLink />
             ))}
-          </Flex>
+          </Grid>
 
           {!!videos.length ? (
-            <Box marginBottom={-6}>
-              <Flex justifyContent="flex-end" pb={3}>
+            <Box mb={-6}>
+              <Flex justifyContent="flex-end" py={3}>
                 <Link to="/videos">
                   <Flex color="blue.700" p={1} alignItems="center">
                     <Text>View all</Text>

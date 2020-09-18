@@ -22,17 +22,12 @@ const ArticlesPreview = ({ articles = [], isFetching = false }: Props) => {
       ) : (
         <>
           {articles.map((article, i) => (
-            <Article
-              key={article.id}
-              article={article}
-              displayTeamLink
-              noBorder={i === articles.length - 1}
-            />
+            <Article key={article.id} article={article} displayTeamLink />
           ))}
 
           {!!articles.length ? (
-            <Box marginBottom={-6}>
-              <Flex justifyContent="flex-end" pb={3}>
+            <Box mb={-6}>
+              <Flex justifyContent="flex-end" py={3}>
                 <Link to="/articles">
                   <Flex color="blue.700" p={1} alignItems="center">
                     <Text>View all</Text>
