@@ -9,7 +9,7 @@ const { Op } = require('sequelize');
     const videos = await YoutubeVideo.findAll({
       where: {
         publishedDate: {
-          [Op.lte]: db.sequelize.literal("NOW() - INTERVAL '30d'")
+          [Op.lte]: db.sequelize.literal("NOW() - INTERVAL '14d'")
         }
       }
     });
