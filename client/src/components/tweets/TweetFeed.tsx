@@ -1,43 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { YoutubeVideo as YoutubeVideoInterface } from './../../interfaces/youtubeVideo';
-import { Box, Flex, Text, Grid } from '@chakra-ui/core';
-import Loader from '../Loader';
-import YoutubeVideo from './YoutubeVideo';
-import { calculateTotalPages } from '../../utils/feed';
+import React, { useState, useEffect, useRef } from 'react';
+import { Box, Flex, Text } from '@chakra-ui/core';
+import { default as TweetInterface } from './../../interfaces/tweet';
+import Tweet from './Tweet';
+import { calculateTotalPages } from './../../utils/feed';
 import ReactPaginate from 'react-paginate';
-import { useRef } from 'react';
+import Loader from '../Loader';
 import { FaRegFrown } from 'react-icons/fa';
 import SectionHeader from '../SectionHeader';
 import { Link } from 'react-router-dom';
 import Card from '../Card';
 
 type Props = {
-  videos?: YoutubeVideoInterface[];
+  tweets?: TweetInterface[];
   isFetching: Boolean;
-  videosPerPage?: number;
+  tweetsPerPage?: number;
   displayTeamLink?: boolean;
   isPreview?: boolean;
 };
 
-const YoutubeFeed = ({
-  videos = [],
+const TweetFeed = ({
+  tweets = [],
   isFetching = false,
-  videosPerPage = 8,
+  tweetsPerPage = 10,
   displayTeamLink = false,
   isPreview = false
 }: Props) => {
   const [page, setPage] = useState(0);
-  const [visibleVideos, setVisibleVideos] = useState(videos);
-  const totalPages = calculateTotalPages(videos.length, videosPerPage);
+  const [visibleTweets, setVisibleTweets] = useState(tweets);
+  const totalPages = calculateTotalPages(tweets.length, tweetsPerPage);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!videos || !videos.length) return setVisibleVideos([]);
+    if (!tweets || !tweets.length) return setVisibleTweets([]);
 
-    const pagedTweets = videos.slice(page * videosPerPage, (page + 1) * videosPerPage);
+    const pagedTweets = tweets.slice(page * tweetsPerPage, (page + 1) * tweetsPerPage);
 
-    setVisibleVideos(pagedTweets);
-  }, [page, videos, videosPerPage]);
+    setVisibleTweets(pagedTweets);
+  }, [page, tweets, tweetsPerPage]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
     scrollTo();
@@ -50,24 +49,24 @@ const YoutubeFeed = ({
 
   return (
     <>
-      <SectionHeader title="Videos" />
+      <SectionHeader title="Tweets" />
 
       <Box ref={ref}>
         {isFetching ? (
           <Loader />
         ) : (
           <Card mb={4}>
-            <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))">
-              {visibleVideos.map(video => (
-                <YoutubeVideo key={video.id} video={video} displayTeamLink={displayTeamLink} />
+            <Box overflow="auto">
+              {visibleTweets.map((tweet: TweetInterface) => (
+                <Tweet key={tweet.id} tweet={tweet} displayTeamLink={displayTeamLink} />
               ))}
-            </Grid>
+            </Box>
 
-            {!!videos.length ? (
+            {!!tweets.length ? (
               <Box marginBottom={-6}>
                 <Flex justifyContent="flex-end">
                   {isPreview ? (
-                    <Link to="/videos">
+                    <Link to="/tweets">
                       <Flex color="blue.700" my={4} p={1} alignItems="center">
                         <Text>View all</Text>
                       </Flex>
@@ -85,12 +84,12 @@ const YoutubeFeed = ({
                 </Flex>
               </Box>
             ) : (
-              <Flex justifyContent="center" p={5}>
-                <Box>
+              <Flex justifyContent="center" padding={5}>
+                <Box textAlign="center">
                   <Flex justifyContent="center" fontSize="2xl">
                     <FaRegFrown />
                   </Flex>
-                  No Videos Available
+                  No Tweets Available
                 </Box>
               </Flex>
             )}
@@ -101,4 +100,4 @@ const YoutubeFeed = ({
   );
 };
 
-export default YoutubeFeed;
+export default TweetFeed;

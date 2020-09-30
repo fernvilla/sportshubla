@@ -1,62 +1,61 @@
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/core';
-import ArticlesFeed from './../articles/ArticlesFeed';
-import TweetsFeed from './../tweets/TweetsFeed';
 import YoutubeFeed from './../videos/YoutubeFeed';
 import Article from '../../interfaces/article';
 import Tweet from '../../interfaces/tweet';
 import { YoutubeVideo } from '../../interfaces/youtubeVideo';
 import { CONTENT_WRAPPER_WIDTH } from '../../globals/constants';
+import ArticleFeed from '../articles/ArticleFeed';
+import TweetFeed from '../tweets/TweetFeed';
 
 interface Props {
   articles: Article[];
   fetchingArticles?: boolean;
-  refetchArticles?: () => void;
   tweets: Tweet[];
   fetchingTweets?: boolean;
-  refetchTweets?: () => void;
   videos: YoutubeVideo[];
   fetchingVideos?: boolean;
-  refetchVideos?: () => void;
   displayTeamLink?: boolean;
+  isPreview?: boolean;
 }
 
 const FeedLayout = (props: Props) => {
   const {
     articles = [],
     fetchingArticles = false,
-    refetchArticles,
     tweets = [],
     fetchingTweets = false,
-    refetchTweets,
     videos = [],
     fetchingVideos = false,
-    refetchVideos,
-    displayTeamLink
+    displayTeamLink,
+    isPreview = false
   } = props;
 
   return (
-    <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto">
-      <Box px={3} pt={5}>
-        <YoutubeFeed videos={videos} isFetching={fetchingVideos} refetchData={refetchVideos} />
-      </Box>
-
-      <Flex pt={5} flexWrap="wrap" flexDir="row">
-        <Box px={3} flex="5" minWidth={400}>
-          <ArticlesFeed
+    <Box as="main" maxW={CONTENT_WRAPPER_WIDTH} mx="auto" pt={5}>
+      <Flex flexWrap="wrap" flexDir="row">
+        <Box mx={3} flex="5" minWidth={400}>
+          <ArticleFeed
             articles={articles}
             isFetching={fetchingArticles}
             displayTeamLink={displayTeamLink}
-            refetchData={refetchArticles}
+            isPreview={isPreview}
           />
         </Box>
 
-        <Box px={3} flex="3" minWidth={400}>
-          <TweetsFeed
+        <Box mx={3} flex="3">
+          <TweetFeed
             tweets={tweets}
             isFetching={fetchingTweets}
             displayTeamLink={displayTeamLink}
-            refetchData={refetchTweets}
+            isPreview={isPreview}
+          />
+
+          <YoutubeFeed
+            videos={videos}
+            isFetching={fetchingVideos}
+            displayTeamLink={displayTeamLink}
+            isPreview={isPreview}
           />
         </Box>
       </Flex>

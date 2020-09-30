@@ -24,31 +24,19 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
     trigger: !!slug
   });
 
-  const {
-    response: tweets,
-    isLoading: fetchingTweets,
-    refetch: refetchTweets
-  }: TweetData = useAxios({
+  const { response: tweets, isLoading: fetchingTweets }: TweetData = useAxios({
     url: `/api/tweets/team/id/${team?.id}`,
     dependency: team?.id,
     trigger: !!team?.id
   });
 
-  const {
-    response: articles,
-    isLoading: fetchingArticles,
-    refetch: refetchArticles
-  }: ArticleData = useAxios({
+  const { response: articles, isLoading: fetchingArticles }: ArticleData = useAxios({
     url: `/api/articles/team/id/${team?.id}`,
     dependency: team?.id,
     trigger: !!team?.id
   });
 
-  const {
-    response: videos,
-    isLoading: fetchingVideos,
-    refetch: refetchVideos
-  }: YoutubeVideoData = useAxios({
+  const { response: videos, isLoading: fetchingVideos }: YoutubeVideoData = useAxios({
     url: `/api/youtubevideos/team/id/${team?.id}`,
     dependency: team?.id,
     trigger: !!team?.id
@@ -74,13 +62,10 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
         <FeedLayout
           articles={articles}
           fetchingArticles={fetchingArticles}
-          refetchArticles={refetchArticles}
           tweets={tweets}
           fetchingTweets={fetchingTweets}
-          refetchTweets={refetchTweets}
           videos={videos}
           fetchingVideos={fetchingVideos}
-          refetchVideos={refetchVideos}
         />
       )}
     </Box>

@@ -33,7 +33,7 @@ body {
       line-height: 1.42857143;
       text-decoration: none;
       color: #337ab7;
-      background-color: #fff;
+      background-color: transparent;
       border-radius: 5px;
       margin-left: -1px;
       outline: none;
@@ -43,7 +43,7 @@ body {
       color: #6c757d;
       pointer-events: none;
       cursor: auto;
-      background-color: #fff;
+      background-color: inherit;
       border-color: #dee2e6;
     }
 

@@ -80,7 +80,7 @@ const Navbar = (props: Props) => {
                   alt="logo"
                   title="logo"
                   ignoreFallback
-                  height={100}
+                  height={75}
                 />
               </RouterLink>
             </Box>
@@ -138,36 +138,6 @@ const Navbar = (props: Props) => {
               />
             </InputGroup>
           </Box>
-
-          {/* <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>
-            <svg fill="brand" width="12px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <title>Menu</title>
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
-          </Box>
-
-          <Box
-            display={{ xs: show ? 'block' : 'none', sm: show ? 'block' : 'none' }}
-            width={{ sm: 'full', md: 'auto' }}
-            alignItems="center"
-            flexGrow={1}
-          >
-            <Menu>
-              <MenuButton>Teams</MenuButton>
-
-              <MenuList>
-                {teams.map(team => {
-                  // const teamIsSelected = location.pathname === `/teams/${team.slug}`;
-
-                  return (
-                    <Link key={team.id} to={`/teams/${team.slug}`}>
-                      <MenuItem>{team.shortName}</MenuItem>
-                    </Link>
-                  );
-                })}
-              </MenuList>
-            </Menu>
-          </Box>*/}
         </Flex>
       </Box>
 
@@ -263,7 +233,7 @@ const Navbar = (props: Props) => {
                     color="gray.400"
                     _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
                     {...(location.pathname === `/articles`
-                      ? { borderColor: 'blue.700', bg: 'blue.700' }
+                      ? { borderColor: 'blue.700', bg: 'blue.700', color: '#fff' }
                       : {})}
                   >
                     Articles
@@ -280,7 +250,7 @@ const Navbar = (props: Props) => {
                     color="gray.400"
                     _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
                     {...(location.pathname === `/videos`
-                      ? { borderColor: 'blue.700', bg: 'blue.700' }
+                      ? { borderColor: 'blue.700', bg: 'blue.700', color: '#fff' }
                       : {})}
                   >
                     Videos
@@ -297,7 +267,7 @@ const Navbar = (props: Props) => {
                     color="gray.400"
                     _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
                     {...(location.pathname === `/tweets`
-                      ? { borderColor: 'blue.700', bg: 'blue.700' }
+                      ? { borderColor: 'blue.700', bg: 'blue.700', color: '#fff' }
                       : {})}
                   >
                     Tweets

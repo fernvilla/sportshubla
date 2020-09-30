@@ -51,7 +51,7 @@ const YoutubeVideo = ({ video, displayTeamLink = false }: Props) => {
     <Box
       p={3}
       cursor="pointer"
-      minWidth={250}
+      minWidth={200}
       // onClick={onOpen}
     >
       {/* <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} size="full" isCentered>
@@ -73,6 +73,8 @@ const YoutubeVideo = ({ video, displayTeamLink = false }: Props) => {
 
       <Link isExternal href={`https://www.youtube.com/watch?v=${video.videoId}`}>
         <PseudoBox pos="relative" _hover={{ outline: '2px solid #1e4e8c' }}>
+          {/* {displayTeamLink && <Box display="inline">{video.youtubeAccount?.team?.shortName}: </Box>} */}
+
           <Image src={video.thumbnail} ignoreFallback alt={video.title} title={video.title} />
 
           <Box
@@ -85,10 +87,7 @@ const YoutubeVideo = ({ video, displayTeamLink = false }: Props) => {
             w="100%"
             lineHeight="shorter"
           >
-            {displayTeamLink && (
-              <Box display="inline">{video.youtubeAccount?.team?.shortName}: </Box>
-            )}
-            <Box display="inline">{video.title}</Box> -{' '}
+            <Box className="truncated-text">{video.title}</Box>
             <Box
               display="inline"
               color="gray.200"

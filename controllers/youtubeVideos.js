@@ -80,7 +80,7 @@ module.exports = {
           { model: YoutubeAccount, as: 'youtubeAccount', include: { model: Team, as: 'team' } }
         ],
         order: [['publishedDate', 'DESC']],
-        limit: 10
+        limit: 20
       });
 
       return res.status(200).send({ payload });

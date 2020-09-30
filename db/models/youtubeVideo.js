@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       youtubeAccountId: DataTypes.INTEGER,
       videoId: DataTypes.STRING,
       description: DataTypes.TEXT,
-      thumbnail: DataTypes.STRING
+      thumbnail: DataTypes.STRING,
+      clicks: DataTypes.INTEGER
     },
     {
       sequelize,

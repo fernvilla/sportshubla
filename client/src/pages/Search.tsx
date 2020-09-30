@@ -42,7 +42,7 @@ const Search = ({ location }: Props) => {
         <Box p={5} bg="white" boxShadow="sm">
           <Heading as="h1" size="md" fontWeight="normal">
             Search results for:{' '}
-            <Text as="span" color="blue.500">
+            <Text as="span" color="brand-secondary">
               {query}
             </Text>
           </Heading>

@@ -6,19 +6,13 @@ import YoutubeFeed from '../components/videos/YoutubeFeed';
 import { YoutubeVideoData } from '../interfaces/youtubeVideo';
 
 const Videos = () => {
-  const { response, isLoading, refetch }: YoutubeVideoData = useAxios({
+  const { response, isLoading }: YoutubeVideoData = useAxios({
     url: '/api/youtubevideos'
   });
 
   return (
     <Box px={3} py={5} maxWidth={CONTENT_WRAPPER_WIDTH} mx="auto">
-      <YoutubeFeed
-        videos={response}
-        isFetching={isLoading}
-        refetchData={refetch}
-        videosPerPage={20}
-        displayTeamLink
-      />
+      <YoutubeFeed videos={response} isFetching={isLoading} videosPerPage={20} displayTeamLink />
     </Box>
   );
 };
