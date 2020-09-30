@@ -58,7 +58,7 @@ const FeedLayout = (props: Props) => {
             isFetching={fetchingVideos}
             displayTeamLink={displayTeamLink}
             isPreview={isPreview}
-            videosPerPage={isPreview ? 12 : undefined}
+            videosPerPage={isPreview ? 14 : undefined}
           />
         </Box>
       </Flex>
