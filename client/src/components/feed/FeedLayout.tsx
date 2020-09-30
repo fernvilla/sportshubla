@@ -40,6 +40,7 @@ const FeedLayout = (props: Props) => {
             isFetching={fetchingArticles}
             displayTeamLink={displayTeamLink}
             isPreview={isPreview}
+            articlesPerPage={isPreview ? 20 : undefined}
           />
         </Box>
 
@@ -49,6 +50,7 @@ const FeedLayout = (props: Props) => {
             isFetching={fetchingTweets}
             displayTeamLink={displayTeamLink}
             isPreview={isPreview}
+            tweetsPerPage={isPreview ? 15 : undefined}
           />
 
           <YoutubeFeed
@@ -56,6 +58,7 @@ const FeedLayout = (props: Props) => {
             isFetching={fetchingVideos}
             displayTeamLink={displayTeamLink}
             isPreview={isPreview}
+            videosPerPage={isPreview ? 12 : undefined}
           />
         </Box>
       </Flex>
