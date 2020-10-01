@@ -15,16 +15,18 @@ const Footer = () => {
       fontSize="xs"
       textAlign="center"
       mt={5}
+      flexShrink={0}
     >
       <Box maxWidth={CONTENT_WRAPPER_WIDTH} margin="auto">
-        <Text mb={3}>{date.getFullYear()} - Sports Hub Los Angeles</Text>
+        <Text mb={3} fontWeight="semibold">
+          {date.getFullYear()} - Sports Hub Los Angeles
+        </Text>
 
         <Text mb={1}>
-          Disclaimer: This is an unofficial fansite. This site is not officially sponsored or
-          supported by, or affiliated with, the sports teams and organizations, players, athletes,
-          television networks, media (or members of the media), shows, games, entertainment
-          companies, celebrities, entities, or any other third party appearing on and/or subject of
-          this site (collectively “Third Parties”).
+          Disclaimer: This site is not officially sponsored or supported by, or affiliated with, the
+          sports teams and organizations, players, athletes, television networks, media, shows,
+          games, entertainment companies, celebrities, entities, or any other third party appearing
+          on and/or subject of this site (collectively “Third Parties”).
         </Text>
 
         <Text mb={1}>

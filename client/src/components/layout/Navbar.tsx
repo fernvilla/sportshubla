@@ -69,7 +69,7 @@ const Navbar = (props: Props) => {
   };
 
   return (
-    <Box as="nav" color="brand" bg="white">
+    <Box as="nav" color="brand" bg="white" flexShrink={0}>
       <Box maxW={CONTENT_WRAPPER_WIDTH} mx="auto" py={3} px={3}>
         <Flex align="center" justify="space-between" wrap="wrap">
           <Flex alignItems="center">

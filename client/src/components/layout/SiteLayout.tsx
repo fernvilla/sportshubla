@@ -14,14 +14,12 @@ const SiteLayout = (props: Props) => {
 
   return (
     <Box w="100%" minH="100%">
-      <Flex flexDir="row">
-        <Box width="100%">
-          <Navbar teams={teams} />
+      <Flex width="100%" flexDir="column" height="100vh">
+        <Navbar teams={teams} />
 
-          {children}
+        <Box flex="1 0 auto">{children}</Box>
 
-          <Footer />
-        </Box>
+        <Footer />
       </Flex>
     </Box>
   );

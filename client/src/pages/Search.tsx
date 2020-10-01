@@ -5,7 +5,7 @@ import Tweet from '../interfaces/tweet';
 import { YoutubeVideo } from '../interfaces/youtubeVideo';
 import useAxios from '../hooks/useAxios';
 import { isEmpty } from '../utils/validation';
-import FeedLayout from '../components/feed/FeedLayout';
+import FeedLayout from '../components/FeedLayout';
 import Loader from '../components/Loader';
 import { Box, Heading, Text } from '@chakra-ui/core';
 import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';

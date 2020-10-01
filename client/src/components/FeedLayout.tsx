@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/core';
-import YoutubeFeed from './../videos/YoutubeFeed';
-import Article from '../../interfaces/article';
-import Tweet from '../../interfaces/tweet';
-import { YoutubeVideo } from '../../interfaces/youtubeVideo';
-import { CONTENT_WRAPPER_WIDTH } from '../../globals/constants';
-import ArticleFeed from '../articles/ArticleFeed';
-import TweetFeed from '../tweets/TweetFeed';
+import YoutubeFeed from './videos/YoutubeFeed';
+import Article from '../interfaces/article';
+import Tweet from '../interfaces/tweet';
+import { YoutubeVideo } from '../interfaces/youtubeVideo';
+import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
+import ArticleFeed from './articles/ArticleFeed';
+import TweetFeed from './tweets/TweetFeed';
 
 interface Props {
   articles: Article[];

@@ -3,7 +3,7 @@ import { TweetData } from '../interfaces/tweet';
 import useAxios from '../hooks/useAxios';
 import { YoutubeVideoData } from '../interfaces/youtubeVideo';
 import { ArticleData } from '../interfaces/article';
-import FeedLayout from '../components/feed/FeedLayout';
+import FeedLayout from '../components/FeedLayout';
 
 const Home = () => {
   const { response: articles, isLoading: fetchingArticles }: ArticleData = useAxios({
