@@ -34,7 +34,7 @@ const FeedLayout = (props: Props) => {
   return (
     <Box as="main" maxW={CONTENT_WRAPPER_WIDTH} mx="auto" pt={5}>
       <Flex flexWrap="wrap" flexDir="row">
-        <Box mx={3} flex="5" minWidth={400}>
+        <Box mx={3} flex="5 1 400px">
           <ArticleFeed
             articles={articles}
             isFetching={fetchingArticles}
@@ -44,7 +44,7 @@ const FeedLayout = (props: Props) => {
           />
         </Box>
 
-        <Box mx={3} flex="3">
+        <Box mx={3} flex="2 1 400px">
           <TweetFeed
             tweets={tweets}
             isFetching={fetchingTweets}
