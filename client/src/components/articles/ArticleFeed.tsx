@@ -9,6 +9,7 @@ import { FaRegFrown } from 'react-icons/fa';
 import ReactPaginate from 'react-paginate';
 import { calculateTotalPages } from '../../utils/feed';
 import { scrollToCallback } from '../../utils/window';
+import Card from '../Card';
 
 interface Props {
   articles: ArticleInterface[];
@@ -78,14 +79,16 @@ const ArticleFeed = ({
               </Flex>
             </Box>
           ) : (
-            <Flex justifyContent="center" padding={5}>
-              <Box textAlign="center">
-                <Flex justifyContent="center" fontSize="2xl">
-                  <FaRegFrown />
-                </Flex>
-                No Articles Available
-              </Box>
-            </Flex>
+            <Card mb={4}>
+              <Flex justifyContent="center" padding={5}>
+                <Box textAlign="center">
+                  <Flex justifyContent="center" fontSize="2xl">
+                    <FaRegFrown />
+                  </Flex>
+                  No Articles Available
+                </Box>
+              </Flex>
+            </Card>
           )}
         </>
       )}

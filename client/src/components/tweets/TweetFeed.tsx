@@ -9,6 +9,7 @@ import { FaRegFrown } from 'react-icons/fa';
 import SectionHeader from '../SectionHeader';
 import { Link } from 'react-router-dom';
 import { scrollToCallback } from '../../utils/window';
+import Card from '../Card';
 
 type Props = {
   tweets?: TweetInterface[];
@@ -81,14 +82,16 @@ const TweetFeed = ({
                 </Flex>
               </Box>
             ) : (
-              <Flex justifyContent="center" padding={5}>
-                <Box textAlign="center">
-                  <Flex justifyContent="center" fontSize="2xl">
-                    <FaRegFrown />
-                  </Flex>
-                  No Tweets Available
-                </Box>
-              </Flex>
+              <Card mb={4}>
+                <Flex justifyContent="center" padding={5}>
+                  <Box textAlign="center">
+                    <Flex justifyContent="center" fontSize="2xl">
+                      <FaRegFrown />
+                    </Flex>
+                    No Tweets Available
+                  </Box>
+                </Flex>
+              </Card>
             )}
           </>
         )}

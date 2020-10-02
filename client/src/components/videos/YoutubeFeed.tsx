@@ -10,6 +10,7 @@ import { FaRegFrown } from 'react-icons/fa';
 import SectionHeader from '../SectionHeader';
 import { Link } from 'react-router-dom';
 import { scrollToCallback } from '../../utils/window';
+import Card from '../Card';
 
 type Props = {
   videos?: YoutubeVideoInterface[];
@@ -82,14 +83,16 @@ const YoutubeFeed = ({
                 </Flex>
               </Box>
             ) : (
-              <Flex justifyContent="center" p={5}>
-                <Box>
-                  <Flex justifyContent="center" fontSize="2xl">
-                    <FaRegFrown />
-                  </Flex>
-                  No Videos Available
-                </Box>
-              </Flex>
+              <Card mb={4}>
+                <Flex justifyContent="center" p={5}>
+                  <Box>
+                    <Flex justifyContent="center" fontSize="2xl">
+                      <FaRegFrown />
+                    </Flex>
+                    No Videos Available
+                  </Box>
+                </Flex>
+              </Card>
             )}
           </>
         )}
