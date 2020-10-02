@@ -1,4 +1,4 @@
-export const scrollTo = (offset: number = 0, callback: () => void) => {
+export const scrollToCallback = (offset: number = 0, callback: () => void) => {
   const fixedOffset = offset.toFixed();
 
   const onScroll = () => {

@@ -1,6 +1,6 @@
 import { YoutubeAccount } from './youtubeAccount';
 
-export interface YoutubeVideo {
+export default interface YoutubeVideo {
   id: number;
   title: string;
   publishedDate: string;

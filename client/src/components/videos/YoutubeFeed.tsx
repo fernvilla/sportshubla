@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { YoutubeVideo as YoutubeVideoInterface } from './../../interfaces/youtubeVideo';
+import { default as YoutubeVideoInterface } from './../../interfaces/youtubeVideo';
 import { Box, Flex, Text, Grid } from '@chakra-ui/core';
 import Loader from '../Loader';
 import YoutubeVideo from './YoutubeVideo';
@@ -9,7 +9,7 @@ import { useRef } from 'react';
 import { FaRegFrown } from 'react-icons/fa';
 import SectionHeader from '../SectionHeader';
 import { Link } from 'react-router-dom';
-import Card from '../Card';
+import { scrollToCallback } from '../../utils/window';
 
 type Props = {
   videos?: YoutubeVideoInterface[];
@@ -40,36 +40,33 @@ const YoutubeFeed = ({
   }, [page, videos, videosPerPage]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
-    scrollTo();
-    setTimeout(() => setPage(selected), 500);
-  };
+    const offset = ref.current ? ref.current.offsetTop : 0;
 
-  const scrollTo = () => {
-    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollToCallback(offset - 100, () => setPage(selected));
   };
 
   return (
     <>
-      <SectionHeader title="Videos" />
+      <SectionHeader title={isPreview ? 'Latest Videos' : 'Videos'} />
 
       <Box ref={ref}>
         {isFetching ? (
           <Loader />
         ) : (
-          <Card mb={4}>
-            <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))">
+          <>
+            <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" columnGap={4}>
               {visibleVideos.map(video => (
                 <YoutubeVideo key={video.id} video={video} displayTeamLink={displayTeamLink} />
               ))}
             </Grid>
 
             {!!videos.length ? (
-              <Box marginBottom={-6}>
+              <Box>
                 <Flex justifyContent="flex-end">
                   {isPreview ? (
                     <Link to="/videos">
-                      <Flex color="blue.700" my={4} p={1} alignItems="center">
-                        <Text>View all</Text>
+                      <Flex color="blue.700" p={1} alignItems="center">
+                        <Text>View all videos</Text>
                       </Flex>
                     </Link>
                   ) : (
@@ -94,7 +91,7 @@ const YoutubeFeed = ({
                 </Box>
               </Flex>
             )}
-          </Card>
+          </>
         )}
       </Box>
     </>

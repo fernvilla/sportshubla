@@ -4,6 +4,7 @@ import { default as ArticleInterface } from './../../interfaces/article';
 import { formatDistanceToNow } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 import { FaRegClock } from 'react-icons/fa';
+import Card from '../Card';
 
 interface Props {
   article: ArticleInterface;
@@ -17,7 +18,7 @@ const Article = ({ article, displayTeamLink = true }: Props) => {
   });
 
   return (
-    <Box bg="white" p={6} borderRadius="md" boxShadow="md" mb={4}>
+    <Card mb={4}>
       {/* <Link href={article.url} isExternal>
         <Image
           src={article.image}
@@ -29,39 +30,41 @@ const Article = ({ article, displayTeamLink = true }: Props) => {
         />
       </Link> */}
 
-      {displayTeamLink && (
-        <RouterLink to={`/teams/${article.newsFeed?.team?.slug}`}>
-          <Text
-            as="span"
-            fontSize="sm"
-            backgroundColor={`${article.newsFeed?.team?.shortName
-              .replace(/\s/g, '-')
-              .toLocaleLowerCase()}-color`}
-            color="#fff"
-            borderRadius="full"
-            padding="4px 10px"
-            mr={2}
-            display="inline-block"
-            lineHeight="1"
-            boxShadow="sm"
-          >
-            {article.newsFeed?.team?.shortName}
-          </Text>
-        </RouterLink>
-      )}
+      <Flex alignItems="center">
+        {displayTeamLink && (
+          <RouterLink to={`/teams/${article.newsFeed?.team?.slug}`}>
+            <Text
+              as="span"
+              fontSize="xs"
+              backgroundColor={`${article.newsFeed?.team?.shortName
+                .replace(/\s/g, '-')
+                .toLocaleLowerCase()}-color`}
+              color="#fff"
+              borderRadius="full"
+              padding="4px 10px"
+              mr={2}
+              display="inline-block"
+              lineHeight="1"
+              boxShadow="sm"
+            >
+              {article.newsFeed?.team?.shortName}
+            </Text>
+          </RouterLink>
+        )}
 
-      <Flex
-        color="gray.500"
-        fontSize="xs"
-        fontStyle="italic"
-        alignItems="center"
-        display="inline-flex"
-      >
-        <Box display="inline" mr={1}>
-          <FaRegClock />
-        </Box>
+        <Flex
+          color="gray.500"
+          fontSize="xs"
+          fontStyle="italic"
+          alignItems="center"
+          display="inline-flex"
+        >
+          <Box display="inline" mr={1}>
+            <FaRegClock />
+          </Box>
 
-        <Text as="span">{formattedDate}</Text>
+          <Text as="span">{formattedDate}</Text>
+        </Flex>
       </Flex>
 
       <Link href={article.url} isExternal>
@@ -74,12 +77,12 @@ const Article = ({ article, displayTeamLink = true }: Props) => {
         Source: {article.newsFeed?.newsSource?.name}
       </Text>
 
-      {article.summary && (
+      {article.summary && !!article.summary.length && (
         <Text as="p" mt={4} color="gray.700" className="truncated-text">
           Summary: {article.summary}
         </Text>
       )}
-    </Box>
+    </Card>
   );
 };
 

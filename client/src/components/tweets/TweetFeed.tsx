@@ -8,7 +8,7 @@ import Loader from '../Loader';
 import { FaRegFrown } from 'react-icons/fa';
 import SectionHeader from '../SectionHeader';
 import { Link } from 'react-router-dom';
-import Card from '../Card';
+import { scrollToCallback } from '../../utils/window';
 
 type Props = {
   tweets?: TweetInterface[];
@@ -39,23 +39,20 @@ const TweetFeed = ({
   }, [page, tweets, tweetsPerPage]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
-    scrollTo();
-    setTimeout(() => setPage(selected), 500);
-  };
+    const offset = ref.current ? ref.current.offsetTop : 0;
 
-  const scrollTo = () => {
-    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollToCallback(offset - 100, () => setPage(selected));
   };
 
   return (
     <>
-      <SectionHeader title="Tweets" />
+      <SectionHeader title={isPreview ? 'Latest Tweets' : 'Tweets'} />
 
       <Box ref={ref}>
         {isFetching ? (
           <Loader />
         ) : (
-          <Card mb={4}>
+          <>
             <Box overflow="auto">
               {visibleTweets.map((tweet: TweetInterface) => (
                 <Tweet key={tweet.id} tweet={tweet} displayTeamLink={displayTeamLink} />
@@ -63,12 +60,12 @@ const TweetFeed = ({
             </Box>
 
             {!!tweets.length ? (
-              <Box marginBottom={-6}>
+              <Box>
                 <Flex justifyContent="flex-end">
                   {isPreview ? (
                     <Link to="/tweets">
-                      <Flex color="blue.700" my={4} p={1} alignItems="center">
-                        <Text>View all</Text>
+                      <Flex color="blue.700" p={1} alignItems="center">
+                        <Text>View all tweets</Text>
                       </Flex>
                     </Link>
                   ) : (
@@ -93,7 +90,7 @@ const TweetFeed = ({
                 </Box>
               </Flex>
             )}
-          </Card>
+          </>
         )}
       </Box>
     </>

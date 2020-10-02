@@ -14,6 +14,7 @@ import { default as TweetInterface } from './../../interfaces/tweet';
 import { formatDistanceToNow } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 import { FaRegComment, FaRetweet, FaRegHeart, FaEllipsisV } from 'react-icons/fa';
+import Card from '../Card';
 
 interface Props {
   tweet: TweetInterface;
@@ -27,7 +28,7 @@ const Tweet = ({ tweet, displayTeamLink = false }: Props) => {
   });
 
   return (
-    <Box borderBottomWidth="1px" p={3}>
+    <Card mb={4} p={4}>
       <Flex wrap="wrap">
         {tweet.profileImageUrl && (
           <Box pt={1} pr={3}>
@@ -77,7 +78,7 @@ const Tweet = ({ tweet, displayTeamLink = false }: Props) => {
 
         <Box color="blue.700" cursor="pointer" fontWeight="light">
           <Menu autoSelect={false}>
-            <MenuButton p={1} ml={5} mt={-2} mr={-2}>
+            <MenuButton p={1} ml={5}>
               <FaEllipsisV />
             </MenuButton>
 
@@ -130,7 +131,7 @@ const Tweet = ({ tweet, displayTeamLink = false }: Props) => {
           </Menu>
         </Box>
       </Flex>
-    </Box>
+    </Card>
   );
 };
 

@@ -3,7 +3,7 @@ import { Box, Flex } from '@chakra-ui/core';
 import YoutubeFeed from './videos/YoutubeFeed';
 import Article from '../interfaces/article';
 import Tweet from '../interfaces/tweet';
-import { YoutubeVideo } from '../interfaces/youtubeVideo';
+import YoutubeVideo from '../interfaces/youtubeVideo';
 import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
 import ArticleFeed from './articles/ArticleFeed';
 import TweetFeed from './tweets/TweetFeed';
@@ -34,7 +34,7 @@ const FeedLayout = (props: Props) => {
   return (
     <Box as="main" maxW={CONTENT_WRAPPER_WIDTH} mx="auto" pt={5}>
       <Flex flexWrap="wrap" flexDir="row">
-        <Box mx={3} flex="5 1 400px">
+        <Box mx={4} flex="5 1 400px">
           <ArticleFeed
             articles={articles}
             isFetching={fetchingArticles}
@@ -44,7 +44,7 @@ const FeedLayout = (props: Props) => {
           />
         </Box>
 
-        <Box mx={3} flex="2 1 400px">
+        <Box mx={4} flex="2 1 400px">
           <TweetFeed
             tweets={tweets}
             isFetching={fetchingTweets}
@@ -52,6 +52,8 @@ const FeedLayout = (props: Props) => {
             isPreview={isPreview}
             tweetsPerPage={isPreview ? 20 : undefined}
           />
+
+          {/* <Box borderBottomWidth="1px" my={5} borderBottomColor="gray.400" /> */}
 
           <YoutubeFeed
             videos={videos}

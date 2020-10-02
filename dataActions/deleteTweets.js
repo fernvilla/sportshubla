@@ -9,7 +9,7 @@ const { Op } = require('sequelize');
     const tweets = await Tweet.findAll({
       where: {
         publishedDate: {
-          [Op.lte]: db.sequelize.literal("NOW() - INTERVAL '14d'")
+          [Op.lte]: db.sequelize.literal("NOW() - INTERVAL '7d'")
         }
       }
     });

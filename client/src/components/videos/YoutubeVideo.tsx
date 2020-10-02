@@ -11,9 +11,10 @@ import {
   PseudoBox,
   Link
 } from '@chakra-ui/core';
-import { YoutubeVideo as YoutubeVideoInterface } from '../../interfaces/youtubeVideo';
+import { default as YoutubeVideoInterface } from '../../interfaces/youtubeVideo';
 // import YouTube from 'react-youtube';
 import { formatDistanceToNow } from 'date-fns';
+import Card from '../Card';
 
 interface Props {
   video: YoutubeVideoInterface;
@@ -48,10 +49,11 @@ const YoutubeVideo = ({ video, displayTeamLink = false }: Props) => {
   // );
 
   return (
-    <Box
-      p={3}
+    <Card
+      bg="transparent"
+      p={0}
+      mb={4}
       cursor="pointer"
-      minWidth={200}
       // onClick={onOpen}
     >
       {/* <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} size="full" isCentered>
@@ -100,7 +102,7 @@ const YoutubeVideo = ({ video, displayTeamLink = false }: Props) => {
           </Box>
         </PseudoBox>
       </Link>
-    </Box>
+    </Card>
   );
 };
 

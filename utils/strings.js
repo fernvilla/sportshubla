@@ -1,1 +1,5 @@
-export const removeHtmlFromString = str => str.replace(/<\/?[^>]+(>|$)/g, '');
+const removeHtmlFromString = str => str.replace(/<\/?[^>]+(>|$)/g, '');
+
+module.exports = {
+  removeHtmlFromString
+};
