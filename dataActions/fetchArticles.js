@@ -9,6 +9,7 @@ const NewsFeedType = require('./../db/models').NewsFeedType;
 const Parser = require('rss-parser');
 const fetch = require('isomorphic-unfetch');
 const { newsFeedTypes } = require('../constants');
+const { removeHtmlFromString } = require('../utils/strings');
 const differenceInDays = require('date-fns').differenceInDays;
 const Entities = require('html-entities').AllHtmlEntities;
 
@@ -57,12 +58,12 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
           if (differenceInDays(new Date(publishedDate), new Date()) < -1) return;
 
           const newArticle = {
-            title: entities.decode(article.title),
+            title: removeHtmlFromString(entities.decode(article.title)),
             publishedDate,
             url: article.link,
             image: article.enclosure ? getPathFromUrl(article.enclosure.url) : null,
             author: article.author,
-            summary: entities.decode(article.content),
+            summary: removeHtmlFromString(entities.decode(article.content)),
             newsFeedId: newsFeed.id
           };
 
