@@ -54,7 +54,7 @@ const getPathFromUrl = url => url.split(/[?#]/)[0];
         const createArticle = async article => {
           const publishedDate = article.pubDate || new Date();
 
-          // if (differenceInDays(new Date(publishedDate), new Date()) < -1) return;
+          if (differenceInDays(new Date(publishedDate), new Date()) < -1) return;
 
           const newArticle = {
             title: entities.decode(article.title),
