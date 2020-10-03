@@ -10,8 +10,5 @@ export const scrollToCallback = (offset: number = 0, callback: () => void) => {
 
   window.addEventListener('scroll', onScroll);
   onScroll();
-  window.scrollTo({
-    top: offset,
-    behavior: 'smooth'
-  });
+  window.scrollTo({ top: offset, behavior: 'smooth' });
 };

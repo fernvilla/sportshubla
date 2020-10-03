@@ -142,7 +142,7 @@ const Navbar = (props: Props) => {
       </Box>
 
       <Sticky enabled innerZ={1000}>
-        <Box bg="brand" w="100%">
+        <Box bg="brand" w="100%" overflowX="hidden">
           <Flex color="white" maxW={CONTENT_WRAPPER_WIDTH} mx="auto" pl={3}>
             <RouterLink to="/">
               <PseudoBox
@@ -159,7 +159,7 @@ const Navbar = (props: Props) => {
               </PseudoBox>
             </RouterLink>
 
-            <Box display={{ sm: 'block', md: 'none' }}>
+            <Box display={{ sm: 'block', lg: 'none' }}>
               <Menu autoSelect={false}>
                 <MenuButton
                   px={3}
@@ -194,8 +194,8 @@ const Navbar = (props: Props) => {
             </Box>
 
             <Box
-              display={{ xs: 'none', md: 'flex' }}
-              width={{ sm: 'full', md: 'auto' }}
+              display={{ xs: 'none', lg: 'flex' }}
+              width={{ sm: 'full', lg: 'auto' }}
               alignItems="center"
               flexGrow={1}
               flexWrap="wrap"

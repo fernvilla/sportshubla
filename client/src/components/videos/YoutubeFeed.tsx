@@ -55,7 +55,7 @@ const YoutubeFeed = ({
           <Loader />
         ) : (
           <>
-            <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" columnGap={4}>
+            <Grid templateColumns="repeat(auto-fit, minmax(150px, 1fr))" columnGap={4}>
               {visibleVideos.map(video => (
                 <YoutubeVideo key={video.id} video={video} displayTeamLink={displayTeamLink} />
               ))}

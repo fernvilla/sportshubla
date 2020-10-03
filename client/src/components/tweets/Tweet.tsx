@@ -28,8 +28,8 @@ const Tweet = ({ tweet, displayTeamLink = false }: Props) => {
   });
 
   return (
-    <Card mb={4} p={4}>
-      <Flex wrap="wrap">
+    <Card mb={4} p={4} pr={2}>
+      <Flex>
         {tweet.profileImageUrl && (
           <Box pt={1} pr={3}>
             <Link href={`https://www.twitter.com/${tweet.screenName}`} isExternal>
@@ -76,9 +76,9 @@ const Tweet = ({ tweet, displayTeamLink = false }: Props) => {
           </Flex>
         </Box>
 
-        <Box color="blue.700" cursor="pointer" fontWeight="light">
+        <Box color="blue.700" cursor="pointer" fontWeight="light" flex={0}>
           <Menu autoSelect={false}>
-            <MenuButton p={1} ml={5}>
+            <MenuButton p={1} mt={-4} color="blue.600">
               <FaEllipsisV />
             </MenuButton>
 
