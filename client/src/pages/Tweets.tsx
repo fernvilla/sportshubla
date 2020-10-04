@@ -31,7 +31,7 @@ const Tweets = () => {
     const pagedTweets = filteredTweets.slice(page * tweetsPerPage, (page + 1) * tweetsPerPage);
 
     setVisibleTweets(pagedTweets);
-    setTotalPages(calculateTotalPages(tweets.length, tweetsPerPage));
+    setTotalPages(calculateTotalPages(pagedTweets.length, tweetsPerPage));
   }, [page, tweets, selectedTeams]);
 
   const onPageChange = ({ selected }: { selected: number }) => {

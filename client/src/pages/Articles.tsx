@@ -34,7 +34,7 @@ const Articles = () => {
     );
 
     setVisibleArticles(pagedArticles);
-    setTotalPages(calculateTotalPages(articles.length, articlesPerPage));
+    setTotalPages(calculateTotalPages(pagedArticles.length, articlesPerPage));
   }, [page, articles, selectedTeams]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
