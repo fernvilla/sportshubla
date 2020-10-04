@@ -32,7 +32,7 @@ const Videos = () => {
     const pagedVideos = filteredVideos.slice(page * videosPerPage, (page + 1) * videosPerPage);
 
     setVisibleVideos(pagedVideos);
-    setTotalPages(calculateTotalPages(pagedVideos.length, videosPerPage));
+    setTotalPages(calculateTotalPages(filteredVideos.length, videosPerPage));
   }, [page, videos, selectedTeams]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
