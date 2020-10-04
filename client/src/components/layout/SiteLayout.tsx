@@ -1,16 +1,16 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { Flex, Box } from '@chakra-ui/core';
-import { Team } from '../../interfaces/team';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import TeamContext from '../../contexts/TeamContext';
 
 type Props = {
-  teams: Team[];
   children: ReactNode;
 };
 
 const SiteLayout = (props: Props) => {
-  const { children, teams } = props;
+  const { teams } = useContext(TeamContext);
+  const { children } = props;
 
   return (
     <Box w="100%" minH="100%">

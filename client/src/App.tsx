@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import store from 'store';
 import setAuthToken from './utils/auth';
@@ -14,12 +14,13 @@ import Login from './pages/Login';
 import axios from 'axios';
 import { Team as TeamInterface } from './interfaces/team';
 import Team from './pages/Team';
-
-import './app.scss';
 import Search from './pages/Search';
 import Videos from './pages/Videos';
 import Articles from './pages/Articles';
 import Tweets from './pages/Tweets';
+import TeamContext from './contexts/TeamContext';
+
+import './app.scss';
 
 const jwtToken = store.get('jwtToken');
 
@@ -38,7 +39,7 @@ if (jwtToken) {
   }
 }
 
-const App: FC = () => {
+const App = () => {
   const [teams, setTeams] = useState<TeamInterface[]>([]);
 
   useEffect(() => {
@@ -58,19 +59,21 @@ const App: FC = () => {
 
   return (
     <Router>
-      <SiteLayout teams={teams}>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/teams/:slug" exact component={Team} />
-          <Route path="/search" exact component={Search} />
-          <Route path="/videos" exact component={Videos} />
-          <Route path="/articles" exact component={Articles} />
-          <Route path="/tweets" exact component={Tweets} />
-          {/* <PrivateRoute path="/admin" exact component={Admin} adminRequired /> */}
-          <Route component={NotFound} />
-        </Switch>
-      </SiteLayout>
+      <TeamContext.Provider value={{ teams }}>
+        <SiteLayout>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/teams/:slug" exact component={Team} />
+            <Route path="/search" exact component={Search} />
+            <Route path="/videos" exact component={Videos} />
+            <Route path="/articles" exact component={Articles} />
+            <Route path="/tweets" exact component={Tweets} />
+            {/* <PrivateRoute path="/admin" exact component={Admin} adminRequired /> */}
+            <Route component={NotFound} />
+          </Switch>
+        </SiteLayout>
+      </TeamContext.Provider>
     </Router>
   );
 };

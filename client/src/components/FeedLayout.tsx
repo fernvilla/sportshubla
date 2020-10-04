@@ -7,7 +7,7 @@ import YoutubeVideo from '../interfaces/youtubeVideo';
 import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
 import ArticleFeed from './articles/ArticleFeed';
 import TweetFeed from './tweets/TweetFeed';
-import Card from './Card';
+// import Card from './Card';
 
 interface Props {
   articles: Article[];
@@ -56,7 +56,7 @@ const FeedLayout = (props: Props) => {
             isFetching={fetchingTweets}
             displayTeamLink={displayTeamLink}
             isPreview={isPreview}
-            tweetsPerPage={isPreview ? 20 : undefined}
+            tweetsPerPage={isPreview ? 16 : undefined}
           />
 
           <YoutubeFeed
@@ -64,7 +64,7 @@ const FeedLayout = (props: Props) => {
             isFetching={fetchingVideos}
             displayTeamLink={displayTeamLink}
             isPreview={isPreview}
-            videosPerPage={isPreview ? 20 : undefined}
+            videosPerPage={isPreview ? 16 : undefined}
           />
         </Box>
       </Flex>
