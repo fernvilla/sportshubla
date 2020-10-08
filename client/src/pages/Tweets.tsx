@@ -24,7 +24,7 @@ const Tweets = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tweetsPerPage = 30;
+    const tweetsPerPage = 36;
     const filteredTweets = selectedTeams?.length
       ? tweets.filter(tweet => selectedTeams.includes(tweet.twitterAccount?.team?.id))
       : tweets;
