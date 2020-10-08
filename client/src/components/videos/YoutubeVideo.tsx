@@ -52,8 +52,10 @@ const YoutubeVideo = ({ video, displayTeamLink = false }: Props) => {
     <Card
       bg="transparent"
       p={0}
+      m="auto"
       mb={4}
       cursor="pointer"
+      maxWidth={450}
       // onClick={onOpen}
     >
       {/* <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} size="full" isCentered>
