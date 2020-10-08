@@ -94,6 +94,15 @@ const adminBro = new AdminBro({
           name: { isTitle: true }
         }
       }
+    },
+    {
+      resource: db.TwitterAccount,
+      options: {
+        listProperties: ['name', 'twitterAccountTypeId', 'newsSourceId', 'teamId'],
+        properties: {
+          name: { isTitle: true }
+        }
+      }
     }
   ]
 });
