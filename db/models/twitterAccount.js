@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'twitterAccountTypeId',
         as: 'twitterAccountType'
       });
+      TwitterAccount.belongsTo(models.NewsSource, {
+        foreignKey: 'newsSourceId',
+        as: 'newsSource'
+      });
 
       TwitterAccount.hasMany(models.Tweet, { foreignKey: 'twitterAccountId', as: 'tweets' });
     }
@@ -21,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
   TwitterAccount.init(
     {
       name: DataTypes.STRING,
-      teamId: DataTypes.INTEGER
+      teamId: DataTypes.INTEGER,
+      newsSourceId: DataTypes.INTEGER
     },
     {
       sequelize,
