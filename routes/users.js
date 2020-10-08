@@ -4,7 +4,12 @@ const passport = require('passport');
 const users = require('./../controllers/users');
 const verifyToken = passport.authenticate('jwt', { session: false });
 
-router.get('/', verifyToken, users.findAll);
+if (process.env.NODE_ENV === 'development') {
+  router.get('/', users.findAll);
+}
+
+router.get('/:id', verifyToken, users.findById);
 router.post('/login', users.login);
+router.post('/create', users.create);
 
 module.exports = router;

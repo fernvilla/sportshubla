@@ -11,77 +11,65 @@ module.exports = {
     } catch (error) {
       return res.status(500).send({
         payload: [],
-        message: error.message || 'There was an error fetching users.'
+        message: 'There was an error fetching users.',
+        error
       });
     }
   },
 
-  // getById: async (req, res) => {
-  //   try {
-  //     const user = await User.findByPk(req.params.id);
+  findById: async (req, res) => {
+    try {
+      const user = await User.findByPk(req.params.id);
 
-  //     return res.status(200).json({ payload: user });
-  //   } catch (error) {
-  //     return res.status(400).json({
-  //       message: "There was an error fetching user.",
-  //       error: error.message
-  //     });
-  //   }
-  // },
+      return res.status(200).json({ payload: user });
+    } catch (error) {
+      return res.status(400).json({
+        payload: {},
+        message: 'There was an error fetching user.',
+        error
+      });
+    }
+  },
 
-  // create: async (req, res) => {
-  //   try {
-  //     const { email, password, firstName, lastName, isAdmin = false } = req.body;
+  create: async (req, res) => {
+    try {
+      const { email, password } = req.body;
 
-  //     const newUser = {
-  //       email: email.toLowerCase(),
-  //       password,
-  //       firstName,
-  //       lastName,
-  //       isAdmin
-  //     };
+      const newUser = { email: email.toLowerCase(), password };
 
-  //     if (!email || !password) {
-  //       return res.status(400).json({ message: "Please enter an email and password." });
-  //     }
+      if (!email || !password) {
+        return res
+          .status(400)
+          .json({ payload: {}, message: 'Please enter an email and password.' });
+      }
 
-  //     const existingEmail = await User.findOne({
-  //       where: { email: newUser.email }
-  //     });
+      const existingEmail = await User.findOne({ where: { email: newUser.email } });
 
-  //     if (existingEmail) {
-  //       return res.status(400).json({ message: "An account with that email already exists." });
-  //     }
+      if (existingEmail) {
+        return res
+          .status(400)
+          .json({ payload: {}, message: 'An account with that email already exists.' });
+      }
 
-  //     const salt = await bcrypt.genSalt(10);
+      const salt = await bcrypt.genSalt(10);
 
-  //     newUser.password = await bcrypt.hash(password, salt);
+      newUser.password = await bcrypt.hash(password, salt);
 
-  //     const user = await User.create(newUser);
+      const createdUser = await User.create(newUser);
 
-  //     const payload = {
-  //       id: user.id,
-  //       email: user.email,
-  //       isAdmin: user.isAdmin,
-  //       firstName: user.firstName,
-  //       lastName: user.lastName
-  //     };
+      const payload = { id: createdUser.id, email: createdUser.email };
 
-  //     const token = await jwt.sign(payload, process.env.SECRET_OR_KEY, {
-  //       expiresIn: "8h"
-  //     });
+      const token = await jwt.sign(payload, process.env.SECRET_OR_KEY, {
+        expiresIn: '8h'
+      });
 
-  //     return res.status(200).json({
-  //       message: "Account created successfully.",
-  //       payload: `Bearer ${token}`
-  //     });
-  //   } catch (error) {
-  //     return res.status(500).json({
-  //       message: "There was an error creating account.",
-  //       error: error.message
-  //     });
-  //   }
-  // },
+      return res
+        .status(200)
+        .json({ message: 'Account created successfully.', payload: `Bearer ${token}` });
+    } catch (error) {
+      return res.status(500).json({ message: 'There was an error creating account.', error });
+    }
+  },
 
   // updateById: async (req, res) => {
   //   try {
@@ -119,12 +107,10 @@ module.exports = {
   login: async (req, res) => {
     try {
       const { email, password } = req.body;
-      const user = await User.findOne({
-        where: { email }
-      });
+      const user = await User.findOne({ where: { email } });
 
       if (!user) {
-        return res.status(500).send({ message: 'User not found.' });
+        return res.status(500).send({ payload: {}, message: 'User not found.' });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
@@ -146,10 +132,15 @@ module.exports = {
         });
       }
 
-      return res.status(400).send({ message: 'Password incorrect.' });
+      return res.status(400).send({
+        payload: {},
+        message: 'Password is incorrect.'
+      });
     } catch (error) {
       return res.status(500).send({
-        message: error.message || 'There was an error logging in this user.'
+        payload: {},
+        message: 'There was an error logging in this user.',
+        error
       });
     }
   }
