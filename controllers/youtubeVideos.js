@@ -27,6 +27,37 @@ module.exports = {
     }
   },
 
+  findAllByPaginated: async (req, res) => {
+    try {
+      const {
+        body: { page = 0, size = 10 }
+      } = req;
+
+      const offset = page * size;
+      const limit = size;
+
+      const payload = await YoutubeVideo.findAll({
+        include: [
+          {
+            model: YoutubeAccount,
+            as: 'youtubeAccount',
+            include: { model: Team, as: 'team' }
+          }
+        ],
+        order: [['publishedDate', 'DESC']],
+        offset,
+        limit
+      });
+
+      return res.status(200).send({ payload });
+    } catch (error) {
+      return res.status(500).send({
+        payload: [],
+        message: error.message || 'There was an error fetching articles.'
+      });
+    }
+  },
+
   findAllByTeamId: async (req, res) => {
     try {
       const payload = await YoutubeVideo.findAll({
