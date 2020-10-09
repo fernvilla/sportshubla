@@ -71,7 +71,7 @@ const adminBro = new AdminBro({
     {
       resource: db.YoutubeAccount,
       options: {
-        listProperties: ['channelId', 'teamId', 'name'],
+        listProperties: ['channelId', 'teamId', 'name', 'newsSourceId'],
         properties: {
           name: { isTitle: true }
         }
