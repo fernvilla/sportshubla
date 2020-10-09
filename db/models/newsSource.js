@@ -10,9 +10,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       NewsSource.hasMany(models.NewsFeed, { foreignKey: 'newsSourceId', as: 'newsFeeds' });
-      NewsSource.hasMany(models.TwitterAccount, {
+
+      NewsSource.hasOne(models.TwitterAccount, {
         foreignKey: 'newsSourceId',
-        as: 'twitterAccounts'
+        as: 'twitterAccount'
+      });
+
+      NewsSource.hasOne(models.YoutubeAccount, {
+        foreignKey: 'newsSourceId',
+        as: 'youtubeAccount'
       });
     }
   }

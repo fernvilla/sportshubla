@@ -17,13 +17,18 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'youtubeAccountId',
         as: 'youtubeVideos'
       });
+      YoutubeAccount.belongsTo(models.NewsSource, {
+        foreignKey: 'newsSourceId',
+        as: 'newsSource'
+      });
     }
   }
   YoutubeAccount.init(
     {
       teamId: DataTypes.INTEGER,
       channelId: DataTypes.STRING,
-      name: DataTypes.STRING
+      name: DataTypes.STRING,
+      newsSourceId: DataTypes.INTEGER
     },
     {
       sequelize,
