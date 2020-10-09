@@ -6,7 +6,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import Loader from '../components/Loader';
 import useAxios from '../hooks/useAxios';
 import { YoutubeVideoData } from '../interfaces/youtubeVideo';
-import FeedLayout from '../components/FeedLayout';
+import FeedLayout from '../components/feed/FeedLayout';
 import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
 import { TweetData } from '../interfaces/tweet';
 import { ArticleData } from '../interfaces/article';

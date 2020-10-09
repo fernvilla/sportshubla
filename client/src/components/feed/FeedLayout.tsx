@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/core';
-import YoutubeFeed from './videos/YoutubeFeed';
-import Article from '../interfaces/article';
-import Tweet from '../interfaces/tweet';
-import YoutubeVideo from '../interfaces/youtubeVideo';
-import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
-import ArticleFeed from './articles/ArticleFeed';
-import TweetFeed from './tweets/TweetFeed';
-// import Card from './Card';
+import YoutubeFeed from '../videos/YoutubeFeed';
+import Article from '../../interfaces/article';
+import Tweet from '../../interfaces/tweet';
+import YoutubeVideo from '../../interfaces/youtubeVideo';
+import { CONTENT_WRAPPER_WIDTH } from '../../globals/constants';
+import ArticleFeed from '../articles/ArticleFeed';
+import TweetFeed from '../tweets/TweetFeed';
 
 interface Props {
   articles: Article[];
@@ -35,11 +34,6 @@ const FeedLayout = (props: Props) => {
   return (
     <Box as="main" maxW={CONTENT_WRAPPER_WIDTH} mx="auto" pt={5}>
       <Flex flexWrap="wrap" flexDir="row">
-        {/* <Box mx={4} flex="1 0 200px">
-          <Box height="23px" mb={3} display={{ xs: 'none', md: 'block' }} />
-          <Card mb={4}>Filter here</Card>
-        </Box> */}
-
         <Box mx={4} flex="5 1 300px">
           <ArticleFeed
             articles={articles}
