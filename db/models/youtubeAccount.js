@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
   YoutubeAccount.init(
     {
       teamId: DataTypes.INTEGER,
-      channelId: DataTypes.STRING
+      channelId: DataTypes.STRING,
+      name: DataTypes.STRING
     },
     {
       sequelize,
