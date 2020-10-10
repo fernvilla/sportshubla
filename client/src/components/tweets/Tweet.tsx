@@ -52,7 +52,7 @@ const Tweet = ({ tweet, displayTeamLink = false }: Props) => {
             isExternal
             color="blue.700"
           >
-            <Text m={0} lineHeight="shorter" fontWeight="medium">
+            <Text m={0} lineHeight="shorter" fontWeight="medium" wordBreak="break-all">
               {tweet.text}
             </Text>
           </Link>
