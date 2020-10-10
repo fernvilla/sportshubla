@@ -15,17 +15,16 @@ const Videos = () => {
   const { response: videos = [], isLoading }: YoutubeVideoData = useAxios({
     url: '/api/youtubevideos'
   });
-
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-  const [selectedTeams, setSelectedTeams] = useState<ValueType<OptionTypeBase>>([]);
+  const [selectedTeams, setSelectedTeams] = useState<number[]>([]);
   const [visibleVideos, setVisibleVideos] = useState<YoutubeVideoInterface[]>([]);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const videosPerPage = 30;
     const filteredVideos = selectedTeams?.length
-      ? videos.filter(video => selectedTeams.includes(video.youtubeAccount?.team?.id))
+      ? videos.filter(video => selectedTeams.includes(video.youtubeAccount?.team?.id || -1))
       : videos;
     const pagedVideos = filteredVideos.slice(page * videosPerPage, (page + 1) * videosPerPage);
 

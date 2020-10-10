@@ -23,7 +23,7 @@ const Articles = () => {
   useEffect(() => {
     const articlesPerPage = 30;
     const filteredArticles = selectedTeams?.length
-      ? articles.filter(article => selectedTeams.includes(article.newsFeed.team?.id || 0))
+      ? articles.filter(article => selectedTeams.includes(article.newsFeed.team?.id || -1))
       : articles;
     const pagedArticles = filteredArticles.slice(
       page * articlesPerPage,

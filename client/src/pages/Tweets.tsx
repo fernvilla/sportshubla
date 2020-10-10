@@ -14,17 +14,16 @@ import FeedFilter from '../components/feed/FeedFilter';
 
 const Tweets = () => {
   const { response: tweets = [], isLoading }: TweetData = useAxios({ url: '/api/tweets' });
-
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-  const [selectedTeams, setSelectedTeams] = useState<ValueType<OptionTypeBase>>([]);
+  const [selectedTeams, setSelectedTeams] = useState<number[]>([]);
   const [visibleTweets, setVisibleTweets] = useState<TweetInterface[]>([]);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tweetsPerPage = 36;
     const filteredTweets = selectedTeams?.length
-      ? tweets.filter(tweet => selectedTeams.includes(tweet.twitterAccount?.team?.id))
+      ? tweets.filter(tweet => selectedTeams.includes(tweet.twitterAccount?.team?.id || -1))
       : tweets;
     const pagedTweets = filteredTweets.slice(page * tweetsPerPage, (page + 1) * tweetsPerPage);
 
