@@ -6,6 +6,10 @@ export const scrollToCallback = (offset: number = 0, callback: () => void) => {
       window.removeEventListener('scroll', onScroll);
       callback();
     }
+
+    if (window.pageYOffset.toFixed() === "0") {
+      callback()
+    }
   };
 
   window.addEventListener('scroll', onScroll);
