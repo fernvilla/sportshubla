@@ -42,6 +42,7 @@ const Articles = () => {
 
   const onSelectTeams = (values: ValueType<OptionTypeBase>) => {
     setSelectedTeams(values?.map((val: { value: number; label: string }) => val.value) || []);
+    setPage(0);
   };
 
   return (
