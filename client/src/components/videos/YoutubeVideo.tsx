@@ -91,7 +91,9 @@ const YoutubeVideo = ({ video, displayTeamLink = false }: Props) => {
             w="100%"
             lineHeight="shorter"
           >
-            <Box className="truncated-text">{video.title}</Box>
+            <Box className="truncated-text" wordBreak="break-word">
+              {video.title}
+            </Box>
             <Box
               display="inline"
               color="gray.200"
