@@ -10,6 +10,7 @@ import FeedLayout from '../components/feed/FeedLayout';
 import { CONTENT_WRAPPER_WIDTH } from '../globals/constants';
 import { TweetData } from '../interfaces/tweet';
 import { ArticleData } from '../interfaces/article';
+import Card from '../components/Card';
 
 interface MatchParams {
   slug: string;
@@ -20,32 +21,38 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
 
   const { response: team, isLoading: fetchingTeam }: TeamData = useAxios({
     url: `/api/teams/slug/${slug}`,
-    dependency: slug,
+    dependencies: [slug],
     trigger: !!slug
   });
 
   const { response: tweets, isLoading: fetchingTweets }: TweetData = useAxios({
     url: `/api/tweets/team/id/${team?.id}`,
-    dependency: team?.id,
+    dependencies: [team?.id],
     trigger: !!team?.id
   });
 
   const { response: articles, isLoading: fetchingArticles }: ArticleData = useAxios({
     url: `/api/articles/team/id/${team?.id}`,
-    dependency: team?.id,
+    dependencies: [team?.id],
     trigger: !!team?.id
   });
 
   const { response: videos, isLoading: fetchingVideos }: YoutubeVideoData = useAxios({
     url: `/api/youtubevideos/team/id/${team?.id}`,
-    dependency: team?.id,
+    dependencies: [team?.id],
     trigger: !!team?.id
   });
 
   return (
     <Box as="main">
       <Box px={3} pt={5} maxW={CONTENT_WRAPPER_WIDTH} marginX="auto">
-        <Box p={5} bg="white" boxShadow="sm">
+        <Card
+          p={5}
+          bg="white"
+          boxShadow="sm"
+          borderBottom="2px"
+          borderBottomColor={`${team?.shortName.replace(/\s/g, '-').toLocaleLowerCase()}-color`}
+        >
           <Heading as="h1" size="md" fontWeight="normal">
             {team?.name}
           </Heading>
@@ -53,7 +60,7 @@ const Team = (props: RouteComponentProps<MatchParams>) => {
           <Link href={team?.websiteUrl} color="blue.700" isExternal>
             {team?.websiteUrl}
           </Link>
-        </Box>
+        </Card>
       </Box>
 
       {fetchingTeam ? (

@@ -2,16 +2,24 @@ import React from 'react';
 import { hydrate, render } from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
-import reduxStore from './store';
+import store from './store';
 import * as serviceWorker from './serviceWorker';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import customTheme from './theme';
+import { saveState } from './localStorage';
+import { throttle } from 'lodash';
 
-const rootElement = document.getElementById('root');
+store.subscribe(
+  throttle(() => {
+    saveState({
+      favorites: store.getState().favorites
+    });
+  }, 1000)
+);
 
 const component = (
   <React.StrictMode>
-    <Provider store={reduxStore}>
+    <Provider store={store}>
       <ThemeProvider theme={customTheme}>
         <CSSReset />
         <App />
@@ -19,6 +27,8 @@ const component = (
     </Provider>
   </React.StrictMode>
 );
+
+const rootElement = document.getElementById('root');
 
 if (rootElement?.hasChildNodes()) {
   hydrate(component, rootElement);

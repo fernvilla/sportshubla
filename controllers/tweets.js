@@ -27,6 +27,29 @@ module.exports = {
     }
   },
 
+  findAllByFavoriteTeams: async (req, res) => {
+    try {
+      const payload = await Tweet.findAll({
+        include: [
+          {
+            model: TwitterAccount,
+            as: 'twitterAccount',
+            include: { model: Team, as: 'team' }
+          }
+        ],
+        order: [['publishedDate', 'DESC']],
+        where: { id: req.body.ids }
+      });
+
+      return res.status(200).send({ payload });
+    } catch (error) {
+      return res.status(500).send({
+        payload: [],
+        message: error.message || 'There was an error fetching tweets.'
+      });
+    }
+  },
+
   findAllByPaginated: async (req, res) => {
     try {
       const {
@@ -109,6 +132,30 @@ module.exports = {
       const payload = await Tweet.findAll({
         include: [
           { model: TwitterAccount, as: 'twitterAccount', include: { model: Team, as: 'team' } }
+        ],
+        order: [['publishedDate', 'DESC']],
+        limit: 20
+      });
+
+      return res.status(200).send({ payload });
+    } catch (error) {
+      return res.status(500).send({
+        payload: [],
+        message: error.message || 'There was an error fetching tweets.'
+      });
+    }
+  },
+
+  findLatestByFavoriteTeams: async (req, res) => {
+    try {
+      const payload = await Tweet.findAll({
+        include: [
+          {
+            model: TwitterAccount,
+            as: 'twitterAccount',
+            include: { model: Team, as: 'team' },
+            where: { teamId: req.body.ids }
+          }
         ],
         order: [['publishedDate', 'DESC']],
         limit: 20

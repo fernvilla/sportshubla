@@ -3,7 +3,8 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 type Props = AxiosRequestConfig & {
   trigger?: boolean;
-  dependency?: any;
+  dependencies?: any;
+  debug?: boolean;
 };
 
 const useAxios = ({
@@ -11,7 +12,8 @@ const useAxios = ({
   url = '',
   data = {},
   trigger = true,
-  dependency = null
+  dependencies = [],
+  debug = false
 }: Props) => {
   const [response, setResponse] = useState<any>(undefined);
   const [error, setError] = useState<any>(undefined);
@@ -21,7 +23,7 @@ const useAxios = ({
     if (trigger === false) return;
 
     fetchData();
-  }, [dependency, trigger]);
+  }, [...dependencies, trigger]);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -29,7 +31,7 @@ const useAxios = ({
     try {
       const res = await axios({ method, url, data });
 
-      if (process.env.NODE_ENV === 'development') {
+      if (debug) {
         console.log('fetched', url, res.data);
       }
 

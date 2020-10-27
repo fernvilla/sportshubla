@@ -20,7 +20,7 @@
   "dependencies": {
     "@admin-bro/express": "^3.0.1",
     "@admin-bro/sequelize": "^1.1.1",
-    "@sendgrid/mail": "^7.2.6",
+    "@sendgrid/mail": "^7.3.0",
     "admin-bro": "^3.2.5",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -38,13 +38,13 @@
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "pg": "^8.4.1",
+    "pg": "^8.4.2",
     "rss-parser": "^3.9.0",
     "sequelize": "^6.3.5",
     "twitter-lite": "^0.14.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.6",
     "npm-run-all": "^4.1.5",
     "sequelize-cli": "^6.2.0"
   }

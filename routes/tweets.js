@@ -7,5 +7,6 @@ router.post('/paginated', tweets.findAllByPaginated);
 router.get('/lastday', tweets.findByLastDay);
 router.get('/latest', tweets.findByLatest);
 router.get('/team/id/:id', tweets.findAllByTeamId);
+router.post('/latest/favorites', tweets.findLatestByFavoriteTeams);
 
 module.exports = router;

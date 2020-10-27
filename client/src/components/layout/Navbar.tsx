@@ -13,7 +13,9 @@ import {
   Input,
   InputLeftElement,
   Link,
-  Heading
+  Heading,
+  useDisclosure,
+  Button
 } from '@chakra-ui/core';
 import { Team } from '../../interfaces/team';
 import { Link as RouterLink, RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
@@ -31,6 +33,7 @@ import {
   FaChevronDown
 } from 'react-icons/fa';
 import Sticky from 'react-stickynode';
+import FavoriteTeamsModal from '../FavoriteTeamsModal';
 
 const mapState = (state: RootState) => ({
   auth: state.auth
@@ -55,6 +58,7 @@ const Navbar = (props: Props) => {
   const { teams, location } = props;
   const history = useHistory();
   const [searchQuery, setSearchQuery] = useState('');
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value);
 
@@ -143,11 +147,12 @@ const Navbar = (props: Props) => {
 
       <Sticky enabled innerZ={1000}>
         <Box bg="brand" w="100%" overflowX="hidden">
-          <Flex color="white" maxW={CONTENT_WRAPPER_WIDTH} mx="auto" pl={3}>
+          <Flex color="white" maxW={CONTENT_WRAPPER_WIDTH} mx="auto" px={3}>
             <RouterLink to="/">
               <PseudoBox
                 px={3}
                 py={3}
+                mr={1}
                 fontSize="lg"
                 height="45px"
                 display="flex"
@@ -206,7 +211,7 @@ const Navbar = (props: Props) => {
                 return (
                   <RouterLink key={team.id} to={`/teams/${team.slug}`}>
                     <PseudoBox
-                      px={3}
+                      px={2}
                       py={3}
                       height="45px"
                       display="flex"
@@ -225,7 +230,7 @@ const Navbar = (props: Props) => {
               <Flex>
                 <RouterLink to="/articles">
                   <PseudoBox
-                    px={3}
+                    px={2}
                     py={3}
                     height="45px"
                     display="flex"
@@ -242,7 +247,7 @@ const Navbar = (props: Props) => {
 
                 <RouterLink to="/videos">
                   <PseudoBox
-                    px={3}
+                    px={2}
                     py={3}
                     height="45px"
                     display="flex"
@@ -259,7 +264,7 @@ const Navbar = (props: Props) => {
 
                 <RouterLink to="/tweets">
                   <PseudoBox
-                    px={3}
+                    px={2}
                     py={3}
                     height="45px"
                     display="flex"
@@ -273,11 +278,29 @@ const Navbar = (props: Props) => {
                     Tweets
                   </PseudoBox>
                 </RouterLink>
+
+                <Button onClick={onOpen} variant="link">
+                  <PseudoBox
+                    px={2}
+                    py={3}
+                    height="45px"
+                    display="flex"
+                    alignItems="center"
+                    color="gray.400"
+                    fontWeight="normal"
+                    fontSize="sm"
+                    _hover={{ borderColor: 'blue.700', bg: 'blue.700' }}
+                  >
+                    Set My Teams
+                  </PseudoBox>
+                </Button>
               </Flex>
             </Box>
           </Flex>
         </Box>
       </Sticky>
+
+      <FavoriteTeamsModal onClose={onClose} isOpen={isOpen} />
     </Box>
   );
 };

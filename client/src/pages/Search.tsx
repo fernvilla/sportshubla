@@ -31,7 +31,7 @@ const Search = ({ location }: Props) => {
     url: '/api/search',
     data: { query },
     trigger: !isEmpty(query),
-    dependency: query
+    dependencies: [query]
   });
 
   const { articles, tweets, videos } = results || {};
