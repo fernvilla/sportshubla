@@ -1,4 +1,4 @@
-import { ADD_FAVORITE_TEAM, REMOVE_FAVORITE_TEAM } from '../actions/types';
+import { ADD_FAVORITE_TEAM, REMOVE_FAVORITE_TEAM, UPDATE_FAVORITE_TEAMS } from '../actions/types';
 import { Favorites } from '../interfaces/favorites';
 import { Team } from '../interfaces/team';
 
@@ -18,6 +18,12 @@ export const favorites = (state = initialState, action: { type: string; payload:
       return {
         ...state,
         teams: state.teams.filter((team: Team) => team.id !== action.payload.id)
+      };
+
+    case UPDATE_FAVORITE_TEAMS:
+      return {
+        ...state,
+        teams: action.payload
       };
 
     default:

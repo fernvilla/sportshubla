@@ -10,21 +10,21 @@ import {
   ModalOverlay,
   Switch
 } from '@chakra-ui/core';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { addFavoriteTeam, removeFavoriteTeam } from '../actions/favoritesActions';
+import { updateFavoriteTeams } from '../actions/favoritesActions';
 import TeamContext from '../contexts/TeamContext';
 import { Team } from '../interfaces/team';
 import { RootState } from '../reducers';
+import { useToast } from '@chakra-ui/core';
 
 const mapState = (state: RootState) => ({
   favoriteTeams: state.favorites.teams
 });
 
 const mapDispatch = (dispatch: ThunkDispatch<{}, {}, any>) => ({
-  addFavoriteTeam: (team: Team) => dispatch(addFavoriteTeam(team)),
-  removeFavoriteTeam: (team: Team) => dispatch(removeFavoriteTeam(team))
+  updateFavoriteTeams: (teams: Team[]) => dispatch(updateFavoriteTeams(teams))
 });
 
 const connector = connect(mapState, mapDispatch);
@@ -38,9 +38,33 @@ type Props = PropsFromRedux & {
 };
 
 const FavoriteTeamsModal = (props: Props) => {
+  const toast = useToast();
+  const { isOpen, onClose, favoriteTeams = [], updateFavoriteTeams } = props;
   const { teams } = useContext(TeamContext);
-  const { isOpen, onClose, favoriteTeams = [], addFavoriteTeam, removeFavoriteTeam } = props;
-  console.log(favoriteTeams);
+  const [selectedTeams, setSelectedTeams] = useState<Team[]>(favoriteTeams);
+
+  const addTeam = (team: Team) => {
+    setSelectedTeams([...selectedTeams, team]);
+  };
+
+  const removeTeam = (team: Team) => {
+    setSelectedTeams(selectedTeams.filter(t => t.id !== team.id));
+  };
+
+  const saveTeams = () => {
+    updateFavoriteTeams(selectedTeams);
+
+    toast({
+      title: 'Sucess',
+      description: 'My Teams successfully updated',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+      position: 'top'
+    });
+
+    onClose();
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -51,15 +75,15 @@ const FavoriteTeamsModal = (props: Props) => {
         <ModalCloseButton />
         <ModalBody>
           {teams.map(team => {
-            const isFavorite = !!favoriteTeams.find(ft => ft.id === team.id);
+            const isSelected = !!selectedTeams.find((ft: Team) => ft.id === team.id);
 
             return (
               <Box key={team.id} mb={2}>
                 <Switch
                   size="md"
                   mr={3}
-                  defaultIsChecked={isFavorite}
-                  onChange={() => (isFavorite ? removeFavoriteTeam(team) : addFavoriteTeam(team))}
+                  defaultIsChecked={isSelected}
+                  onChange={() => (isSelected ? removeTeam(team) : addTeam(team))}
                 />
                 {team.shortName}
               </Box>
@@ -68,7 +92,18 @@ const FavoriteTeamsModal = (props: Props) => {
         </ModalBody>
 
         <ModalFooter pt={0}>
-          <Button variantColor="brand-secondary" onClick={onClose} size="sm">
+          <Button backgroundColor="brand-secondary" mr={3} onClick={saveTeams} size="sm">
+            Save
+          </Button>
+
+          <Button
+            variantColor="ghost"
+            onClick={() => {
+              setSelectedTeams(favoriteTeams);
+              onClose();
+            }}
+            size="sm"
+          >
             Close
           </Button>
         </ModalFooter>
